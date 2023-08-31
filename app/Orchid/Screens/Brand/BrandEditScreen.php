@@ -5,6 +5,7 @@ namespace App\Orchid\Screens\Brand;
 use App\Models\Brand;
 use App\Orchid\Layouts\Brand\BrandEditLayout;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
@@ -91,16 +92,16 @@ class BrandEditScreen extends Screen
     public function save(Brand $brand, Request $request)
     {
         $request->validate([
-            'name' => ['required','max:20','unique:brands']
+            'brand.name' => ['required','max:20',Rule::unique(Brand::class, 'name')->ignore($brand)]
         ]);
 
         if ($brand->exists){
-            $brand->update($request->all());
+            $brand->update($request['brand']);
             Toast::success('Update success');
         }
 
         if (!$brand->exists){
-            Brand::create($request->all());
+            Brand::create($request['brand']);
             Toast::success('Brand was created');
         }
 
