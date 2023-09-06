@@ -5,16 +5,15 @@
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        <div class="hero__items set-bg" data-setbg="front/img/hero/hero-1.jpg">
+        @foreach($sliders as $slider)
+        <div class="hero__items set-bg" data-setbg="front/img/{{$slider->image}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">
                         <div class="hero__text">
-                            <h6>Summer Collection</h6>
-                            <h2>Fall - Winter Collections 2030</h2>
-                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                            <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                            <h2>{{$slider->title}}</h2>
+                            <p>{{$slider->content}}</p>
+                            <a href="{{url($slider->url)}}" class="primary-btn">Shop now<span class="arrow_right"></span></a>
                             <div class="hero__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -26,27 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero__items set-bg" data-setbg="front/img/hero/hero-2.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-7 col-md-8">
-                        <div class="hero__text">
-                            <h6>Summer Collection</h6>
-                            <h2>Fall - Winter Collections 2030</h2>
-                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                            <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                            <div class="hero__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 <!-- Hero Section End -->
@@ -98,247 +77,107 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="filter__controls">
-                    <li class="active" data-filter="*">Best Sellers</li>
+                    <li class="active" data-filter=".best-seller">Best Sellers</li>
                     <li data-filter=".new-arrivals">New Arrivals</li>
                     <li data-filter=".hot-sales">Hot Sales</li>
+                    <li data-filter=".featured">Featured</li>
                 </ul>
             </div>
         </div>
         <div class="row product__filter">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-1.jpg">
-                        <span class="label">New</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <a href="product-detail.html" class="name-product">Piqué Biker Jacket</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$67.24</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-2.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <a href="product-detail.html" class="name-product">Piqué Biker Jacket</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$67.24</h5>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item sale">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-3.jpg">
-                        <span class="label">Sale</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <a href="product-detail.html" class="name-product">Multi-pocket Chest Bag</a>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$43.48</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-4.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <a href="product-detail.html" class="name-product">Diagonal Textured Cap</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$60.9</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-5.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Lether Backpack</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$31.37</h5>
-                        <div class="product__color__select">
-                            <label for="pc-13">
-                                <input type="radio" id="pc-13">
-                            </label>
-                            <label class="active black" for="pc-14">
-                                <input type="radio" id="pc-14">
-                            </label>
-                            <label class="grey" for="pc-15">
-                                <input type="radio" id="pc-15">
-                            </label>
+            @foreach($bestSellers as $product)
+                @if(($product->discount) > 0)
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6  mix best-seller">
+                        <div class="product__item">
+                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            <div class="product__item__text">
+                                <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
+                                <div class="Product-price">
+                                    @if($product->discount_price)
+                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="original-price">{{number_format($product->price)}} VNĐ</span>
+                                    @else
+                                        <span class="price">{{number_format($product->price)}} VNĐ</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item sale">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-6.jpg">
-                        <span class="label">Sale</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Ankle Boots</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$98.49</h5>
-                        <div class="product__color__select">
-                            <label for="pc-16">
-                                <input type="radio" id="pc-16">
-                            </label>
-                            <label class="active black" for="pc-17">
-                                <input type="radio" id="pc-17">
-                            </label>
-                            <label class="grey" for="pc-18">
-                                <input type="radio" id="pc-18">
-                            </label>
+                @endif
+            @endforeach
+                @foreach($hotSales as $product)
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                        <div class="product__item">
+                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            <div class="product__item__text">
+                                <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
+                                <div class="Product-price">
+                                    @if($product->discount_price)
+                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="original-price">{{number_format($product->price)}} VNĐ</span>
+                                    @else
+                                        <span class="price">{{number_format($product->price)}} VNĐ</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-7.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>T-shirt Contrast Pocket</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$49.66</h5>
-                        <div class="product__color__select">
-                            <label for="pc-19">
-                                <input type="radio" id="pc-19">
-                            </label>
-                            <label class="active black" for="pc-20">
-                                <input type="radio" id="pc-20">
-                            </label>
-                            <label class="grey" for="pc-21">
-                                <input type="radio" id="pc-21">
-                            </label>
+                @endforeach
+                @foreach($newProduct as $product)
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        <div class="product__item">
+                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            @if($product->discount_price)
+                                <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @else
+                                <span class="label">New</span>
+                            @endif
+                            <div class="product__item__text">
+                                <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
+                                <div class="Product-price">
+                                    @if($product->discount_price)
+                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="original-price">{{number_format($product->price)}} VNĐ</span>
+                                    @else
+                                        <span class="price">{{number_format($product->price)}} VNĐ</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="front/img/product/product-8.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="front/img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="front/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="front/img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Basic Flowing Scarf</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$26.28</h5>
-                        <div class="product__color__select">
-                            <label for="pc-22">
-                                <input type="radio" id="pc-22">
-                            </label>
-                            <label class="active black" for="pc-23">
-                                <input type="radio" id="pc-23">
-                            </label>
-                            <label class="grey" for="pc-24">
-                                <input type="radio" id="pc-24">
-                            </label>
+                @endforeach
+                @foreach($featured as $product)
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix featured">
+                        <div class="product__item">
+                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            @if($product->discount_price)
+                                <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @else
+                                <span class="label">Hot</span>
+                            @endif
+                            <div class="product__item__text">
+                                <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
+                                <div class="Product-price">
+                                    @if($product->discount_price)
+                                    <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="original-price">{{number_format($product->price)}} VNĐ</span>
+                                    @else
+                                    <span class="price">{{number_format($product->price)}} VNĐ</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @endforeach
         </div>
     </div>
 </section>
 <!-- Product Section End -->
 
 <!-- Categories Section Begin -->
+@if($sale)
 <section class="categories spad">
     <div class="container">
         <div class="row">
@@ -352,38 +191,39 @@
                     <img src="front/img/product-sale.png" alt="">
                     <div class="hot__deal__sticker">
                         <span>Sale Of</span>
-                        <h5>$29.99</h5>
+                        <h5>{{ number_format($sale->product->discount_price) }} VNĐ</h5>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 offset-lg-1">
                 <div class="categories__deal__countdown">
-                    <span>Deal Of The Week</span>
-                    <h2>Multi-pocket Chest Bag Black</h2>
-                    <div class="categories__deal__countdown__timer" id="countdown">
+                    <span>{{ $sale->title }}</span>
+                    <h2>{{ $sale->content }}</h2>
+                    <div class="categories__deal__countdown__timer" id="countdown" time-end="{{$sale->time_end}}">
                         <div class="cd-item">
-                            <span>3</span>
+                            <span>00</span>
                             <p>Days</p>
                         </div>
                         <div class="cd-item">
-                            <span>1</span>
+                            <span>00</span>
                             <p>Hours</p>
                         </div>
                         <div class="cd-item">
-                            <span>50</span>
+                            <span>00</span>
                             <p>Minutes</p>
                         </div>
                         <div class="cd-item">
-                            <span>18</span>
+                            <span>00</span>
                             <p>Seconds</p>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">Shop now</a>
+                    <a href="" class="primary-btn btn-countdown-sale">Shop now</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 <!-- Categories Section End -->
 
 <!-- Instagram Section Begin -->

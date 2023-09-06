@@ -1,0 +1,74 @@
+.product__details__text {
+    .product__details__option {
+        position: relative;
+        .product__details__option__color {
+            position: absolute;
+            top: 5px;
+        }
+    }
+}
+.product__details__option__color label.product-color {
+    display: none;
+    &.show {
+        display: inline-block;
+    }
+    &.show.active {
+        &:after {
+            border: 1px solid black !important;
+        }
+    }
+}
+
+.container {
+    .product__details__text {
+        .product__details__option{
+            display: flex;
+            justify-content: center;
+            position: unset;
+            .product__details__option__color {
+                display: flex;
+                align-items: center;
+                position: unset;
+                span {
+                    top: unset;
+                    position: unset;
+                }
+            }
+        }
+    }
+}
+.product__details__text {
+    .discount-price, .price {
+        font-size: 25px;
+    }
+    .original-price {
+        font-size: 20px;
+    }
+}
+.silder-product-related.owl-carousel .owl-nav button {
+    font-size: 36px;
+    color: #333333;
+    position: absolute;
+    left: 75px;
+    top: 40%;
+    margin-top: -18px;
+    line-height: 29px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+    left: auto;
+    right: 75px;
+}
+.silder-product-related.owl-carousel .owl-nav button {
+    left: 2px;
+}
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+    right: 2px;
+}
+.silder-product-related.owl-carousel .owl-nav button {
+    left: 15px;
+}
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+    left: auto;
+    right: 0;
+}

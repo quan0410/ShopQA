@@ -14,14 +14,14 @@
           rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="front/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="front/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="front/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="front/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="front/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="front/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="front/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="front/css/style.css" type="text/css">
+    <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/elegant-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/slicknav.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -50,9 +50,9 @@
         </div>
     </div>
     <div class="offcanvas__nav__option">
-        <a href="#" class="search-switch"><img src="front/img/icon/search.png" alt=""></a>
-        <a href="#"><img src="front/img/icon/heart.png" alt=""></a>
-        <a href="#"><img src="front/img/icon/cart.png" alt=""> <span>0</span></a>
+        <a href="#" class="search-switch"><img src="{{asset("front/img/icon/search.png")}}" alt=""></a>
+        <a href="#"><img src="{{asset("front/img/icon/heart.png")}}" alt=""></a>
+        <a href="#"><img src="{{asset("front/img/icon/cart.png")}}" alt=""> <span>0</span></a>
         <div class="price">$0.00</div>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -109,33 +109,25 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="front/img/logo.png" alt=""></a>
+                    <a href="{{route("home")}}"><img src="{{asset("front/img/logo.png")}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="{{route("home")}}">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./about.html">About Us</a></li>
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contacts</a></li>
+                        <li class="{{Route::current()->getName() == "home" ? 'active': ''}}"><a href="{{route("home")}}">Home</a></li>
+                        <li class="{{Route::current()->getName() == "shop" ? 'active': ''}}"><a href="#">Shop</a></li>
+                        <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blog</a></li>
+                        <li class="{{Route::current()->getName() == "contact.index" ? 'active': ''}}"><a href="{{ route("contact.index") }}">Contacts</a></li>
+                        <li class="{{Route::current()->getName() == "about" ? 'active': ''}}"><a href="{{ route("about") }}">About Us</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
-                    <a href="#" class="search-switch"><img src="front/img/icon/search.png" alt=""></a>
-                    <a href="#"><img src="front/img/icon/heart.png" alt=""></a>
-                    <a href="#"><img src="front/img/icon/cart.png" alt=""> <span>0</span></a>
+                    <a href="#" class="search-switch"><img src="{{asset("front/img/icon/search.png") }}" alt=""></a>
+                    <a href="#"><img src="{{asset("front/img/icon/heart.png") }}" alt=""></a>
+                    <a href="#"><img src="{{asset("front/img/icon/cart.png") }}" alt=""> <span>0</span></a>
                     <div class="price">$0.00</div>
                 </div>
             </div>
@@ -156,10 +148,10 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="front/img/footer-logo.png" alt=""></a>
+                        <a href="#"><img src="{{asset("front/img/footer-logo.png")}}" alt=""></a>
                     </div>
                     <p>The customer is at the heart of our unique business model, which includes design.</p>
-                    <a href="#"><img src="front/img/payment.png" alt=""></a>
+                    <a href="#"><img src="{{asset("front/img/payment.png")}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
@@ -177,8 +169,8 @@
                 <div class="footer__widget">
                     <h6>Shopping</h6>
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="{{ route("contact.index") }}">Contact Us</a></li>
+                        <li><a href="{{ route( "about") }}">About Us</a></li>
                         <li><a href="#">Delivary</a></li>
                         <li><a href="#">Return & Exchanges</a></li>
                     </ul>
@@ -228,17 +220,17 @@
 <!-- Search End -->
 
 <!-- Js Plugins -->
-<script src="front/js/jquery-3.3.1.min.js"></script>
-<script src="front/js/bootstrap.min.js"></script>
-<script src="front/js/jquery.nice-select.min.js"></script>
-<script src="front/js/jquery.nicescroll.min.js"></script>
-<script src="front/js/jquery.magnific-popup.min.js"></script>
-<script src="front/js/jquery.countdown.min.js"></script>
-<script src="front/js/jquery.slicknav.js"></script>
-<script src="front/js/mixitup.min.js"></script>
-<script src="front/js/owl.carousel.min.js"></script>
-<script src="front/js/main.js"></script>
+<script src="{{ asset('front/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('front/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('front/js/jquery.nicescroll.min.js') }}"></script>
+<script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('front/js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('front/js/jquery.slicknav.js') }}"></script>
+<script src="{{ asset('front/js/mixitup.min.js') }}"></script>
+<script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('front/js/main.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
-
 </html>
 

@@ -347,6 +347,7 @@ sup {
 
 a {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  text-decoration: underline;
 }
 a:hover {
   --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
@@ -11974,4 +11975,96 @@ textarea.form-control-lg {
 .box-login {
   height: 100vh;
   align-content: center;
+}
+
+.original-price {
+  font-size: 12px;
+  color: gray;
+  text-decoration-line: line-through;
+}
+
+.discount-price {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: unset !important;
+}
+
+.product__details__text .product__details__option {
+  position: relative;
+}
+.product__details__text .product__details__option .product__details__option__color {
+  position: absolute;
+  top: 5px;
+}
+
+.product__details__option__color label.product-color {
+  display: none;
+}
+.product__details__option__color label.product-color.show {
+  display: inline-block;
+}
+.product__details__option__color label.product-color.show.active:after {
+  border: 1px solid black !important;
+}
+
+.container .product__details__text .product__details__option {
+  display: flex;
+  justify-content: center;
+  position: unset;
+}
+.container .product__details__text .product__details__option .product__details__option__color {
+  display: flex;
+  align-items: center;
+  position: unset;
+}
+.container .product__details__text .product__details__option .product__details__option__color span {
+  top: unset;
+  position: unset;
+}
+
+.product__details__text .discount-price, .product__details__text .price {
+  font-size: 25px;
+}
+.product__details__text .original-price {
+  font-size: 20px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button {
+  font-size: 36px;
+  color: #333333;
+  position: absolute;
+  left: 75px;
+  top: 40%;
+  margin-top: -18px;
+  line-height: 29px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+  left: auto;
+  right: 75px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button {
+  left: 2px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+  right: 2px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button {
+  left: 15px;
+}
+
+.silder-product-related.owl-carousel .owl-nav button.owl-next {
+  left: auto;
+  right: 0;
 }

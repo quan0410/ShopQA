@@ -937,6 +937,7 @@ ol {
 .product__item {
 	overflow: hidden;
 	margin-bottom: 40px;
+    position: relative;
 }
 
 .product__item.sale .product__item__pic .label {
@@ -977,7 +978,7 @@ ol {
 	background-position: center center;
 }
 
-.product__item__pic .label {
+.product__item .label {
 	color: #111111;
 	font-size: 11px;
 	font-weight: 700;
@@ -1638,13 +1639,13 @@ ol {
 	margin-bottom: 16px;
 }
 
-.product__details__text h3 span {
-	color: #b7b7b7;
-	font-size: 20px;
-	font-weight: 400;
-	margin-left: 10px;
-	text-decoration: line-through;
-}
+/*.product__details__text h3 span {*/
+/*	color: #b7b7b7;*/
+/*	font-size: 20px;*/
+/*	font-weight: 400;*/
+/*	margin-left: 10px;*/
+/*	text-decoration: line-through;*/
+/*}*/
 
 .product__details__text p {
 	margin-bottom: 35px;
