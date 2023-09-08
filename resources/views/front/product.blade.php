@@ -17,56 +17,24 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png">
-                                    </div>
+                            @foreach($product->productImage as $image)
+                            <li class="nav-item image-mini">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-{{$image->id}}" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="{{asset("/resources/images/" . $image->path)}}"></div>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-4.png">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                </a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-9">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            @foreach($product->productImage as $image)
+                            <div class="tab-pane" id="tabs-{{$image->id}}" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="img/shop-details/product-big-2.png" alt="">
+                                    <img src="{{asset("/resources/images/" . $image->path)}}" alt="">
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/product-big-3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/product-big.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-4" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/product-big-4.png" alt="">
-                                    <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1" class="video-popup"><i class="fa fa-play"></i></a>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -79,12 +47,14 @@
                         <div class="product__details__text">
                             <h4>{{$product->name}}</h4>
                             <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span> - 5 Reviews</span>
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if($i < $averageRate)
+                                        <i class="fa fa-star"></i>
+                                    @else
+                                        <i class="fa fa-star-o"></i>
+                                    @endif
+                                @endfor
+                                <span>({{$product->reviews_count}})</span>
                             </div>
                             <h3>
                                 @if($product->discount_price)
@@ -162,9 +132,64 @@
                                 </div>
                                 <div class="tab-pane" id="review" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content__item">
-                                            <p>review</p>
+                                    @foreach($product->reviews as $review)
+                                        <!-- show review-->
+                                        <div class="review">
+                                            <div class="avatar">
+                                                @if($review->user->avatar)
+                                                    <img src="{{asset("/resources/images/" . $review->user->avatar)}}">
+                                                @else
+                                                    <img src="{{asset("/resources/images/avatar-01.jpg")}}">
+                                                @endif
+                                            </div>
+                                            <div class="information">
+                                                <div class="user">
+                                                    <div class="name-user">{{$review->user->name}}</div>
+                                                    <div class="rating">
+                                                        @for ($i = 0; $i < 5; $i++)
+                                                            @if($i < $review->rate)
+                                                                <i class="fa fa-star"></i>
+                                                            @else
+                                                                <i class="fa fa-star-o"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                </div>
+                                                <div class="commtent-product">
+                                                    {{$review->content}}
+                                                </div>
+                                            </div>
                                         </div>
+                                        @endforeach
+                                        <!-- add review-->
+                                        <form class="add-review" action="#">
+                                            <div class="rate-user">
+                                                <label class="title" for="review">Your Rating</label>
+                                                <div id="rating">
+                                                    <input type="radio" id="star5" name="rating" value="5" />
+                                                    <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                                                    <input type="radio" id="star4" name="rating" value="4" />
+                                                    <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                                    <input type="radio" id="star3" name="rating" value="3" />
+                                                    <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                                                    <input type="radio" id="star2" name="rating" value="2" />
+                                                    <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                                    <input type="radio" id="star1" name="rating" value="1" />
+                                                    <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                </div>
+                                            </div>
+                                            <div class="review-user">
+                                                <div class="comment">
+                                                    <label class="title" for="review">Your review</label>
+                                                    <textarea class="review" id="review" name="review"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn submit-comment">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="content" role="tabpanel">
@@ -203,13 +228,6 @@
                         <div class="product__item__text">
                             <a href="{{route("product.index",[$productfeatured->sku])}}" class="name-product">{{$productfeatured->name}}</a>
 {{--                            <a href="#" class="add-cart">+ Add To Cart</a>--}}
-{{--                            <div class="rating">--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                                <i class="fa fa-star-o"></i>--}}
-{{--                            </div>--}}
                             <div class="Product-price">
                                 @if($productfeatured->discount_price)
                                     <span class="discount-price">{{number_format($productfeatured->discount_price)}} VNĐ</span>
@@ -225,12 +243,4 @@
             </div>
         </div>
     </section>
-    <!-- Related Section End -->
-{{--    <script type="text/javascript">--}}
-{{--        (function($) {--}}
-{{--            document.getElementById('attribute-size').click(function(){--}}
-{{--                this.firstElementChild.attr("checked", true);--}}
-{{--            });--}}
-{{--        })();--}}
-{{--    </script>--}}
 @endsection

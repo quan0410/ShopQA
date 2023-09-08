@@ -30,4 +30,22 @@ Route::get('/blog', [\App\Http\Controllers\Front\BlogController::class, "index"]
 
 Route::get('/products/{product:sku}', [\App\Http\Controllers\Front\ProductController::class, "index"])->name("product.index");
 
+Route::get('/shop}', [\App\Http\Controllers\Front\ShopController::class, "index"])->name("shop.index");
+
+Route::get('/resources/images/{filename}', function($filename){
+    $path = resource_path() . '/images/' . $filename;
+
+    if(!File::exists($path)) {
+        return response()->json(['message' => 'Image not found.'], 404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

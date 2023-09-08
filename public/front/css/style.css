@@ -944,8 +944,7 @@ ol {
 	color: #ffffff;
 	background: #111111;
 }
-
-.product__item.sale .product__item__text .rating i {
+.rating i {
 	color: #f7941d;
 }
 
@@ -1816,7 +1815,7 @@ ol {
 	font-weight: 700;
 	font-size: 20px;
 	position: relative;
-	margin-bottom: 26px;
+	margin-bottom: 10px;
 }
 
 .product__details__last__option h5 span {
@@ -1838,7 +1837,7 @@ ol {
 }
 
 .product__details__last__option ul {
-	padding-top: 40px;
+	padding-top: 10px;
 }
 
 .product__details__last__option ul li {
@@ -1855,7 +1854,7 @@ ol {
 }
 
 .product__details__tab {
-	padding-top: 60px;
+	padding-top: 20px;
 }
 
 .product__details__tab .nav-tabs {

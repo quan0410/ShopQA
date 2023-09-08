@@ -25,7 +25,7 @@ class Product extends Model
 
     public function productImage()
     {
-        return $this->hasMany(ProductImage::class, 'product_id', 'id');
+        return $this->hasMany(ProductImage::class, 'product_id', 'id')->limit(4);
     }
 
     public function productDetails ()
@@ -38,9 +38,9 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class, 'product_id', 'id');
     }
 
-    public function review ()
+    public function reviews ()
     {
-        return $this->hasMany(Review::class)->latest()->limit(3);
+        return $this->hasMany(Review::class)->latest()->limit(5);
     }
 
     public function sale()
