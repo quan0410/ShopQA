@@ -1,5 +1,5 @@
 @extends('front.layout.master')
-@section('title', 'product-detail')
+@section('title', 'Product Detail')
 @section('body')
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
@@ -66,23 +66,23 @@
                                 </span>
                                 @endif
                             </h3>
-                            <form action="#" method="post">
+                            <form action="{{route("add.cart")}}" method="get">
                                 <div class="product__details__option">
                                     @if($product->productDetails)
                                         <div class="product__details__option__size">
                                             <span>Size:</span>
-                                            @foreach($product->productDetails as $productDetail)
-                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$productDetail->size}}">
-                                                    {{$productDetail->size}}
-                                                    <input class="product-size" type="radio" id="{{$productDetail->size}}" required>
+                                            @foreach(array_unique(array_column($product->productDetails->toArray(), 'size')) as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size}}">
+                                                    {{$size}}
+                                                    <input class="product-size" type="radio" id="{{$size}}">
                                                 </label>
                                             @endforeach
                                         </div>
                                         <div class="product__details__option__color">
                                             <span>Color:</span>
                                             @foreach($product->productDetails as $productDetail)
-                                                <label class="c-{{$productDetail->color}} product-color color-{{$productDetail->size}}" color="{{$productDetail->color}}" style="background-color: {{$productDetail->color}}">
-                                                    <input type="radio" id="sp-{{$productDetail->color}}" value="{{ $productDetail->color }}" required>
+                                                <label class="c-{{$productDetail->color}} product-color color-{{$productDetail->size}}" color="{{$productDetail->color}}" qty="{{$productDetail->qty}}" style="background-color: {{$productDetail->color}}">
+                                                    <input type="radio" id="sp-{{$productDetail->color}}" name="product-detail-id" value="{{ $productDetail->id }}">
                                                 </label>
                                             @endforeach
                                         </div>
@@ -91,10 +91,10 @@
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="1">
+                                            <input class="product-detail-qty" type="number" value="1" name="product-detail-qty" min="1" max="">
                                         </div>
                                     </div>
-                                    <button type="submit" class="primary-btn">add to cart</button>
+                                    <input type="submit" class="primary-btn" value="add to cart" id="add-cart"/>
                                 </div>
                                 <div class="product__details__last__option">
                                     <h5><span>Guaranteed Safe Checkout</span></h5>

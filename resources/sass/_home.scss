@@ -14,3 +14,49 @@
 a {
     text-decoration:unset !important;
 }
+.pagination li .page-link {
+    border: 1px solid #cdc5c5;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: black;
+    margin-right: 5px;
+}
+.page-item:first-child .page-link {
+    border-radius:50% !important;
+}
+.page-item:last-child .page-link {
+    border-radius:50% !important;
+}
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #878e97;
+    border-color: #878e97;
+}
+.page-item .page-link {
+    &:hover{
+        color: #fff;
+        background-color: #878e97;
+        border-color: #878e97;
+    }
+}
+.page-link:focus{
+    box-shadow: unset;
+}
+.shop__sidebar__color label.active:after {
+    border: 1px solid black !important;
+}
+.header__nav__option a {
+    margin-right: 30px;
+    span {
+        font-size: 12px;
+        left: 9px;
+        top: -7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0d0d0d;
+        border-radius: 50%;
+        color: #ffffff;
+        width: 20px;
+    }
+}

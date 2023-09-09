@@ -1,5 +1,5 @@
 @extends('front.layout.master')
-@section('title', 'ShopQA')
+@section('title', 'Shop QA')
 @section('body')
 <!-- Main -->
 <!-- Hero Section Begin -->

@@ -1,5 +1,5 @@
 @extends('front.layout.master')
-@section('title', 'ShopQA')
+@section('title', 'Contact')
 @section('body')
 <!-- Map Begin -->
 <div class="map">

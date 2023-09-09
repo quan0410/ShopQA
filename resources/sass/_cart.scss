@@ -1,0 +1,31 @@
+.shopping-cart {
+    .product__cart__item__pic {
+        width: 90px;
+    }
+    .product__cart__item__text {
+        .color, .size {
+            font-size: 12px;
+            color: #5c5a5a;
+        }
+    }
+    .cart__close {
+        border: unset;
+        border-radius: 50%;
+        font-size: 20px;
+        height: 35px;
+        width: 35px;
+        background-color: gray;
+    }
+    .quantity__item {
+        .quantity {
+            .update-cart {
+                background-color: #7e7c7047;
+            }
+        }
+    }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

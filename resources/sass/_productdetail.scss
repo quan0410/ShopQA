@@ -177,3 +177,6 @@
 #rating>input:checked~label:hover~label{
     color:#f7941d;
 }
+#add-cart[disabled = 'disabled'] {
+    opacity: 0.5;
+}

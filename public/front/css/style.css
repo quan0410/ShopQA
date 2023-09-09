@@ -1067,7 +1067,7 @@ ol {
 	transition: all, 0.3s;
 }
 
-.product__item__text a {
+.product__cart__item__text a, .product__item__text a {
 	color: #111111;
 	font-size: 15px;
 	font-weight: 600;
@@ -1264,9 +1264,9 @@ ol {
 	color: #111111;
 }
 
-.shop__sidebar__brand ul {
-	height: auto;
-}
+/*.shop__sidebar__brand ul {*/
+/*	height: auto;*/
+/*}*/
 
 .shop__sidebar__price ul {
 	height: auto;
@@ -2339,7 +2339,7 @@ ol {
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text {
 	overflow: hidden;
-	padding-top: 21px;
+	/*padding-top: 21px;*/
 }
 
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__text h6 {

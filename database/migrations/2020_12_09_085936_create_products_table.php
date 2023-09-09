@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->text('content')->nullable();
             $table->text('image');
             $table->integer('price');
-            $table->integer('qty');
             $table->integer('discount_price')->nullable();
             $table->double('weight')->nullable();
             $table->string('sku')->unique();

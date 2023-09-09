@@ -1,5 +1,5 @@
 @extends('front.layout.master')
-@section('title', 'ShopQA')
+@section('title', 'About Us')
 @section('body')
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-option">

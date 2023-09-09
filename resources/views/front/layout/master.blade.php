@@ -7,6 +7,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta token="{{csrf_token()}}">
     <title>@yield('title') | shop QA</title>
 
     <!-- Google Font -->
@@ -116,7 +117,7 @@
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li class="{{Route::current()->getName() == "home" ? 'active': ''}}"><a href="{{route("home")}}">Home</a></li>
-                        <li class="{{Route::current()->getName() == "shop" ? 'active': ''}}"><a href="#">Shop</a></li>
+                        <li class="{{Route::current()->getName() == "shop.index" ? 'active': ''}}"><a href="{{ route("shop.index") }}">Shop</a></li>
                         <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blog</a></li>
                         <li class="{{Route::current()->getName() == "contact.index" ? 'active': ''}}"><a href="{{ route("contact.index") }}">Contacts</a></li>
                         <li class="{{Route::current()->getName() == "about" ? 'active': ''}}"><a href="{{ route("about") }}">About Us</a></li>
@@ -126,9 +127,10 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
                     <a href="#" class="search-switch"><img src="{{asset("front/img/icon/search.png") }}" alt=""></a>
-                    <a href="#"><img src="{{asset("front/img/icon/heart.png") }}" alt=""></a>
-                    <a href="#"><img src="{{asset("front/img/icon/cart.png") }}" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
+                    <a href="{{route("cart.index")}}"><img src="{{asset("front/img/icon/cart.png") }}" alt=""> <span>
+                            {{count(session('cart') ?? [])}}
+                        </span></a>
+                    <div class="price">{{number_format(session('total_cart'))}} VNĐ</div>
                 </div>
             </div>
         </div>
@@ -136,10 +138,8 @@
     </div>
 </header>
 <!-- Header Section End -->
-
 {{--Body here--}}
 @yield('body')
-
 
 <!-- Footer Section Begin -->
 <footer class="footer">

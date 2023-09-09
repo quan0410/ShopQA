@@ -122,6 +122,17 @@
         $(this).addClass('active');
     });
 
+    /*-------------
+    check fillter color
+     --------------*/
+    $(".shop__sidebar__color label").on('click', function () {
+        if (this.classList.contains("active")) {
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+        }
+    });
+
     /*-------------------
 		Scroll
 	--------------------- */
@@ -167,22 +178,26 @@
 		Quantity change
 	--------------------- */
     var proQty = $('.pro-qty');
-    proQty.prepend('<span class="fa fa-angle-up dec qtybtn"></span>');
     proQty.append('<span class="fa fa-angle-down inc qtybtn"></span>');
+    proQty.prepend('<span class="fa fa-angle-up dec qtybtn"></span>');
     proQty.on('click', '.qtybtn', function () {
+        var max = $('.product-detail-qty').attr('max');
         var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
+        var oldValue = $(".product-detail-qty").val();
+        var newVal = parseFloat(oldValue);
+        if ($button.hasClass('dec')) {
+            if ((parseFloat(oldValue) +1) <= max) {
+                newVal = parseFloat(oldValue) +1;
+            }
         } else {
             // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
+            if (parseFloat(oldValue) > 1) {
+                newVal = parseFloat(oldValue) - 1;
             } else {
-                newVal = 0;
+                newVal = 1;
             }
         }
-        $button.parent().find('input').val(newVal);
+        $(".product-detail-qty").val(newVal);
     });
 
     var proQty = $('.pro-qty-2');

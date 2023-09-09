@@ -1,5 +1,5 @@
 @extends('front.layout.master')
-@section('title', 'ShopQA')
+@section('title', 'Blog')
 @section('body')
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-blog set-bg" data-setbg="front/img/breadcrumb-bg.jpg">

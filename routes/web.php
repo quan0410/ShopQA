@@ -16,10 +16,6 @@ Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\Front\HomeController::class, "index"])->name("home");
 
-//Route::get('/', function (\App\Service\Product\ProductServicesInterface $productServicesInterface) {
-//    return $productServicesInterface->find(1);
-//});
-
 Route::get('/about_us', function (){
     return view('front.about');
 })->name("about");
@@ -30,8 +26,21 @@ Route::get('/blog', [\App\Http\Controllers\Front\BlogController::class, "index"]
 
 Route::get('/products/{product:sku}', [\App\Http\Controllers\Front\ProductController::class, "index"])->name("product.index");
 
-//Route::get('/shop}', [\App\Http\Controllers\Front\ShopController::class, "index"])->name("shop.index");
+Route::get('/shop', [\App\Http\Controllers\Front\ShopController::class, "index"])->name("shop.index");
 
+Route::get('/checkout', [\App\Http\Controllers\Front\CheckOutController::class, "index"])->name("checkout.index");
+
+// CART
+
+Route::get('/cart', [\App\Http\Controllers\Front\CartController::class, "index"])->name("cart.index");
+
+Route::get('/addcart', [\App\Http\Controllers\Front\CartController::class, "add"])->name("add.cart");
+
+Route::get('/updatecart', [\App\Http\Controllers\Front\CartController::class, "updateCart"])->name("update.cart");
+
+Route::get('/removecart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
+
+// Load Image
 Route::get('/resources/images/{filename}', function($filename){
     $path = resource_path() . '/images/' . $filename;
 
@@ -48,4 +57,3 @@ Route::get('/resources/images/{filename}', function($filename){
     return $response;
 });
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
