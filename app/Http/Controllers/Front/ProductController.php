@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
@@ -18,4 +19,5 @@ class ProductController extends Controller
         $averageRate = (int)round(array_sum($rates) / 5);
         return view("front.product" ,compact("product", "featured", "averageRate"));
     }
+
 }

@@ -92,7 +92,7 @@
                             <li>Subtotal <span>{{number_format(session("total_cart"))}} VNĐ</span></li>
                             <li>Total <span>{{number_format(session("total_cart"))}} VNĐ</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{route("checkout.index")}}" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

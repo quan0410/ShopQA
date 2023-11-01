@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Product extends Model
 {
@@ -66,5 +67,16 @@ class Product extends Model
     public function scopeFeatured($query)
     {
         return $query->where("featured", true)->limit(8);
+    }
+
+    public function Search($request)
+    {
+//        dd($request);
+        $search = $request->search ?? '';
+        $size = $request->search ?? '';
+        $color = $request->search ?? '';
+        $products = Product::where('name','like','%'. $search .'%')->orwhere('description','like','%'. $search .'%')->orderBy('created_at','DESC')->paginate(12);
+        return $products;
+//        $products->items()[0]->getAttributes();
     }
 }

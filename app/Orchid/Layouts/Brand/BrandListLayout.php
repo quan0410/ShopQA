@@ -49,14 +49,14 @@ class BrandListLayout extends Table
                 ->sort()
                 ->cantHide()
                 ->render(function (Brand $brand){
-                    return $brand->created_at->toDateTimeString();
+                    return $brand->created_at;
                 }),
 
             TD::make('updated_at','Updated')
                 ->sort()
                 ->cantHide()
                 ->render(function (Brand $brand){
-                    return $brand->updated_at->toDateTimeString();
+                    return $brand->updated_at;
                 }),
 
             TD::make(__('Actions'))
@@ -68,7 +68,7 @@ class BrandListLayout extends Table
                         ->list([
 
                             Link::make(__('Edit'))
-                                ->route('platform.brand.edit', $brand->id)
+                                ->route('platform.systems.brand.edit', $brand->id)
                                 ->icon('pencil'),
 
                             Button::make(__('Delete'))

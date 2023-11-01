@@ -25,6 +25,11 @@ class BrandListScreen extends Screen
     public $description = 'All registered brands';
 
     /**
+     * @var string
+     */
+    public $permission = 'platform.systems.brands';
+
+    /**
      * Query data.
      *
      * @return array
@@ -47,7 +52,7 @@ class BrandListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('plus')
-                ->route('platform.brand.create'),
+                ->route('platform.systems.brand.create'),
         ];
     }
 
@@ -67,7 +72,7 @@ class BrandListScreen extends Screen
     {
         $brand->delete();
         Toast::success('Brand was deleted');
-        return redirect(route('platform.brand'));
+        return redirect(route('platform.systems.brand'));
     }
 
 }

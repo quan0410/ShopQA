@@ -54,7 +54,7 @@
             }
         }
     }
-    
+
     .card-body {
         padding: 0;
         padding-top: 10px;
@@ -88,7 +88,7 @@
                 font-size: 15px;
                 line-height: 32px;
                 @include transition(all, .3s);
-                
+
                 &:hover {
                     color: $heading-color;
                 }
@@ -114,7 +114,7 @@
 
 .shop__sidebar__size {
     padding-top: 15px;
-    
+
     label {
         color: $heading-color;
         font-size: 15px;
@@ -152,19 +152,19 @@
         display: inline-block;
         margin-bottom: 10px;
         cursor: pointer;
-        
+
         &.c-1 {
             background: #0b090c;
         }
-        
+
         &.c-2 {
             background: #20315f;
         }
-        
+
         &.c-3 {
             background: #f1af4d;
         }
-        
+
         &.c-4 {
             background: #636068;
         }
@@ -172,19 +172,19 @@
         &.c-5 {
             background: #57594d;
         }
-        
+
         &.c-6 {
             background: #e8bac4;
         }
-        
+
         &.c-7 {
             background: #d6c1d7;
         }
-        
+
         &.c-8 {
             background: #ed1c24;
         }
-        
+
         &.c-9 {
             background: #ffffff;
         }
@@ -209,7 +209,7 @@
 
 .shop__sidebar__tags {
     padding-top: 15px;
-    
+
     a {
         color: #404040;
         font-size: 13px;
@@ -238,7 +238,7 @@
   color: $heading-color;
   position: absolute;
   right: 0;
-  top: 2px;
+  //top: 2px;
   line-height: 20px;
 }
 
@@ -250,7 +250,7 @@
   color: $heading-color;
   position: absolute;
   right: 0;
-  top: 2px;
+  //top: 2px;
   line-height: 20px;
 }
 

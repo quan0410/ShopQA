@@ -84,8 +84,8 @@ Route::screen('roles', RoleListScreen::class)
             ->push(__('Roles'), route('platform.systems.roles'));
     });
 
-Route::screen('brand',\App\Orchid\Screens\Brand\BrandListScreen::class)->name('platform.brand');
-Route::screen('brand/create',\App\Orchid\Screens\Brand\BrandEditScreen::class)->name('platform.brand.create');
-Route::screen('brand/{brand}/edit',\App\Orchid\Screens\Brand\BrandEditScreen::class)->name('platform.brand.edit');
+Route::screen('brand',\App\Orchid\Screens\Brand\BrandListScreen::class)->name('platform.systems.brand');
+Route::screen('brand/create',\App\Orchid\Screens\Brand\BrandEditScreen::class)->name('platform.systems.brand.create');
+Route::screen('brand/{brand}/edit',\App\Orchid\Screens\Brand\BrandEditScreen::class)->name('platform.systems.brand.edit');
 
 //Route::screen('idea', 'Idea::class','platform.screens.idea');

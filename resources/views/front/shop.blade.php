@@ -27,94 +27,106 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
+                            <form action="{{route("shop.index")}}">
+                                <input type="text" placeholder="Search..." name="search" value="{{request("search")}}">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
                         <div class="shop__sidebar__accordion">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                            <div class="accordion" id="fillter-product">
+                                <form action="{{route("shop.index")}}">
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__categories">
+                                                    <ul class="nice-scroll">
+                                                        @foreach($categories as $category)
+                                                            <li>
+                                                                <a href="{{$category->name}}">{{$category->name}}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__categories">
-                                                <ul class="nice-scroll">
-                                                    @foreach($categories as $category)
-                                                    <li><a href="{{$category->name}}">{{$category->name}}</a></li>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__brand">
+                                                    <ul class="list-brand">
+                                                        @foreach($brands as $brand)
+                                                            <li>
+                                                                <input type="checkbox"
+                                                                       {{ (request("brand")[$brand->id] ?? '') == 'on' ? 'checked' : '' }}
+                                                                       id="brand-{{ $brand->id }}"
+                                                                       name="brand{{ $brand->id }}"
+                                                                       onchange="this.form.submit();">
+                                                                <span class="checkmark"></span>
+                                                                <a href="{{$brand->name}}">{{$brand->name}}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                        </div>
+                                        <div id="collapseThree" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__price">
+                                                    <ul>
+                                                        <li><a href="?max=200000">{{number_format(0)}} - {{number_format(200000)}}</a></li>
+                                                        <li><a href="?min=200000&max=400000">{{number_format(200000)}} - {{number_format(400000)}}</a></li>
+                                                        <li><a href="?min=400000&max=800000">{{number_format(400000)}} - {{number_format(800000)}}</a></li>
+                                                        <li><a href="?min=800000">{{number_format(800000)}} +</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                        </div>
+                                        <div id="collapseFour" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__size">
+                                                    @foreach($sizes as $size)
+                                                        <label class="{{$loop->first ? "active" : ""}}" for="{{$size}}">{{$size}}
+                                                            <input type="radio" id="{{$size}}">
+                                                        </label>
                                                     @endforeach
-                                                </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                                <ul class="list-brand">
-                                                    @foreach($brands as $brand)
-                                                    <li><a href="{{$brand->name}}">{{$brand->name}}</a></li>
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                        </div>
+                                        <div id="collapseFive" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__color">
+                                                    @foreach($colors as $color)
+                                                        <label class="c-{{$color}}" for="sp-$color" style="background-color: {{$color}}">
+                                                            <input type="radio" id="sp-{{$color}}" value="{{$color}}">
+                                                        </label>
                                                     @endforeach
-                                                </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
-                                    </div>
-                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__price">
-                                                <ul>
-                                                    <li><a href="?max=200000">{{number_format(0)}} - {{number_format(200000)}}</a></li>
-                                                    <li><a href="?min=200000&max=400000">{{number_format(200000)}} - {{number_format(400000)}}</a></li>
-                                                    <li><a href="?min=400000&max=800000">{{number_format(400000)}} - {{number_format(800000)}}</a></li>
-                                                    <li><a href="?min=800000">{{number_format(800000)}} +</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__size">
-                                                @foreach($sizes as $size)
-                                                    <label class="{{$loop->first ? "active" : ""}}" for="{{$size}}">{{$size}}
-                                                        <input type="radio" id="{{$size}}">
-                                                    </label>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                    </div>
-                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__color">
-                                                @foreach($colors as $color)
-                                                    <label class="c-{{$color}}" for="sp-$color" style="background-color: {{$color}}">
-                                                        <input type="radio" id="sp-{{$color}}" value="{{$color}}">
-                                                    </label>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

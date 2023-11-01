@@ -40,6 +40,8 @@ Route::get('/updatecart', [\App\Http\Controllers\Front\CartController::class, "u
 
 Route::get('/removecart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
 
+//Route::get('/search', [\App\Http\Controllers\Front\ProductController::class, "search"])->name("search.result");
+
 // Load Image
 Route::get('/resources/images/{filename}', function($filename){
     $path = resource_path() . '/images/' . $filename;

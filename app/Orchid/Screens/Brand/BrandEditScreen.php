@@ -28,6 +28,11 @@ class BrandEditScreen extends Screen
      */
     public $description = 'BrandEditScreen';
 
+    /**
+     * @var string
+     */
+    public $permission = 'platform.systems.brands';
+
     private $brand;
 
     /**
@@ -105,7 +110,7 @@ class BrandEditScreen extends Screen
             Toast::success('Brand was created');
         }
 
-        return redirect(route('platform.brand'));
+        return redirect(route('platform.systems.brand'));
     }
 
     public function destroy(Brand $brand)
