@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sales extends Model
 {
+    protected $table = 'sales';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
     use HasFactory;
 
     public function product()

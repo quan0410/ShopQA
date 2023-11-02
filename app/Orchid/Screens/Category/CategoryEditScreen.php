@@ -96,10 +96,6 @@ class CategoryEditScreen extends Screen
 
     public function save(Category $category, Request $request)
     {
-        $request->validate([
-            'category.name' => ['required','max:20',Rule::unique(Category::class, 'name')->ignore($category)]
-        ]);
-
         if ($category->exists){
             $category->update($request['category']);
             Toast::success('Update success');

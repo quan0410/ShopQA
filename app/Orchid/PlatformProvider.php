@@ -42,10 +42,15 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.systems.brand')
                 ->permission('platform.systems.brands'),
 
-            Menu::make(__('category'))
+            Menu::make(__('Categories'))
                 ->icon('menu')
                 ->route('platform.systems.category')
                 ->permission('platform.systems.category'),
+
+            Menu::make(__('Sales'))
+                ->icon('calendar')
+                ->route('platform.systems.sale')
+                ->permission('platform.systems.sales'),
         ];
     }
 
@@ -71,7 +76,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users'))
                 ->addPermission('platform.systems.brands', __('Brands'))
-                ->addPermission('platform.systems.category', __('category')),
+                ->addPermission('platform.systems.category', __('Categories'))
+                ->addPermission('platform.systems.sales', __('Sales')),
         ];
     }
 

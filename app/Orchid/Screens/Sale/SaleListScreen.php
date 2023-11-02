@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Orchid\Screens\Category;
+namespace App\Orchid\Screens\Sale;
 
-use App\Models\Category;
-use App\Orchid\Layouts\Category\CategoryListLayout;
+use App\Models\Sales;
+use App\Orchid\Layouts\Sale\SaleListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Toast;
 
-class CategoryListScreen extends Screen
+class SaleListScreen extends Screen
 {
     /**
      * Display header name.
      *
      * @var string
      */
-    public $name = 'Category';
+    public $name = 'Sale';
 
     /**
      * Display header description.
@@ -27,7 +26,7 @@ class CategoryListScreen extends Screen
     /**
      * @var string
      */
-    public $permission = 'platform.systems.category';
+    public $permission = 'platform.systems.sales';
 
     /**
      * Query data.
@@ -37,7 +36,8 @@ class CategoryListScreen extends Screen
     public function query(): array
     {
         return [
-            'categories' => Category::oldest('id')
+            // Name table.
+            'sales' => Sales::latest('id')
                 ->paginate(10),
         ];
     }
@@ -51,8 +51,8 @@ class CategoryListScreen extends Screen
     {
         return [
             Link::make(__('Add'))
-                ->icon('plus')
-                ->route('platform.systems.category.create'),
+            ->icon('plus')
+            ->route('platform.systems.sale.create'),
         ];
     }
 
@@ -64,15 +64,14 @@ class CategoryListScreen extends Screen
     public function layout(): array
     {
         return [
-            CategoryListLayout::class,
+            SaleListLayout::class
         ];
     }
 
-    public function destroy(Category $category)
+    public function destroy(Sales $sale)
     {
-        $category->delete();
-        Toast::success('Categories was deleted');
-        return redirect(route('platform.systems.category'));
+        $sale->delete();
+        \Orchid\Support\Facades\Toast::success('sale was deleted');
+        return redirect(route('platform.systems.sale'));
     }
-
 }

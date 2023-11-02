@@ -37,8 +37,8 @@ class BrandListScreen extends Screen
     public function query(): array
     {
         return [
-            'brands' => Brand::latest('id')
-                ->paginate(),
+            'brands' => Brand::oldest('id')
+                ->paginate(10),
         ];
     }
 
