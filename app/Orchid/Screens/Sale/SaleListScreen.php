@@ -14,7 +14,7 @@ class SaleListScreen extends Screen
      *
      * @var string
      */
-    public $name = 'Sale';
+    public $name = 'Sales';
 
     /**
      * Display header description.
