@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Orchid\Screens\Brand;
+namespace App\Orchid\Screens\Category;
 
-use App\Models\Brand;
-use App\Orchid\Layouts\Brand\BrandEditLayout;
+use App\Models\Category;
+use App\Orchid\Layouts\Category\CategoryEditLayout;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Orchid\Screen\Actions\Button;
@@ -12,44 +13,43 @@ use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class BrandEditScreen extends Screen
+class CategoryEditScreen extends Screen
 {
     /**
      * Display header name.
      *
      * @var string
      */
-    public $name = 'Edit Brand';
+    public $name = 'Edit category';
 
     /**
      * Display header description.
      *
      * @var string|null
      */
-    public $description = 'BrandEditScreen';
+    public $description = 'CategoryEditScreen';
 
     /**
      * @var string
      */
-    public $permission = 'platform.systems.brands';
+    public $permission = 'platform.systems.category';
 
-    private $brand;
+    private $category;
 
     /**
      * Query data.
      *
      * @return array
      */
-    public function query(Brand $brand): array
+    public function query(Category $category): array
     {
-        $this->brand = $brand;
-
-        if (! $brand->exists){
-            $this->name = "Create Brand";
+        $this->category = $category;
+        if (! $category->exists){
+            $this->name = "Create Category";
         }
 
         return [
-            'brand' => $this->brand,
+            'category' => $this->category,
         ];
     }
 
@@ -65,7 +65,7 @@ class BrandEditScreen extends Screen
                 ->icon('trash')
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                 ->method('destroy')
-                ->canSee($this->brand->exists),
+                ->canSee($this->category->exists),
 
             Button::make(__('Save'))
                 ->icon('check')
@@ -82,41 +82,41 @@ class BrandEditScreen extends Screen
     {
         return [
 
-            Layout::block(BrandEditLayout::class)
-                ->title(__('Brand name'))
+            Layout::block(CategoryEditLayout::class)
+                ->title(__('Categories name'))
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
                         ->icon('check')
-                        ->canSee($this->brand->exists)
+                        ->canSee($this->category->exists)
                         ->method('save')
                 ),
         ];
     }
 
-    public function save(Brand $brand, Request $request)
+    public function save(Category $category, Request $request)
     {
         $request->validate([
-            'brand.name' => ['required','max:20',Rule::unique(Brand::class, 'name')->ignore($brand)]
+            'category.name' => ['required','max:20',Rule::unique(Category::class, 'name')->ignore($category)]
         ]);
 
-        if ($brand->exists){
-            $brand->update($request['brand']);
+        if ($category->exists){
+            $category->update($request['category']);
             Toast::success('Update success');
         }
 
-        if (!$brand->exists){
-            Brand::create($request['brand']);
-            Toast::success('Brand was created');
+        if (!$category->exists){
+            Category::create($request['category']);
+            Toast::success('Categories was created');
         }
 
-        return redirect(route('platform.systems.brand'));
+        return redirect(route('platform.systems.category'));
     }
 
-    public function destroy(Brand $brand)
+    public function destroy(Category $category)
     {
-        $brand->delete();
-        Toast::success('Brand was deleted');
-        return redirect(route('platform.systems.brand'));
+        $category->delete();
+        Toast::success('Categories was deleted');
+        return redirect(route('platform.systems.category'));
     }
 }

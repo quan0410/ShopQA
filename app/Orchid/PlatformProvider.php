@@ -41,6 +41,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('task')
                 ->route('platform.systems.brand')
                 ->permission('platform.systems.brands'),
+
+            Menu::make(__('category'))
+                ->icon('menu')
+                ->route('platform.systems.category')
+                ->permission('platform.systems.category'),
         ];
     }
 
@@ -65,7 +70,8 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users'))
-                ->addPermission('platform.systems.brands', __('Brands')),
+                ->addPermission('platform.systems.brands', __('Brands'))
+                ->addPermission('platform.systems.category', __('category')),
         ];
     }
 

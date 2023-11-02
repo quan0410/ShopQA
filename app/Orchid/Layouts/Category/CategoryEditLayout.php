@@ -1,12 +1,12 @@
 <?php
-
-namespace App\Orchid\Layouts\Brand;
+declare(strict_types=1);
+namespace App\Orchid\Layouts\Category;
 
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
 
-class BrandEditLayout extends Rows
+class CategoryEditLayout extends Rows
 {
     /**
      * Used to create the title of a group of form elements.
@@ -23,12 +23,12 @@ class BrandEditLayout extends Rows
     protected function fields(): array
     {
         return [
-            Input::make('brand.name')
+            Input::make('category.name')
                 ->max('20')
                 ->type('text')
                 ->required(true)
-                ->title(__('Brand name'))
-                ->placeholder(__('Brand name')),
+                ->title(__('Category name'))
+                ->placeholder(__('Category name')),
         ];
     }
 }
