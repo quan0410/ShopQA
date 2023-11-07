@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid\Screens\Sale;
 
 use App\Models\Sales;
@@ -21,7 +21,7 @@ class SaleListScreen extends Screen
      *
      * @var string|null
      */
-    public $description = 'All registered category';
+    public $description = 'All registered Sales';
 
     /**
      * @var string
@@ -37,7 +37,8 @@ class SaleListScreen extends Screen
     {
         return [
             // Name table.
-            'sales' => Sales::latest('id')
+            'sales' => Sales::filters()
+                ->defaultSort('id', 'desc')
                 ->paginate(10),
         ];
     }

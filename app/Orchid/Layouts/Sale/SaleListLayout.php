@@ -32,7 +32,7 @@ class SaleListLayout extends Table
             TD::make('id','ID')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(TD::FILTER_NUMERIC)
                 ->render(function (Sales $sales){
                     return $sales->id;
                 }),
@@ -40,7 +40,7 @@ class SaleListLayout extends Table
             TD::make('product_id','Product Id')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(TD::FILTER_NUMERIC)
                 ->render(function (Sales $sales){
                     return $sales->product_id;
                 }),
@@ -54,9 +54,7 @@ class SaleListLayout extends Table
                 }),
 
             TD::make('content','Content')
-                ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (Sales $sales){
                     return $sales->content;
                 }),
@@ -64,7 +62,6 @@ class SaleListLayout extends Table
             TD::make('start','Start')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (Sales $sales){
                     return $sales->time_start;
                 }),
@@ -72,7 +69,6 @@ class SaleListLayout extends Table
             TD::make('end','End')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (Sales $sales){
                     return $sales->time_end;
                 }),
@@ -80,7 +76,7 @@ class SaleListLayout extends Table
             TD::make('is_show','Show')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(TD::FILTER_NUMERIC)
                 ->render(function (Sales $sales){
                     return $sales->is_show;
                 }),
@@ -88,7 +84,6 @@ class SaleListLayout extends Table
             TD::make('created_at','Created')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (Sales $sales){
                     return $sales->created_at;
                 }),
@@ -96,7 +91,6 @@ class SaleListLayout extends Table
             TD::make('updated_at','Updated')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (Sales $sales){
                     return $sales->updated_at;
                 }),

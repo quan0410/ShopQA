@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid\Screens\Sale;
 
 use App\Models\Product;

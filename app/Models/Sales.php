@@ -1,16 +1,56 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\Filterable;
 
 class Sales extends Model
 {
+    use HasFactory, Filterable;
+
     protected $table = 'sales';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
-    use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'title',
+        'content',
+        'time_start',
+        'time_end',
+        'is_show'
+    ];
+
+    /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'id',
+        'product_id',
+        'title',
+        'content',
+        'time_start',
+        'time_end',
+        'is_show'
+    ];
+
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'id',
+        'product_id',
+        'title',
+        'content',
+        'time_start',
+        'time_end',
+        'is_show',
+        'created_at',
+        'updated_at',
+    ];
 
     public function product()
     {
