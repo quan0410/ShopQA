@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid\Screens\Brand;
 
 use App\Models\Brand;

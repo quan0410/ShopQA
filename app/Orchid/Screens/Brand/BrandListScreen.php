@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid\Screens\Brand;
 
 use App\Models\Brand;
@@ -37,7 +37,8 @@ class BrandListScreen extends Screen
     public function query(): array
     {
         return [
-            'brands' => Brand::oldest('id')
+            'brands' => Brand::filters()
+                ->defaultSort('id', 'asc')
                 ->paginate(10),
         ];
     }
