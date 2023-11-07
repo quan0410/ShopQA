@@ -32,7 +32,7 @@ class CategoryListLayout extends Table
             TD::make('id','ID')
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
+                ->filter(TD::FILTER_NUMERIC)
                 ->render(function (Category $category){
                     return $category->id;
                 }),

@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid\Screens\Category;
 
 use App\Models\Category;
@@ -37,7 +37,8 @@ class CategoryListScreen extends Screen
     public function query(): array
     {
         return [
-            'categories' => Category::oldest('id')
+            'categories' => Category::filters()
+                ->defaultSort('id', 'asc')
                 ->paginate(10),
         ];
     }

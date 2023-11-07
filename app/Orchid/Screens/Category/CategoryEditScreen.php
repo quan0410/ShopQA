@@ -1,12 +1,10 @@
 <?php
 declare(strict_types=1);
-
 namespace App\Orchid\Screens\Category;
 
 use App\Models\Category;
 use App\Orchid\Layouts\Category\CategoryEditLayout;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
