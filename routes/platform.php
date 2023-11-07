@@ -99,4 +99,9 @@ Route::screen('sales',\App\Orchid\Screens\Sale\SaleListScreen::class)->name('pla
 Route::screen('sale/create',\App\Orchid\Screens\Sale\SaleEditScreen::class)->name('platform.systems.sale.create');
 Route::screen('sale/{sale}/edit',\App\Orchid\Screens\Sale\SaleEditScreen::class)->name('platform.systems.sale.edit');
 
+// Systems sliders
+Route::screen('sliders',\App\Orchid\Screens\Slider\SliderListScreen::class)->name('platform.systems.sliders');
+Route::screen('slider/create',\App\Orchid\Screens\Slider\SliderEditScreen::class)->name('platform.systems.slider.create');
+Route::screen('slider/{slider}/edit',\App\Orchid\Screens\Slider\SliderEditScreen::class)->name('platform.systems.slider.edit');
+
 //Route::screen('idea', 'Idea::class','platform.screens.idea');

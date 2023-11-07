@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Orchid;
 
 use Orchid\Platform\Dashboard;
@@ -51,6 +51,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('calendar')
                 ->route('platform.systems.sale')
                 ->permission('platform.systems.sales'),
+
+            Menu::make(__('Sliders'))
+                ->icon('brush')
+                ->route('platform.systems.sliders')
+                ->permission('platform.systems.sliders'),
         ];
     }
 
@@ -77,7 +82,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.users', __('Users'))
                 ->addPermission('platform.systems.brands', __('Brands'))
                 ->addPermission('platform.systems.category', __('Categories'))
-                ->addPermission('platform.systems.sales', __('Sales')),
+                ->addPermission('platform.systems.sales', __('Sales'))
+                ->addPermission('platform.systems.sliders', __('Sliders')),
         ];
     }
 
