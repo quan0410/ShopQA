@@ -4,10 +4,12 @@ namespace App\Orchid\Screens\Product;
 
 use App\Models\Product;
 use App\Orchid\Layouts\Product\ProductEditLayout;
+use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class ProductEditScreen extends Screen
 {
@@ -71,7 +73,7 @@ class ProductEditScreen extends Screen
     {
         return [
             Layout::block(ProductEditLayout::class)
-                ->title(__('Product name'))
+                ->title(__('Create Product'))
                 ->commands(
                     Button::make(__('Save'))
                         ->type(Color::DEFAULT())
@@ -80,5 +82,27 @@ class ProductEditScreen extends Screen
                         ->method('save')
                 ),
         ];
+    }
+
+    public function save(Product $product, Request $request)
+    {
+        if ($product->exists){
+            $product->update($request['product']);
+            Toast::success('Update success');
+        }
+
+        if (!$product->exists){
+            Product::create($request['product']);
+            Toast::success('Product was created');
+        }
+
+        return redirect(route('platform.systems.products'));
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        Toast::success('Categories was deleted');
+        return redirect(route('platform.systems.products'));
     }
 }

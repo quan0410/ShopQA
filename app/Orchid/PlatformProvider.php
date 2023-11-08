@@ -5,6 +5,8 @@ namespace App\Orchid;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
+use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Support\Color;
 
@@ -53,14 +55,17 @@ class PlatformProvider extends OrchidServiceProvider
                 ->permission('platform.systems.sales'),
 
             Menu::make(__('Sliders'))
-                ->icon('brush')
+                ->icon('picture')
                 ->route('platform.systems.sliders')
                 ->permission('platform.systems.sliders'),
 
-            Menu::make(__('Products'))
+            Menu::make('Products')
                 ->icon('drawer')
-                ->route('platform.systems.products')
-                ->permission('platform.systems.products'),
+                ->list([
+                    Menu::make('List')->icon('list')->route('platform.systems.products'),
+                    Menu::make('Size')->icon('frame'),
+                    Menu::make('Color')->icon('brush'),
+                ]),
         ];
     }
 
@@ -89,7 +94,6 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.category', __('Categories'))
                 ->addPermission('platform.systems.sales', __('Sales'))
                 ->addPermission('platform.systems.sliders', __('Sliders'))
-                ->addPermission('platform.systems.products', __('Products')),
         ];
     }
 

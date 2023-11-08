@@ -110,7 +110,7 @@ class ProductListLayout extends Table
                         ->list([
 
                             Link::make(__('Edit'))
-                                ->route('platform.systems.slider.edit', $product->id)
+                                ->route('platform.systems.product.edit', $product->id)
                                 ->icon('pencil'),
 
                             Button::make(__('Delete'))

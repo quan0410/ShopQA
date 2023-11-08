@@ -4,12 +4,11 @@ namespace App\Orchid\Layouts\Product;
 
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Product;
+use App\Models\ProductDetail;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Select;
-use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
 
@@ -44,11 +43,23 @@ class ProductEditLayout extends Rows
                 ->title(__('Sku'))
                 ->placeholder(__('Sku product')),
 
+            Input::make('product.weight')
+                ->max(20)
+                ->type('number')
+                ->required()
+                ->title(__('Weight'))
+                ->placeholder(__('Weight product')),
+
             Input::make('product.price')
-                ->type('int')
+                ->type('number')
                 ->required()
                 ->title(__('Price'))
                 ->placeholder(__('Price product')),
+
+            Input::make('product.discount_price')
+                ->type('number')
+                ->title(__('Discount price'))
+                ->placeholder(__('Discount price')),
 
             Input::make('product.content')
                 ->type('text')
@@ -74,7 +85,18 @@ class ProductEditLayout extends Rows
                 ->required()
                 ->title('Category'),
 
-            Upload::make('product.image'),
+            Picture::make('product.image')
+                ->required()
+                ->storage('uploads')
+                ->title('upload images product'),
+
+            Select::make('product.featured')
+                ->options([
+                    0  => '0',
+                    1  => '1',
+                ])
+                ->required()
+                ->title(__('Featured')),
         ];
     }
 }
