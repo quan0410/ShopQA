@@ -5,14 +5,61 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Orchid\Filters\Filterable;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory,Filterable;
 
     protected $table = 'products';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+    protected $fillable = [
+        'id',
+        'sku',
+        'price',
+        'brand_id',
+        'product_category_id',
+        'content',
+        'name',
+        'description',
+        'image',
+        'discount_price',
+        'weight',
+        'featured',
+    ];
+
+    /**
+     * The attributes for which you can use filters in url.
+     *
+     * @var array
+     */
+    protected $allowedFilters = [
+        'id',
+        'sku',
+        'price',
+        'brand_id',
+        'product_category_id',
+        'name',
+        'discount_price',
+        'weight',
+        'featured',
+    ];
+
+    /**
+     * The attributes for which can use sort in url.
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'id',
+        'sku',
+        'price',
+        'brand_id',
+        'product_category_id',
+        'name',
+        'discount_price',
+        'weight',
+        'featured',
+    ];
 
     public function brand ()
     {

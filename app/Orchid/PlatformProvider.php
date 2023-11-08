@@ -56,6 +56,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('brush')
                 ->route('platform.systems.sliders')
                 ->permission('platform.systems.sliders'),
+
+            Menu::make(__('Products'))
+                ->icon('drawer')
+                ->route('platform.systems.products')
+                ->permission('platform.systems.products'),
         ];
     }
 
@@ -83,7 +88,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.brands', __('Brands'))
                 ->addPermission('platform.systems.category', __('Categories'))
                 ->addPermission('platform.systems.sales', __('Sales'))
-                ->addPermission('platform.systems.sliders', __('Sliders')),
+                ->addPermission('platform.systems.sliders', __('Sliders'))
+                ->addPermission('platform.systems.products', __('Products')),
         ];
     }
 

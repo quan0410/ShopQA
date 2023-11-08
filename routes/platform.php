@@ -104,4 +104,9 @@ Route::screen('sliders',\App\Orchid\Screens\Slider\SliderListScreen::class)->nam
 Route::screen('slider/create',\App\Orchid\Screens\Slider\SliderEditScreen::class)->name('platform.systems.slider.create');
 Route::screen('slider/{slider}/edit',\App\Orchid\Screens\Slider\SliderEditScreen::class)->name('platform.systems.slider.edit');
 
+// Systems products
+Route::screen('products',\App\Orchid\Screens\Product\ProductListScreen::class)->name('platform.systems.products');
+Route::screen('product/create',\App\Orchid\Screens\Product\ProductEditScreen::class)->name('platform.systems.product.create');
+Route::screen('product/{product}/edit',\App\Orchid\Screens\Product\ProductEditScreen::class)->name('platform.systems.product.edit');
+
 //Route::screen('idea', 'Idea::class','platform.screens.idea');
