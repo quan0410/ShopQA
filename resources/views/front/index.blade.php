@@ -6,7 +6,7 @@
 <section class="hero">
     <div class="hero__slider owl-carousel">
         @foreach($sliders as $slider)
-        <div class="hero__items set-bg" data-setbg="front/img/{{$slider->image}}">
+        <div class="hero__items set-bg" data-setbg="{{$slider->image}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">

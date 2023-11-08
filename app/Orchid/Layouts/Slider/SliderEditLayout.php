@@ -47,6 +47,7 @@ class SliderEditLayout extends Rows
                 ->placeholder(__('Link Url Slider')),
 
             Picture::make('slider.image')
+                ->storage('uploads')
                 ->targetRelativeUrl()
                 ->title('Large web banner image, generally in the front and center'),
 
