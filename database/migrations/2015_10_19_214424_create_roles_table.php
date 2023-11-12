@@ -4,15 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrchidUsersTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('slug')->unique();
+            $table->string('name');
             $table->jsonb('permissions')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ class CreateOrchidUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['permissions']);
-        });
+        Schema::dropIfExists('roles');
     }
 }
