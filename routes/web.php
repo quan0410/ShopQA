@@ -60,5 +60,8 @@ Route::get('/resources/images/{filename}', function($filename){
 });
 
 Route::prefix('/admin')->group(function () {
-
+    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
+//    Route::get('/test', function (){
+//        return view('admin.home');
+//    });
 });
