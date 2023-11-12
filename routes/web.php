@@ -59,3 +59,6 @@ Route::get('/resources/images/{filename}', function($filename){
     return $response;
 });
 
+Route::prefix('/admin')->group(function () {
+
+});
