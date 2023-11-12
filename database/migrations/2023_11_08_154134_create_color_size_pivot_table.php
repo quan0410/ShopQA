@@ -13,7 +13,7 @@ class CreateSizeColorPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('size_color', function (Blueprint $table) {
+        Schema::create('color_size', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('size_id');
             $table->unsignedBigInteger('color_id');
@@ -29,7 +29,7 @@ class CreateSizeColorPivotTable extends Migration
      */
     public function down()
     {
-        Schema::table('size_color', function (Blueprint $table) {
+        Schema::table('color_size', function (Blueprint $table) {
             //
         });
     }

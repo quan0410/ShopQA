@@ -76,6 +76,11 @@ class Product extends Model
         return $this->hasMany(ProductImage::class, 'product_id', 'id')->limit(4);
     }
 
+    public function sizes()
+    {
+        return $this->hasMany(Size::class, 'product_id', 'id');
+    }
+
     public function productDetails ()
     {
         return $this->hasMany(ProductDetail::class, 'product_id', 'id');

@@ -109,4 +109,13 @@ Route::screen('products',\App\Orchid\Screens\Product\ProductListScreen::class)->
 Route::screen('product/create',\App\Orchid\Screens\Product\ProductEditScreen::class)->name('platform.systems.product.create');
 Route::screen('product/{product}/edit',\App\Orchid\Screens\Product\ProductEditScreen::class)->name('platform.systems.product.edit');
 
+// Systems colors
+Route::screen('colors',\App\Orchid\Screens\Color\ColorListScreen::class)->name('platform.systems.colors');
+Route::screen('color/create',\App\Orchid\Screens\Color\ColorEditScreen::class)->name('platform.systems.color.create');
+
+// Systems sizes
+Route::screen('sizes',\App\Orchid\Screens\Size\SizeListScreen::class)->name('platform.systems.sizes');
+Route::screen('size/create',\App\Orchid\Screens\Size\SizeEditScreen::class)->name('platform.systems.size.create');
+Route::screen('size/{size}/edit',\App\Orchid\Screens\Size\SizeEditScreen::class)->name('platform.systems.size.edit');
+
 //Route::screen('idea', 'Idea::class','platform.screens.idea');

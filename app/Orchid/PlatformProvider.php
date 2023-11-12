@@ -63,8 +63,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('drawer')
                 ->list([
                     Menu::make('List')->icon('list')->route('platform.systems.products'),
-                    Menu::make('Size')->icon('frame'),
-                    Menu::make('Color')->icon('brush'),
+                    Menu::make('Size')->icon('frame')->route('platform.systems.sizes'),
+                    Menu::make('Colors')->icon('brush')->route('platform.systems.colors'),
                 ]),
         ];
     }
