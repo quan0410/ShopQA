@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('front.layout.master')
 
-@section('content')
-<div class="container">
+@section('body')
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

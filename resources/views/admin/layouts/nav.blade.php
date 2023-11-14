@@ -72,10 +72,14 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="auth-login-basic.html">
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault();
+                                                     document.getElementById('form-logout').submit();">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Log Out</span>
                         </a>
+                        <form action="{{ route('admin.login.logout') }}" id="form-logout" method="post">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>

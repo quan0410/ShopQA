@@ -33,28 +33,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset("dashboard/img/favicon/favicon.ico")}}"/>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet"
-    />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{asset("dashboard/vendor/fonts/boxicons.css")}}"/>
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{asset("dashboard/vendor/css/core.css")}}" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="{{asset("dashboard/vendor/css/theme-default.css")}}"
-          class="template-customizer-theme-css"/>
-    <link rel="stylesheet" href="{{asset("dashboard/css/demo.css")}}"/>
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{asset("dashboard/vendor/libs/perfect-scrollbar/perfect-scrollbar.css")}}"/>
-
-    <link rel="stylesheet" href="{{asset("dashboard/vendor/libs/apex-charts/apex-charts.css")}}"/>
-
+    @include('admin.layouts.style')
     <!-- Page CSS -->
 
 
@@ -103,31 +82,6 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <!-- Helpers -->
-    <script src="{{asset("dashboard/vendor/js/helpers.js")}}"></script>
-    <script src="{{asset("dashboard/vendor/libs/jquery/jquery.js")}}"></script>
-    <script src="{{asset("dashboard/vendor/libs/popper/popper.js")}}"></script>
-    <script src="{{asset("dashboard/vendor/js/bootstrap.js")}}"></script>
-    <script src="{{asset("dashboard/vendor/libs/perfect-scrollbar/perfect-scrollbar.js")}}"></script>
-
-    <script src="{{asset("dashboard/vendor/js/menu.js")}}"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="{{asset("dashboard/vendor/libs/apex-charts/apexcharts.js")}}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset("dashboard/js/config.js")}}"></script>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="{{asset("dashboard/js/buttons.js")}}"></script>
-
-    <!-- Main JS -->
-    <script src="{{asset("dashboard/js/main.js")}}"></script>
-
-    <!-- Page JS -->
-    <script src="{{asset("dashboard/js/dashboards-analytics.js")}}"></script>
+    @include('admin.layouts.script')
 </body>
 </html>

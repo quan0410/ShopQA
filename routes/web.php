@@ -60,8 +60,10 @@ Route::get('/resources/images/{filename}', function($filename){
 });
 
 Route::prefix('/admin')->group(function () {
-    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
-//    Route::get('/test', function (){
-//        return view('admin.home');
-//    });
+    Route::middleware('auth.admin')->get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
+
+    Route::middleware('guest.admin')->get('/login',[\App\Http\Controllers\Admin\LoginController::class,'index'])->name('admin.login.index');
+    Route::middleware('guest.admin')->post('/login',[\App\Http\Controllers\Admin\LoginController::class,'login'])->name('admin.login.login');
+    Route::post('/logout',[\App\Http\Controllers\Admin\LoginController::class,'logout'])->name('admin.login.logout');
+
 });
