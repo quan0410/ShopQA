@@ -80,6 +80,13 @@
                 </li>
             </ul>
         </li>
+        <!-- Brand -->
+        <li class="menu-item">
+            <a href="{{route("admin.brand.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Brands</div>
+            </a>
+        </li>
 
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 565px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 358px;"></div></div></ul>
 </aside>

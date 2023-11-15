@@ -61,6 +61,14 @@ Route::get('/resources/images/{filename}', function($filename){
 
 Route::prefix('/admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
+    Route::prefix('/brand')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BrandsController::class, 'index'])->name('admin.brand.index');
+        Route::get('create', [\App\Http\Controllers\Admin\BrandsController::class, 'create'])->name('admin.brand.create');
+        Route::post('/', [\App\Http\Controllers\Admin\BrandsController::class, 'store'])->name('admin.brand.store');
+        Route::delete('/{brand}', [\App\Http\Controllers\Admin\BrandsController::class, 'destroy'])->name('admin.brand.destroy');
+        Route::get('{brand}/edit', [\App\Http\Controllers\Admin\BrandsController::class, 'edit'])->name('admin.brand.edit');
+        Route::put('/{brand}', [\App\Http\Controllers\Admin\BrandsController::class, 'update'])->name('admin.brand.update');
+    });
 //    Route::get('/test', function (){
 //        return view('admin.home');
 //    });
