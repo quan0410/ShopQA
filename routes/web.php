@@ -66,7 +66,7 @@ Route::prefix('/admin')->group(function () {
     Route::middleware('guest.admin')->post('/login',[\App\Http\Controllers\Admin\LoginController::class,'login'])->name('admin.login.login');
     Route::post('/logout',[\App\Http\Controllers\Admin\LoginController::class,'logout'])->name('admin.login.logout');
 
-    Route::prefix('/brand')->group(function () {
+    Route::middleware('auth.admin')->prefix('/brand')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\BrandsController::class, 'index'])->name('admin.brand.index');
         Route::get('create', [\App\Http\Controllers\Admin\BrandsController::class, 'create'])->name('admin.brand.create');
         Route::post('/', [\App\Http\Controllers\Admin\BrandsController::class, 'store'])->name('admin.brand.store');
