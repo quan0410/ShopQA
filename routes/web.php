@@ -74,4 +74,13 @@ Route::prefix('/admin')->group(function () {
         Route::get('{brand}/edit', [\App\Http\Controllers\Admin\BrandsController::class, 'edit'])->name('admin.brand.edit');
         Route::put('/{brand}', [\App\Http\Controllers\Admin\BrandsController::class, 'update'])->name('admin.brand.update');
     });
+
+    Route::middleware('auth.admin')->prefix('/category')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.category.store');
+        Route::delete('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::get('{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::put('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin.category.update');
+    });
 });
