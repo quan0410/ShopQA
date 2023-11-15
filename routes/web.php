@@ -66,7 +66,6 @@ Route::prefix('/admin')->group(function () {
     Route::middleware('guest.admin')->post('/login',[\App\Http\Controllers\Admin\LoginController::class,'login'])->name('admin.login.login');
     Route::post('/logout',[\App\Http\Controllers\Admin\LoginController::class,'logout'])->name('admin.login.logout');
 
-    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
     Route::prefix('/brand')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\BrandsController::class, 'index'])->name('admin.brand.index');
         Route::get('create', [\App\Http\Controllers\Admin\BrandsController::class, 'create'])->name('admin.brand.create');
@@ -75,7 +74,4 @@ Route::prefix('/admin')->group(function () {
         Route::get('{brand}/edit', [\App\Http\Controllers\Admin\BrandsController::class, 'edit'])->name('admin.brand.edit');
         Route::put('/{brand}', [\App\Http\Controllers\Admin\BrandsController::class, 'update'])->name('admin.brand.update');
     });
-//    Route::get('/test', function (){
-//        return view('admin.home');
-//    });
 });
