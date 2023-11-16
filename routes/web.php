@@ -74,4 +74,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('{brand}/edit', [\App\Http\Controllers\Admin\BrandsController::class, 'edit'])->name('admin.brand.edit');
         Route::put('/{brand}', [\App\Http\Controllers\Admin\BrandsController::class, 'update'])->name('admin.brand.update');
     });
+
+    Route::middleware(['auth.admin','user'])->prefix('/user')->group(function (){
+        Route::get('/',[\App\Http\Controllers\Admin\UserController::class,'index'])->name('admin.user.index');
+        Route::get('/create',[\App\Http\Controllers\Admin\UserController::class,'create'])->name('admin.user.create');
+        Route::post('/',[\App\Http\Controllers\Admin\UserController::class,'store'])->name('admin.user.store');
+        Route::get('/{user}/edit',[\App\Http\Controllers\Admin\UserController::class,'edit'])->name('admin.user.edit');
+        Route::patch('/{user}',[\App\Http\Controllers\Admin\UserController::class,'update'])->name('admin.user.update');
+        Route::delete('/{user}',[\App\Http\Controllers\Admin\UserController::class,'destroy'])->name('admin.user.destroy');
+
+    });
 });

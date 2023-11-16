@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{ route('admin.home.index') }}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <defs>
@@ -47,8 +47,8 @@
 
     <ul class="menu-inner py-1 ps ps--active-y">
         <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+        <li class="menu-item {{ \Illuminate\Support\Facades\Request::routeIs('admin.home.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.home.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -56,6 +56,12 @@
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
+        </li>
+        <li class="menu-item {{ \Illuminate\Support\Facades\Request::routeIs('admin.user.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.user.index') }}" class="menu-link">
+                <i class='menu-icon bx bx-user'></i>
+                <div data-i18n="Analytics">Users</div>
+            </a>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
