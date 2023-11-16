@@ -3,6 +3,8 @@
 namespace App\Models;
 
 
+use Carbon\Carbon;
+
 class User extends \Illuminate\Foundation\Auth\User
 {
     /**
@@ -68,8 +70,20 @@ class User extends \Illuminate\Foundation\Auth\User
         'created_at',
     ];
 
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('m-d-Y');
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->format('m-d-Y');
+    }
+
     public function review()
     {
         return $this->hasMany(Review::class)->latest();
     }
+
+
 }

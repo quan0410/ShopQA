@@ -55,15 +55,19 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.admin' => \App\Http\Middleware\AdminAuthenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'guest.admin' => \App\Http\Middleware\RedirectIfAdminAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+//        admin
+        'auth.admin' => \App\Http\Middleware\admin\AdminAuthenticate::class,
+        'guest.admin' => \App\Http\Middleware\admin\RedirectIfAdminAuthenticated::class,
+        'brand' => \App\Http\Middleware\admin\BrandMiddleware::class,
+        'category' => \App\Http\Middleware\admin\CategoryMiddleware::class,
+        'user' => \App\Http\Middleware\admin\UserMiddleware::class,
     ];
 }
