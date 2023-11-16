@@ -83,4 +83,13 @@ Route::prefix('/admin')->group(function () {
         Route::get('{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::put('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin.category.update');
     });
+
+    Route::middleware('auth.admin')->prefix('/sale')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\SaleController::class, 'index'])->name('admin.sale.index');
+        Route::get('create', [\App\Http\Controllers\Admin\SaleController::class, 'create'])->name('admin.sale.create');
+        Route::post('/', [\App\Http\Controllers\Admin\SaleController::class, 'store'])->name('admin.sale.store');
+        Route::delete('/{sale}', [\App\Http\Controllers\Admin\SaleController::class, 'destroy'])->name('admin.sale.destroy');
+        Route::get('{sale}/edit', [\App\Http\Controllers\Admin\SaleController::class, 'edit'])->name('admin.sale.edit');
+        Route::put('/{sale}', [\App\Http\Controllers\Admin\SaleController::class, 'update'])->name('admin.sale.update');
+    });
 });
