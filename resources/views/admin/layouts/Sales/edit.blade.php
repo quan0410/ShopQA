@@ -71,14 +71,8 @@
                         <div class="mb-3">
                             <label for="show" class="form-label">Show sales</label>
                             <select class="form-select" id="show" name="is_show">
-                                @if($sale->is_show == 1)
-                                    <option value="0">Hidden</option>
-                                    <option selected value="1">Show</option>
-                                @else
-                                    <option selected value="0">Hidden</option>
-                                    <option value="1">Show</option>
-                                @endif
-
+                                <option {{$sale->is_show == 1 ? 'selected' : ''}} value="0">Hidden</option>
+                                <option {{$sale->is_show == 1 ? 'selected' : ''}} value="1">Show</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>

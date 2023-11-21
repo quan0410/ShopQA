@@ -53,7 +53,7 @@ class SaleController extends Controller
     public function destroy(Sales $sale)
     {
         $sale->delete();
-        return redirect()->route('admin.sale.index')->withSuccess('You have successfully deleted a Brand!');
+        return redirect()->route('admin.sale.index')->withSuccess('You have successfully deleted a Sale!');
     }
 
     /**

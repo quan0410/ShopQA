@@ -43,21 +43,21 @@ Route::delete('/removecart', [\App\Http\Controllers\Front\CartController::class,
 //Route::get('/search', [\App\Http\Controllers\Front\ProductController::class, "search"])->name("search.result");
 
 // Load Image
-Route::get('/resources/images/{filename}', function($filename){
-    $path = resource_path() . '/images/' . $filename;
-
-    if(!File::exists($path)) {
-        return response()->json(['message' => 'Image not found.'], 404);
-    }
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-});
+//Route::get('/resources/images/{filename}', function($filename){
+//    $path = resource_path() . '/images/' . $filename;
+//
+//    if(!File::exists($path)) {
+//        return response()->json(['message' => 'Image not found.'], 404);
+//    }
+//
+//    $file = File::get($path);
+//    $type = File::mimeType($path);
+//
+//    $response = Response::make($file, 200);
+//    $response->header("Content-Type", $type);
+//
+//    return $response;
+//});
 
 Route::prefix('/admin')->group(function () {
     Route::middleware('auth.admin')->get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
@@ -101,5 +101,21 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/{sale}', [\App\Http\Controllers\Admin\SaleController::class, 'destroy'])->name('admin.sale.destroy');
         Route::get('{sale}/edit', [\App\Http\Controllers\Admin\SaleController::class, 'edit'])->name('admin.sale.edit');
         Route::put('/{sale}', [\App\Http\Controllers\Admin\SaleController::class, 'update'])->name('admin.sale.update');
+    });
+
+    Route::middleware('auth.admin')->prefix('/slider')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\SliderController::class, 'index'])->name('admin.slider.index');
+        Route::get('create', [\App\Http\Controllers\Admin\SliderController::class, 'create'])->name('admin.slider.create');
+        Route::post('/', [\App\Http\Controllers\Admin\SliderController::class, 'store'])->name('admin.slider.store');
+        Route::delete('/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'destroy'])->name('admin.slider.destroy');
+        Route::get('{slider}/edit', [\App\Http\Controllers\Admin\SliderController::class, 'edit'])->name('admin.slider.edit');
+        Route::put('/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'update'])->name('admin.slider.update');
+    });
+
+    Route::middleware('auth.admin')->prefix('/product')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product.index');
+        Route::get('create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.product.store');
+        Route::delete('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 });
