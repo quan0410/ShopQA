@@ -94,6 +94,20 @@ let menu, animate;
     accordionTriggerEl.addEventListener('hide.bs.collapse', accordionActiveFunction);
   });
 
+  $(document).ready( function () {
+     const element = $('.size-color').html();
+    $("#addAttribute").click( function () {
+        $('.size-color').append(element);
+        const colors = $('body .size-color').find('.select-color');
+        $(colors).each( function (i) {
+            $(this).attr('name', `colors[${i}][]`)
+        });
+    });
+    $(".size-color").on('click', '#removeAttribute', function (){
+        $(this).closest('.sub-size-color').remove();
+    });
+  });
+
   // Auto update layout based on screen size
   window.Helpers.setAutoUpdate(true);
 

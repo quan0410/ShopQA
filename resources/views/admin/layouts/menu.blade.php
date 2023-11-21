@@ -100,6 +100,12 @@
             </a>
         </li>
         <li class="menu-item">
+            <a href="{{route("admin.product.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
+                <div data-i18n="Basic">Products</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="{{route("admin.sale.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Basic">Sales</div>

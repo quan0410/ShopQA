@@ -111,4 +111,11 @@ Route::prefix('/admin')->group(function () {
         Route::get('{slider}/edit', [\App\Http\Controllers\Admin\SliderController::class, 'edit'])->name('admin.slider.edit');
         Route::put('/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'update'])->name('admin.slider.update');
     });
+
+    Route::middleware('auth.admin')->prefix('/product')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product.index');
+        Route::get('create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.product.store');
+        Route::delete('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.product.destroy');
+    });
 });
