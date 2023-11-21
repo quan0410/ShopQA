@@ -118,8 +118,8 @@
                                             <div class="card-body">
                                                 <div class="shop__sidebar__color">
                                                     @foreach($colors as $color)
-                                                        <label class="c-{{$color}}" for="sp-$color" style="background-color: {{$color}}">
-                                                            <input type="radio" id="sp-{{$color}}" value="{{$color}}">
+                                                        <label class="c-{{$color->id}}" for="color-{{$color->id}}" style="background-color: {{$color->code}}">
+                                                            <input type="radio" id="color-{{$color->id}}" name="colorId" value="{{$color->id}}">
                                                         </label>
                                                     @endforeach
                                                 </div>

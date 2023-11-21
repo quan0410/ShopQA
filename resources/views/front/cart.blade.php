@@ -46,25 +46,30 @@
                                     <tr data-id="{{$id}}">
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="{{asset("/resources/images/" . $details['product']->image)}}" alt="">
+                                                <img src="{{asset("/resources/images/" . $details->product->image)}}" alt="">
                                             </div>
                                             <div class="product__cart__item__text">
-                                                <a href="{{route("product.index",[$details['product']->sku])}}" class="name-product">{{$details['product']->name}}</a>
-                                                <div class="size">Size: {{$details->size}}</div>
-                                                <div class="color">Color: {{$details->color}}</div>
-                                                <h5>{{number_format($details['product']->discount_price ?? $details['product']->price)}} VNĐ</h5>
+                                                <a href="{{route("product.index",[$details['product']->sku])}}" class="name-product">{{$details->product->name}}</a>
+                                                <div class="size">Size: {{$details->name}}</div>
+                                                <div class="color">Color: {{$details->color->name}}</div>
+                                                <h5>{{number_format($details->product->discount_price ?? $details->product->price)}} VNĐ</h5>
                                             </div>
                                         </td>
                                         <td class="quantity__item">
                                             <div class="quantity">
                                                 <div class="pro-qty-2">
-                                                    <input class="update-cart" type="number" value="{{$details['qty']}}" update-qty="{{ route('update.cart') }}">
+                                                    <input class="update-cart" type="number" value="{{$details->qty}}" update-qty="{{ route('update.cart') }}">
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="cart__price">{{number_format(($details['product']->discount_price ?? $details['product']->price) * $details['qty'])}} VNĐ</td>
                                         <td class="actions" data-th="">
-                                            <button class="cart__close" remove="{{ route('remove.cart') }}"><i class="fa fa-close"></i></button>
+                                            <button class="cart__close" onclick="document.getElementById('remove-cart-{{$id}}').submit()"><i class="fa fa-close"></i></button>
+                                            <form action="{{ route('remove.cart') }}" id="remove-cart-{{$id}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="id" value="{{$id}}">
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

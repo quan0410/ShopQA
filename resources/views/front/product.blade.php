@@ -66,32 +66,34 @@
                                 </span>
                                 @endif
                             </h3>
-                            <form action="{{route("add.cart")}}" method="get">
+                            <form action="{{route("add.cart")}}" method="post">
+                                @csrf
+                                <input type="hidden" name="productId" value="{{ $product->id }}">
                                 <div class="product__details__option">
-                                    @if($product->productDetails)
                                         <div class="product__details__option__size">
                                             <span>Size:</span>
-                                            @foreach(array_unique(array_column($product->productDetails->toArray(), 'size')) as $size)
-                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size}}">
-                                                    {{$size}}
-                                                    <input class="product-size" type="radio" id="{{$size}}">
+                                            @foreach($product->sizes as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size->id}}">
+                                                    {{$size->name}}
+                                                    <input class="product-size" type="radio" {{$loop->first ? "checked" : ""}} name="sizeId" id="{{$size->id}}" value="{{$size->id}}">
                                                 </label>
                                             @endforeach
                                         </div>
                                         <div class="product__details__option__color">
                                             <span>Color:</span>
-                                            @foreach($product->productDetails as $productDetail)
-                                                <label class="c-{{$productDetail->color}} product-color color-{{$productDetail->size}}" color="{{$productDetail->color}}" qty="{{$productDetail->qty}}" style="background-color: {{$productDetail->color}}">
-                                                    <input type="radio" id="sp-{{$productDetail->color}}" name="product-detail-id" value="{{ $productDetail->id }}">
-                                                </label>
+                                            @foreach($product->sizes as $size)
+                                                @foreach($size->colors as $color)
+                                                    <label class="c-{{$color->id}} product-color color-{{$size->id}}" color="{{$color->id}}" qty="{{$color->pivot->qty}}" style="background-color: {{$color->code}}">
+                                                        <input type="radio" id="sp-{{$color->id}}" name="colorId" value="{{ $color->id }}">
+                                                    </label>
+                                                @endforeach
                                             @endforeach
                                         </div>
-                                    @endif
                                 </div>
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input class="product-detail-qty" type="number" value="1" name="product-detail-qty" min="1" max="">
+                                            <input class="product-detail-qty" type="number" value="1" name="quantity" min="1" max="">
                                         </div>
                                     </div>
                                     <input type="submit" class="primary-btn" value="add to cart" id="add-cart"/>
@@ -133,33 +135,30 @@
                                 <div class="tab-pane" id="review" role="tabpanel">
                                     <div class="product__details__tab__content">
                                     @foreach($product->reviews as $review)
-                                        <!-- show review-->
-                                        <div class="review">
-                                            <div class="avatar">
-                                                @if($review->user->avatar)
-                                                    <img src="{{asset("/resources/images/" . $review->user->avatar)}}">
-                                                @else
-                                                    <img src="{{asset("/resources/images/avatar-01.jpg")}}">
-                                                @endif
-                                            </div>
-                                            <div class="information">
-                                                <div class="user">
-                                                    <div class="name-user">{{$review->user->name}}</div>
-                                                    <div class="rating">
-                                                        @for ($i = 0; $i < 5; $i++)
-                                                            @if($i < $review->rate)
-                                                                <i class="fa fa-star"></i>
-                                                            @else
-                                                                <i class="fa fa-star-o"></i>
-                                                            @endif
-                                                        @endfor
+                                        @if($review->user)
+                                            <!-- show review-->
+                                            <div class="review">
+{{--                                                <div class="avatar">--}}
+{{--                                                </div>--}}
+                                                <div class="information">
+                                                    <div class="user">
+                                                        <div class="name-user">{{$review->user->name}}</div>
+                                                        <div class="rating">
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                @if($i < $review->rate)
+                                                                    <i class="fa fa-star"></i>
+                                                                @else
+                                                                    <i class="fa fa-star-o"></i>
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                    </div>
+                                                    <div class="commtent-product">
+                                                        {{$review->content}}
                                                     </div>
                                                 </div>
-                                                <div class="commtent-product">
-                                                    {{$review->content}}
-                                                </div>
                                             </div>
-                                        </div>
+                                            @endif
                                         @endforeach
                                         <!-- add review-->
                                         <form class="add-review" action="#">

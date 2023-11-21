@@ -79,11 +79,6 @@ class Product extends Model
         return $this->hasMany(Size::class, 'product_id', 'id');
     }
 
-    public function productDetails ()
-    {
-        return $this->hasMany(ProductDetail::class, 'product_id', 'id');
-    }
-
     public function orderDetails ()
     {
         return $this->hasMany(OrderDetail::class, 'product_id', 'id');
@@ -121,12 +116,10 @@ class Product extends Model
 
     public function Search($request)
     {
-//        dd($request);
         $search = $request->search ?? '';
         $size = $request->search ?? '';
         $color = $request->search ?? '';
         $products = Product::where('name','like','%'. $search .'%')->orwhere('description','like','%'. $search .'%')->orderBy('created_at','DESC')->paginate(12);
         return $products;
-//        $products->items()[0]->getAttributes();
     }
 }

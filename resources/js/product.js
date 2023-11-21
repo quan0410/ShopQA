@@ -52,7 +52,7 @@ $(document).ready(function (){
             data: {
                 _token: $("meta").attr("token"),
                 id: ele.parents("tr").attr("data-id"),
-                quantity: ele.parents("tr").find(".quantity").val()
+                quantity: ele.parents("tr").find("input").val()
             },
             success: function (response) {
                 window.location.reload();

@@ -34,11 +34,11 @@ Route::get('/checkout', [\App\Http\Controllers\Front\CheckOutController::class, 
 
 Route::get('/cart', [\App\Http\Controllers\Front\CartController::class, "index"])->name("cart.index");
 
-Route::get('/addcart', [\App\Http\Controllers\Front\CartController::class, "add"])->name("add.cart");
+Route::post('/addcart', [\App\Http\Controllers\Front\CartController::class, "add"])->name("add.cart");
 
-Route::get('/updatecart', [\App\Http\Controllers\Front\CartController::class, "updateCart"])->name("update.cart");
+Route::patch('/updatecart', [\App\Http\Controllers\Front\CartController::class, "updateCart"])->name("update.cart");
 
-Route::get('/removecart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
+Route::delete('/removecart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
 
 //Route::get('/search', [\App\Http\Controllers\Front\ProductController::class, "search"])->name("search.result");
 

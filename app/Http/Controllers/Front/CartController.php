@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\ProductDetail;
+use App\Models\Color;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -32,23 +32,30 @@ class CartController extends Controller
      */
     public function add(Request $request)
     {
-        $id = $request['product-detail-id'];
-        $qty = $request['product-detail-qty'] ?? 1;
-        $productDetail = ProductDetail::findOrFail($id);
-        $productDetail->load(["product"]);
+        $sizeId = $request['sizeId'];
+        $colorId = $request['colorId'];
+        $qty = $request['quantity'] ?? 1;
+
+        $size = Size::where('id',$sizeId)
+            ->with(['product','colors' => function($query) use ($colorId){
+                    return $query->where('color_id',$colorId)->first();
+        }])->first();
+        $size->color = $size->colors[0];
+
+        $cartId = $sizeId.$colorId;
         $cart = session()->get('cart', []);
-        if (isset($cart[$id])){
-            if (($productDetail->qty) >= ($cart[$id]->qty+$qty)) {
-                $cart[$id]->qty++;
+        if (isset($cart[$cartId])){
+            if (($size->color->pivot->qty) >= ($cart[$cartId]->qty+$qty)) {
+                $cart[$cartId]->qty++;
                 session()->flash('success', 'Product added to cart successfully!');
 
-            } elseif (isset($cart[$id]) && ($productDetail->qty) < ($cart[$id]->qty+$qty)) {
+            } elseif (isset($cart[$cartId]) && ($size->color->pivot->qty) < ($cart[$cartId]->qty+$qty)) {
                 session()->flash('fail', 'Product quantity is not enough!');
             }
 
         }  else {
-            $productDetail->qty = $qty;
-            $cart[$id] = $productDetail;
+            $size->qty = $qty;
+            $cart[$cartId] = $size;
             session()->flash('success', 'Product added to cart successfully!');
         }
         session()->put('cart', $cart);
@@ -79,6 +86,7 @@ class CartController extends Controller
             session()->put('cart', $cart);
             session()->flash('success', 'Cart updated successfully!');
         }
+        return redirect()->back();
     }
 
     /**
@@ -91,8 +99,10 @@ class CartController extends Controller
             if (isset($cart[$request->id])){
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
+                session()->put('total_cart', $this->totalCart());
             }
             session()->flash('success', 'Product removed successfully!');
         }
+        return redirect()->back();
     }
 }
