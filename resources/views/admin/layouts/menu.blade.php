@@ -120,14 +120,14 @@
         </li>
 
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route("admin.blog.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxl-blogger"></i>
                 <div data-i18n="Basic">Blogs</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{route("admin.blog.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxl-dropbox"></i>
                 <div data-i18n="Basic">Orders</div>
             </a>

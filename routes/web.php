@@ -117,5 +117,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.product.create');
         Route::post('/', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.product.store');
         Route::delete('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::get('{product}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::put('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.product.update');
+    });
+
+    Route::middleware('auth.admin')->prefix('/blog')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blog.index');
+        Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('admin.blog.create');
+        Route::post('/', [\App\Http\Controllers\Admin\BlogController::class, 'store'])->name('admin.blog.store');
+        Route::delete('/{blog}', [\App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('admin.blog.destroy');
+        Route::get('{blog}/edit', [\App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::put('/{blog}', [\App\Http\Controllers\Admin\BlogController::class, 'update'])->name('admin.blog.update');
     });
 });
