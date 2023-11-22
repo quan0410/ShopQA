@@ -154,7 +154,7 @@
                         @foreach($products as $product)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                                <img class="product__item__pic set-bg" src="{{asset(Storage::url($product->image))}}">
                                 @if($product->discount_price)
                                     <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
                                 @elseif($product->featured)

@@ -20,7 +20,7 @@
                             @foreach($product->productImage as $image)
                             <li class="nav-item image-mini">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-{{$image->id}}" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="{{asset("/resources/images/" . $image->path)}}"></div>
+                                    <div class="product__thumb__pic set-bg" data-setbg="{{asset(Storage::url($image->path))}}"></div>
                                 </a>
                             </li>
                             @endforeach
@@ -31,7 +31,7 @@
                             @foreach($product->productImage as $image)
                             <div class="tab-pane" id="tabs-{{$image->id}}" role="tabpanel">
                                 <div class="product__details__pic__item">
-                                    <img src="{{asset("/resources/images/" . $image->path)}}" alt="">
+                                    <img src="{{asset(Storage::url($image->path))}}" alt="">
                                 </div>
                             </div>
                             @endforeach
