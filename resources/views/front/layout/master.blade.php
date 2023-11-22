@@ -108,14 +108,14 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-auto col-md-auto">
                 <div class="header__logo">
-                    <a href="{{route("home")}}"><img src="{{asset("front/img/logo.png")}}" alt=""></a>
+                    <a href="{{route("home")}}"><img src="{{asset("front/img/QA.png")}}" height="80" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
-                    <ul>
+                    <ul class="p-0">
                         <li class="{{Route::current()->getName() == "home" ? 'active': ''}}"><a href="{{route("home")}}">Home</a></li>
                         <li class="{{Route::current()->getName() == "shop.index" ? 'active': ''}}"><a href="{{ route("shop.index") }}">Shop</a></li>
                         <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blog</a></li>
