@@ -106,6 +106,15 @@ let menu, animate;
     $(".size-color").on('click', '#removeAttribute', function (){
         $(this).closest('.sub-size-color').remove();
     });
+    $('#image').on('change', function () {
+      var file = this.files[0];
+      if (file) {
+          var img = $('.image-upload');
+          var src = URL.createObjectURL(file);
+          img.attr('src', src);
+          img.removeClass('d-none');
+      }
+    });
   });
 
   // Auto update layout based on screen size
