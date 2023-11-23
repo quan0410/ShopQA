@@ -118,7 +118,7 @@
                     <ul class="p-0">
                         <li class="{{Route::current()->getName() == "home" ? 'active': ''}}"><a href="{{route("home")}}">Home</a></li>
                         <li class="{{Route::current()->getName() == "shop.index" ? 'active': ''}}"><a href="{{ route("shop.index") }}">Shop</a></li>
-                        <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blog</a></li>
+                        <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blogs</a></li>
                         <li class="{{Route::current()->getName() == "contact.index" ? 'active': ''}}"><a href="{{ route("contact.index") }}">Contacts</a></li>
                         <li class="{{Route::current()->getName() == "about" ? 'active': ''}}"><a href="{{ route("about") }}">About Us</a></li>
                     </ul>

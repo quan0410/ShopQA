@@ -21,8 +21,10 @@ Route::get('/about_us', function (){
 })->name("about");
 
 Route::get('/contact', [\App\Http\Controllers\Front\ContactController::class, "index"])->name("contact.index");
-
-Route::get('/blog', [\App\Http\Controllers\Front\BlogController::class, "index"])->name("blog.index");
+Route::prefix('/blog')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Front\BlogController::class, "index"])->name("blog.index");
+    Route::get('/detail/{blog}', [\App\Http\Controllers\Front\BlogController::class, "detail"])->name("blog.detail.index");
+});
 
 Route::get('/products/{product:sku}', [\App\Http\Controllers\Front\ProductController::class, "index"])->name("product.index");
 

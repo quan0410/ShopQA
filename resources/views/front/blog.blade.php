@@ -22,10 +22,9 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="{{asset(Storage::Url($blog->image))}}"></div>
                         <div class="blog__item__text">
-{{--                            {{dd($blog)}}--}}
                             <span><img src="front/img/icon/calendar.png" alt="">{{date_format($blog->created_at, 'd F Y')}}</span>
                             <h5>{{$blog->title}}</h5>
-                            <a href="#">Read More</a>
+                            <a href="{{route('blog.detail.index', ['blog' => $blog->id])}}">Read More</a>
                         </div>
                     </div>
                 </div>

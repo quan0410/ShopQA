@@ -13,4 +13,9 @@ class BlogController extends Controller
         $blogs = Blog::all();
         return view("front.blog" ,compact('blogs'));
     }
+
+    public function detail(Blog $blog)
+    {
+        return view('front.blogdetail', compact('blog'));
+    }
 }
