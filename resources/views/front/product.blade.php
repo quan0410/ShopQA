@@ -138,8 +138,6 @@
                                         @if($review->user)
                                             <!-- show review-->
                                             <div class="review">
-{{--                                                <div class="avatar">--}}
-{{--                                                </div>--}}
                                                 <div class="information">
                                                     <div class="user">
                                                         <div class="name-user">{{$review->user->name}}</div>
@@ -161,30 +159,31 @@
                                             @endif
                                         @endforeach
                                         <!-- add review-->
-                                        <form class="add-review" action="#">
+                                        <form class="add-review" action="{{route('create.review', ['product_id' => $product->id])}}" method="post">
+                                            @csrf
                                             <div class="rate-user">
                                                 <label class="title" for="review">Your Rating</label>
                                                 <div id="rating">
-                                                    <input type="radio" id="star5" name="rating" value="5" />
+                                                    <input type="radio" id="star5" name="rate" value="5" />
                                                     <label class = "full" for="star5" title="Awesome - 5 stars"></label>
 
-                                                    <input type="radio" id="star4" name="rating" value="4" />
+                                                    <input type="radio" id="star4" name="rate" value="4" />
                                                     <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
 
-                                                    <input type="radio" id="star3" name="rating" value="3" />
+                                                    <input type="radio" id="star3" name="rate" value="3" />
                                                     <label class = "full" for="star3" title="Meh - 3 stars"></label>
 
-                                                    <input type="radio" id="star2" name="rating" value="2" />
+                                                    <input type="radio" id="star2" name="rate" value="2" />
                                                     <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
 
-                                                    <input type="radio" id="star1" name="rating" value="1" />
+                                                    <input type="radio" id="star1" name="rate" value="1" />
                                                     <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
                                                 </div>
                                             </div>
                                             <div class="review-user">
                                                 <div class="comment">
-                                                    <label class="title" for="review">Your review</label>
-                                                    <textarea class="review" id="review" name="review"></textarea>
+                                                    <label class="title">Your review</label>
+                                                    <textarea class="review" name="content"></textarea>
                                                 </div>
                                                 <button type="submit" class="btn submit-comment">Submit</button>
                                             </div>
@@ -194,7 +193,6 @@
                                 <div class="tab-pane" id="content" role="tabpanel">
                                     <div class="product__details__tab__content">
                                         <p class="note">{{$product->content}}</p>
-
                                     </div>
                                 </div>
                             </div>
