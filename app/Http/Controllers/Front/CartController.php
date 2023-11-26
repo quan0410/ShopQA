@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Color;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -14,8 +13,6 @@ class CartController extends Controller
      */
     public function index()
     {
-//        session()->forget('cart');
-//        session()->forget('total_cart');
         if (!empty(session('cart'))){
             $this->totalCart();
             session()->put('total_cart', $this->totalCart());
@@ -80,13 +77,14 @@ class CartController extends Controller
      */
     protected function updateCart(Request $request)
     {
-        if ($request->id && $request->qty){
+        if ($request->id && $request->quantity){
             $cart = session('cart');
-            $cart[$request->id]->qty = $request->qty;
+
+            $cart[$request->id]->qty = $request->quantity;
             session()->put('cart', $cart);
             session()->flash('success', 'Cart updated successfully!');
         }
-        return redirect()->back();
+        return true;
     }
 
     /**

@@ -57,8 +57,8 @@
                                         </td>
                                         <td class="quantity__item">
                                             <div class="quantity">
-                                                <div class="pro-qty-2">
-                                                    <input class="update-cart" type="number" value="{{$details->qty}}" update-qty="{{ route('update.cart') }}">
+                                                <div class="pro-qty-2 cart">
+                                                    <input class="update-cart" type="number" name="qty" value="{{$details->qty}}" update-qty="{{ route('update.cart') }}">
                                                 </div>
                                             </div>
                                         </td>

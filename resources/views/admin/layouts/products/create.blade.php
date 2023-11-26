@@ -100,6 +100,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="input-group control-group lst increment">
+                            <div class="list-input-hidden-upload">
+                                <input type="file" name="path[]" id="file_upload" class="form-control hidden" multiple required>
+                            </div>
+                        </div>
                         <div class="mb-3 add-size-color">
                             <label class="form-label" for="content">Add Size and color</label>
                             <div class="size-color">

@@ -38,9 +38,15 @@ Route::get('/cart', [\App\Http\Controllers\Front\CartController::class, "index"]
 
 Route::post('/addcart', [\App\Http\Controllers\Front\CartController::class, "add"])->name("add.cart");
 
-Route::patch('/updatecart', [\App\Http\Controllers\Front\CartController::class, "updateCart"])->name("update.cart");
+Route::patch('/updateCart', [\App\Http\Controllers\Front\CartController::class, "updateCart"])->name("update.cart");
 
-Route::delete('/removecart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
+Route::delete('/removeCart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
+
+Route::post('/checkout', [\App\Http\Controllers\Front\CheckOutController::class, "store"])->name("checkout.cart");
+
+// review product
+
+Route::post('/review/{product_id}', [\App\Http\Controllers\Front\ReviewProductController::class, "create"])->name("create.review");
 
 //Route::get('/search', [\App\Http\Controllers\Front\ProductController::class, "search"])->name("search.result");
 

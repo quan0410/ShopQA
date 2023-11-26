@@ -164,8 +164,8 @@
                                     <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
                                     <div class="Product-price">
                                         @if($product->discount_price)
-                                            <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
                                             <span class="original-price">{{number_format($product->price)}} VNĐ</span>
+                                            <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
                                         @else
                                             <span class="price">{{number_format($product->price)}} VNĐ</span>
                                         @endif

@@ -10,8 +10,16 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $table = 'order_details';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'qty',
+        'color_id',
+        'size_id',
+        'price',
+        'discount_price',
+        'total',
+    ];
 
     public function order ()
     {

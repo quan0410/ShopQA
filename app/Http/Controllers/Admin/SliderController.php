@@ -24,7 +24,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $slider = $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:sales',
+            'title' => 'required|min:5|max:255|string|unique:sliders',
             'content' => 'required',
             'url' => 'required',
             'image' => 'required',

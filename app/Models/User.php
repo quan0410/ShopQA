@@ -85,5 +85,9 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->hasMany(Review::class)->latest();
     }
 
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 
 }

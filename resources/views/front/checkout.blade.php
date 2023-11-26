@@ -24,34 +24,33 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="#">
+                <form action="{{route('checkout.cart')}}" method="post">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-{{--                            <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click--}}
-{{--                                    here</a> to enter your code</h6>--}}
                             <h6 class="checkout__title">Billing Details</h6>
                             <div class="row">
                                 <div class="checkout__input">
                                     <p>Name<span>*</span></p>
-                                    <input value="{{$user->name}}" type="text" required>
+                                    <input value="{{$user->name}}" name="name" type="text" required>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input value="{{$user->address}}" type="text" placeholder="Street Address" class="checkout__input__add" required>
+                                <input value="{{$user->address}}" name="address" type="text" placeholder="Street Address" class="checkout__input__add" required>
 
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input value="{{$user->phone}}" type="text" required>
+                                        <input value="{{$user->phone}}" name="phone" type="text" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email</p>
-                                        <input type="text" value="{{$user->email ?? " "}}">
+                                        <input type="text" value="{{$user->email ?? " "}}" name="email">
                                     </div>
                                 </div>
                             </div>
@@ -78,14 +77,14 @@
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Check Payment
-                                        <input type="checkbox" id="payment">
+                                        <input type="radio" id="payment" value="payment" name="method">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
+                                    <label for="cod">
+                                        COD (Cash on delivery)
+                                        <input checked type="radio" id="cod" value="cod" name="method">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
