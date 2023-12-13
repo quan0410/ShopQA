@@ -127,7 +127,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{route("admin.blog.index")}}" class="menu-link">
+            <a href="{{route("admin.order.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxl-dropbox"></i>
                 <div data-i18n="Basic">Orders</div>
             </a>

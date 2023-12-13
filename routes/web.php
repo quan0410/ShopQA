@@ -137,4 +137,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('{blog}/edit', [\App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('admin.blog.edit');
         Route::put('/{blog}', [\App\Http\Controllers\Admin\BlogController::class, 'update'])->name('admin.blog.update');
     });
+
+    Route::middleware('auth.admin')->prefix('/orders')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.order.index');
+        Route::get('{order}/detail', [\App\Http\Controllers\Admin\OrderController::class, 'detail'])->name('admin.order.detail');
+    });
 });

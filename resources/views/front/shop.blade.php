@@ -45,7 +45,7 @@
                                                     <ul class="nice-scroll">
                                                         @foreach($categories as $category)
                                                             <li>
-                                                                <a href="{{$category->name}}">{{$category->name}}</a>
+                                                                <a href="#">{{$category->name}}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
