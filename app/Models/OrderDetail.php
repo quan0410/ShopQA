@@ -10,8 +10,16 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $table = 'order_details';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'qty',
+        'color_id',
+        'size_id',
+        'price',
+        'discount_price',
+        'total',
+    ];
 
     public function order ()
     {
@@ -21,5 +29,15 @@ class OrderDetail extends Model
     public function product ()
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function size ()
+    {
+        return $this->belongsTo(Size::class, 'size_id');
+    }
+
+    public function color ()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
     }
 }

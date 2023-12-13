@@ -40,24 +40,18 @@ $(document).ready(function (){
 
     });
 
-
     $(".update-cart").change(function (e) {
         e.preventDefault();
-
         var ele = $(this);
+        updateCard(ele);
+    });
 
-        $.ajax({
-            url: $(".update-cart").attr("update-qty"),
-            method: "patch",
-            data: {
-                _token: $("meta").attr("token"),
-                id: ele.parents("tr").attr("data-id"),
-                quantity: ele.parents("tr").find("input").val()
-            },
-            success: function (response) {
-                window.location.reload();
-            }
-        });
+    $(".pro-qty-2.cart .qtybtn").click(function (e) {
+        e.preventDefault();
+        var ele = $(this);
+        setTimeout(function () {
+            updateCard(ele);
+        }, 100);
     });
 
     $(".cart__close").click(function (e) {
@@ -79,5 +73,20 @@ $(document).ready(function (){
             });
         }
     });
+    function updateCard(e) {
+        $.ajax({
+            url: $(".update-cart").attr("update-qty"),
+            method: "patch",
+            data: {
+                _method: 'patch',
+                _token: $("meta[name='token']").attr('token'),
+                id: e.parents("tr").attr("data-id"),
+                quantity: e.parents("tr").find("input").val()
+            },
+            success: function (response) {
+                window.location.reload();
+            }
+        });
+    };
 })
 

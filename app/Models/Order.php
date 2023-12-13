@@ -10,8 +10,21 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'email',
+        'phone',
+        'address',
+        'note',
+        'method',
+    ];
+
+    public function user ()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function orderDetails ()
     {

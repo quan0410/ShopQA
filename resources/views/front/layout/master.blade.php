@@ -7,7 +7,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta token="{{csrf_token()}}">
+    <meta name='token' token="{{csrf_token()}}">
     <title>@yield('title') | shop QA</title>
 
     <!-- Google Font -->
@@ -108,17 +108,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-auto col-md-auto">
                 <div class="header__logo">
-                    <a href="{{route("home")}}"><img src="{{asset("front/img/logo.png")}}" alt=""></a>
+                    <a href="{{route("home")}}"><img src="{{asset("front/img/QA.png")}}" height="80" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <nav class="header__menu mobile-menu">
-                    <ul>
+                    <ul class="p-0">
                         <li class="{{Route::current()->getName() == "home" ? 'active': ''}}"><a href="{{route("home")}}">Home</a></li>
                         <li class="{{Route::current()->getName() == "shop.index" ? 'active': ''}}"><a href="{{ route("shop.index") }}">Shop</a></li>
-                        <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blog</a></li>
+                        <li class="{{Route::current()->getName() == "blog.index" ? 'active': ''}}"><a href="{{ route("blog.index") }}">Blogs</a></li>
                         <li class="{{Route::current()->getName() == "contact.index" ? 'active': ''}}"><a href="{{ route("contact.index") }}">Contacts</a></li>
                         <li class="{{Route::current()->getName() == "about" ? 'active': ''}}"><a href="{{ route("about") }}">About Us</a></li>
                     </ul>
@@ -148,7 +148,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="{{asset("front/img/footer-logo.png")}}" alt=""></a>
+                        <a href="#"><img src="{{asset("front/img/QA.png")}}" alt=""></a>
                     </div>
                     <p>The customer is at the heart of our unique business model, which includes design.</p>
                     <a href="#"><img src="{{asset("front/img/payment.png")}}" alt=""></a>

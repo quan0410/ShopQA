@@ -10,11 +10,11 @@ class Blog extends Model
     use HasFactory;
 
     protected $table = 'blogs';
-    protected $primaryKey = 'id';
-    protected $guarded = [];
-
-    public function blogComment ()
-    {
-        return $this->hasMany(BlogComment::class, 'blog_id', 'id');
-    }
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'category',
+        'user_id'
+    ];
 }

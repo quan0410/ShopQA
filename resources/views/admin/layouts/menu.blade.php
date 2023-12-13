@@ -95,14 +95,41 @@
         </li>
         <li class="menu-item">
             <a href="{{route("admin.category.index")}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <i class="menu-icon tf-icons bx bx-category"></i>
                 <div data-i18n="Basic">Categories</div>
             </a>
         </li>
         <li class="menu-item">
+            <a href="{{route("admin.product.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>
+                <div data-i18n="Basic">Products</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="{{route("admin.sale.index")}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Basic">Sales</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{route("admin.slider.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-image"></i>
+                <div data-i18n="Basic">Sliders</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{route("admin.blog.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxl-blogger"></i>
+                <div data-i18n="Basic">Blogs</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{route("admin.order.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxl-dropbox"></i>
+                <div data-i18n="Basic">Orders</div>
             </a>
         </li>
 

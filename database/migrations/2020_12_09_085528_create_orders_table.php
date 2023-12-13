@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone',11);
             $table->string('note')->nullable();
+            $table->string('method');
 
             $table->timestamps();
             $table->index("user_id");
