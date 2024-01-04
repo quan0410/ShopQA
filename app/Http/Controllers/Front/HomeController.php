@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Product;
 use App\Models\Sales;
 use App\Models\Slider;
@@ -19,6 +20,7 @@ class HomeController extends Controller
         $hotSales = Product::hotSales()->get();
         $newProduct = Product::new()->get();
         $featured = Product::featured()->get();
-        return view('front.index', compact("bestSellers", "hotSales", "newProduct" , "featured", "sliders", "sale"));
+        $blogs = Blog::orderBy('id', 'DESC')->get();;
+        return view('front.index', compact("bestSellers", "hotSales", "newProduct" , "featured", "sliders", "sale", "blogs"));
     }
 }

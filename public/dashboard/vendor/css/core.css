@@ -15675,10 +15675,10 @@ html:not(.layout-footer-fixed) .content-wrapper {
   display: none;
 }
 
-.menu-vertical .app-brand {
-  padding-right: 2rem;
-  padding-left: 2rem;
-}
+/*.menu-vertical .app-brand {*/
+/*  padding-right: 2rem;*/
+/*  padding-left: 2rem;*/
+/*}*/
 
 .menu-horizontal .app-brand,
 .menu-horizontal .app-brand + .menu-divider {

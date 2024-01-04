@@ -17,6 +17,12 @@ class ShopController extends Controller
     {
         $product = new Product();
         $products = $product->Search($request);
+        if (request('category')) {
+            $q->where('price', '>', request('price_from'));
+        }
+        if (request('color')) {
+            $q->where('color', '>', request('color'));
+        }
         $sizes = array_unique(array_column(Size::get()->toArray(), 'name'));
         $colors = Color::all();
         $categories = Category::all();
