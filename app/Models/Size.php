@@ -39,11 +39,22 @@ class Size extends Model
         'updated_at',
     ];
 
+    /**
+     * @var string[]
+     */
+    protected $with = ['colors'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function colors()
     {
         return $this->belongsToMany(Color::class)->withPivot('qty');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product()
     {
         return $this->belongsTo(Product::class);

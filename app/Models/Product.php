@@ -113,12 +113,5 @@ class Product extends Model
         return $query->where("featured", true)->limit(8);
     }
 
-    public function Search($request)
-    {
-        $search = $request->search ?? '';
-        $size = $request->search ?? '';
-        $color = $request->search ?? '';
-        $products = Product::where('name','like','%'. $search .'%')->orwhere('description','like','%'. $search .'%')->orderBy('created_at','DESC')->paginate(12);
-        return $products;
-    }
+
 }

@@ -45,7 +45,7 @@
                                                     <ul class="nice-scroll">
                                                         @foreach($categories as $category)
                                                             <li>
-                                                                <a href="#">{{$category->name}}</a>
+                                                                <a href="{{route("shop.index",getParamsArray(["ct" => $category->id]))}}" class="{{request()->get('ct') == $category->id ? 'active' : ''}}">{{$category->name}}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -63,13 +63,7 @@
                                                     <ul class="list-brand">
                                                         @foreach($brands as $brand)
                                                             <li>
-                                                                <input type="checkbox"
-                                                                       {{ (request("brand")[$brand->id] ?? '') == 'on' ? 'checked' : '' }}
-                                                                       id="brand-{{ $brand->id }}"
-                                                                       name="brand{{ $brand->id }}"
-                                                                       onchange="this.form.submit();">
-                                                                <span class="checkmark"></span>
-                                                                <a href="{{$brand->name}}">{{$brand->name}}</a>
+                                                                <a href="{{ route("shop.index",getParamsArray(["brand" => $brand->id]) ) }}" class="{{request()->get('brand') == $brand->id ? 'active' : ''}}">{{$brand->name}}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -85,10 +79,10 @@
                                             <div class="card-body">
                                                 <div class="shop__sidebar__price">
                                                     <ul>
-                                                        <li><a href="?max=200000">{{number_format(0)}} - {{number_format(200000)}}</a></li>
-                                                        <li><a href="?min=200000&max=400000">{{number_format(200000)}} - {{number_format(400000)}}</a></li>
-                                                        <li><a href="?min=400000&max=800000">{{number_format(400000)}} - {{number_format(800000)}}</a></li>
-                                                        <li><a href="?min=800000">{{number_format(800000)}} +</a></li>
+                                                        <li><a href="{{ route("shop.index",getParamsArray(["max" => "200000"]) ) }}" class="{{request()->get('max') == "200000" ? 'active' : ''}}">{{number_format(0)}} - {{number_format(200000)}}</a></li>
+                                                        <li><a href="{{ route("shop.index",getParamsArray(["min" => "200000","max" => "400000"]) ) }}" class="{{request()->get('min') == "200000" &&  request()->get('max') == "400000"? 'active' : ''}}">{{number_format(200000)}} - {{number_format(400000)}}</a></li>
+                                                        <li><a href="{{ route("shop.index",getParamsArray(["min" => "400000","max" => "800000"]) ) }}" class="{{request()->get('min') == "400000" &&  request()->get('max') == "800000"? 'active' : ''}}">{{number_format(400000)}} - {{number_format(800000)}}</a></li>
+                                                        <li><a href="{{ route("shop.index",getParamsArray(["min" => "800000"]) ) }}" class="{{request()->get('min') == "800000" ? 'active' : ''}}">{{number_format(800000)}} +</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -102,7 +96,8 @@
                                             <div class="card-body">
                                                 <div class="shop__sidebar__size">
                                                     @foreach($sizes as $size)
-                                                        <label class="{{$loop->first ? "active" : ""}}" for="{{$size}}">{{$size}}
+                                                        <a href="{{ route("shop.index",getParamsArray(["size" => $size]) ) }}" class="size-filter-{{$size}}"></a>
+                                                        <label class="{{request()->get('size') == $size ? "active" : ""}} size-filter" for="{{$size}}">{{$size}}
                                                             <input type="radio" id="{{$size}}">
                                                         </label>
                                                     @endforeach
@@ -110,22 +105,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-heading">
-                                            <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                        </div>
-                                        <div id="collapseFive" class="collapse show" data-parent="#fillter-product">
-                                            <div class="card-body">
-                                                <div class="shop__sidebar__color">
-                                                    @foreach($colors as $color)
-                                                        <label class="c-{{$color->id}}" for="color-{{$color->id}}" style="background-color: {{$color->code}}">
-                                                            <input type="radio" id="color-{{$color->id}}" name="colorId" value="{{$color->id}}">
-                                                        </label>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="card">--}}
+{{--                                        <div class="card-heading">--}}
+{{--                                            <a data-toggle="collapse" data-target="#collapseFive">Colors</a>--}}
+{{--                                        </div>--}}
+{{--                                        <div id="collapseFive" class="collapse show" data-parent="#fillter-product">--}}
+{{--                                            <div class="card-body">--}}
+{{--                                                <div class="shop__sidebar__color">--}}
+{{--                                                    @foreach($colors as $color)--}}
+{{--                                                        <label class="c-{{$color->id}}" for="color-{{$color->id}}" style="background-color: {{$color->code}}">--}}
+{{--                                                            <input type="radio" id="color-{{$color->id}}" name="colorId" value="{{$color->id}}">--}}
+{{--                                                        </label>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </form>
                             </div>
                         </div>
