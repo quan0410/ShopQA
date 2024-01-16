@@ -88,5 +88,12 @@ $(document).ready(function (){
             }
         });
     };
+
+
+    $(document).off('click','.size-filter');
+    $(document).on('click','.size-filter',function (){
+        let size = $('.size-filter.active').text();
+        location.href = $(`.size-filter-${size}`).attr('href')
+    })
 })
 
