@@ -31,9 +31,11 @@ class ShopController extends Controller
         $min = $request->min ?? '';
         $category = $request->ct ?? '';
         $brand = $request->brand ?? '';
+        $sort = $request->sort ?? 'featured';
+        $by = $request->by ?? 'DESC';
 
 //        $products = Product::where('products.name','like',"%$search%")->orWhere('description','like',"%$search%");
-        $products = Product::where('products.name', 'like', "%$search%");
+        $products = Product::where('products.name', 'like', "%$search%")->with('sizes');
 
         if ($size) {
             $products->whereExists(function ($query) use ($size) {
@@ -56,7 +58,16 @@ class ShopController extends Controller
         if ($min) {
             $products->where('price', '>=', $min);
         }
-        $products->orderBy('created_at', 'DESC');
+
+        if ($sort == 'product'){
+            $products->orderBy('created_at', $by);
+        }
+        if ($sort == 'price'){
+            $products->orderBy($sort, $by);
+        }
+        if ($sort == 'featured'){
+            $products->orderBy($sort, $by);
+        }
         return $products->paginate(12);
     }
 }

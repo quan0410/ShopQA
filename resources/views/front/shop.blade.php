@@ -136,10 +136,13 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                        <option value="">Low To High</option>
-                                        <option value="">High To Low</option>
+                                    <p>Sort by:</p>
+                                    <select class="select-sort-by">
+                                        <option {{ request()->get('sort') == 'featured' ? 'selected' : '' }} value="{{ route('shop.index',getParamsArray(['sort' => 'featured','by' => 'DESC'])) }}">Product : Featured</option>
+                                        <option {{ request()->get('sort') == 'product' && request()->get('by') == 'ASC' ? 'selected' : '' }} value="{{ route('shop.index',getParamsArray(['sort' => 'product','by' => 'ASC'])) }}">Product : Old to New</option>
+                                        <option {{ request()->get('sort') == 'product' && request()->get('by') == 'DESC' ? 'selected' : '' }} value="{{ route('shop.index',getParamsArray(['sort' => 'product','by' => 'DESC']))  }}">Product : New to Old</option>
+                                        <option {{ request()->get('sort') == 'price' && request()->get('by') == 'ASC' ? 'selected' : '' }} value="{{ route('shop.index',getParamsArray(['sort' => 'price','by' => 'ASC'])) }}">Price : Low To High</option>
+                                        <option {{ request()->get('sort') == 'price' && request()->get('by') == 'DESC' ? 'selected' : '' }} value="{{ route('shop.index',getParamsArray(['sort' => 'price','by' => 'DESC'])) }}">Price : High To Low</option>
                                     </select>
                                 </div>
                             </div>

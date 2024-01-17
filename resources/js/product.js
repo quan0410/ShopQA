@@ -95,5 +95,9 @@ $(document).ready(function (){
         let size = $('.size-filter.active').text();
         location.href = $(`.size-filter-${size}`).attr('href')
     })
+
+    $(document).on('click','.select-sort-by ul li',function (){
+        location.href = $('.select-sort-by ul li.selected').attr('data-value');
+    })
 })
 
