@@ -98,6 +98,7 @@ let menu, animate;
      const element = $('.size-color').html();
     $("#addAttribute").click( function () {
         $('.size-color').append(element);
+        $('.size-color').removeClass('d-none');
         const colors = $('body .size-color').find('.select-color');
         $(colors).each( function (i) {
             $(this).attr('name', `colors[${i}][]`)

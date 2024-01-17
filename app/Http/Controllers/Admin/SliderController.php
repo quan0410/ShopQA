@@ -73,7 +73,7 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         $data = $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:sales',
+            'title' => 'required|min:5|max:255|string|unique:sales,title,' .$slider->id,
             'content' => 'required',
             'url' => 'required',
             'image' => 'required',

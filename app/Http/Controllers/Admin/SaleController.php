@@ -69,7 +69,7 @@ class SaleController extends Controller
     public function update(Request $request,Sales $sale)
     {
         $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:sales',
+            'title' => 'required|min:5|max:255|string|unique:sales,title,' .$sale->id,
             'content' => 'required',
             'product_id' => 'required',
             'time_start' => 'required',

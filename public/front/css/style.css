@@ -938,6 +938,7 @@ ol {
 	overflow: hidden;
 	margin-bottom: 40px;
     position: relative;
+    width: fit-content;
 }
 
 .product__item.sale .product__item__pic .label {
