@@ -46,7 +46,7 @@
                                     <tr data-id="{{$id}}">
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="{{asset("/resources/images/" . $details->product->image)}}" alt="">
+                                                <img src="{{ asset(Storage::url($details->product->image))}}" alt="">
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <a href="{{route("product.index",[$details['product']->sku])}}" class="name-product">{{$details->product->name}}</a>

@@ -6,7 +6,7 @@
 <section class="hero">
     <div class="hero__slider owl-carousel">
         @foreach($sliders as $slider)
-        <div class="hero__items set-bg" data-setbg="{{$slider->image}}">
+        <div class="hero__items set-bg" data-setbg="{{ asset(Storage::url($slider->image))}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">
@@ -89,7 +89,7 @@
                 @if(($product->discount) > 0)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6  mix best-seller">
                         <div class="product__item">
-                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
                             <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
@@ -101,6 +101,39 @@
                                         <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
                                 </div>
+                            </div>
+                            <div class="quick-purchase">
+                                <form action="{{route("add.cart")}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                    <div class="product__details__option">
+                                        <div class="product__details__option__size">
+                                            <span>Size:</span>
+                                            @foreach($product->sizes as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size->id}}">
+                                                    {{$size->name}}
+                                                    <input class="product-size" type="radio"
+                                                           {{$loop->first ? "checked" : ""}} name="sizeId"
+                                                           id="{{$size->id}}" value="{{$size->id}}">
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                        <div class="product__details__option__color">
+                                            <span>Color:</span>
+                                            @foreach($product->sizes as $size)
+                                                @foreach($size->colors as $color)
+                                                    <label class="c-{{$color->id}} product-color color-{{$size->id}}"
+                                                           color="{{$color->id}}" qty="{{$color->pivot->qty}}"
+                                                           style="background-color: {{$color->code}}">
+                                                        <input type="radio" id="sp-{{$color->id}}" name="colorId"
+                                                               value="{{ $color->id }}">
+                                                    </label>
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button type="submit">Add cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -109,7 +142,7 @@
                 @foreach($hotSales as $product)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                         <div class="product__item">
-                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
                             <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
@@ -122,13 +155,46 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="quick-purchase">
+                                <form action="{{route("add.cart")}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                    <div class="product__details__option">
+                                        <div class="product__details__option__size">
+                                            <span>Size:</span>
+                                            @foreach($product->sizes as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size->id}}">
+                                                    {{$size->name}}
+                                                    <input class="product-size" type="radio"
+                                                           {{$loop->first ? "checked" : ""}} name="sizeId"
+                                                           id="{{$size->id}}" value="{{$size->id}}">
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                        <div class="product__details__option__color">
+                                            <span>Color:</span>
+                                            @foreach($product->sizes as $size)
+                                                @foreach($size->colors as $color)
+                                                    <label class="c-{{$color->id}} product-color color-{{$size->id}}"
+                                                           color="{{$color->id}}" qty="{{$color->pivot->qty}}"
+                                                           style="background-color: {{$color->code}}">
+                                                        <input type="radio" id="sp-{{$color->id}}" name="colorId"
+                                                               value="{{ $color->id }}">
+                                                    </label>
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button type="submit">Add cart</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @endforeach
                 @foreach($newProduct as $product)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         <div class="product__item">
-                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
                             @if($product->discount_price)
                                 <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
                             @else
@@ -145,13 +211,46 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="quick-purchase">
+                                <form action="{{route("add.cart")}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                    <div class="product__details__option">
+                                        <div class="product__details__option__size">
+                                            <span>Size:</span>
+                                            @foreach($product->sizes as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size->id}}">
+                                                    {{$size->name}}
+                                                    <input class="product-size" type="radio"
+                                                           {{$loop->first ? "checked" : ""}} name="sizeId"
+                                                           id="{{$size->id}}" value="{{$size->id}}">
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                        <div class="product__details__option__color">
+                                            <span>Color:</span>
+                                            @foreach($product->sizes as $size)
+                                                @foreach($size->colors as $color)
+                                                    <label class="c-{{$color->id}} product-color color-{{$size->id}}"
+                                                           color="{{$color->id}}" qty="{{$color->pivot->qty}}"
+                                                           style="background-color: {{$color->code}}">
+                                                        <input type="radio" id="sp-{{$color->id}}" name="colorId"
+                                                               value="{{ $color->id }}">
+                                                    </label>
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button type="submit">Add cart</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @endforeach
                 @foreach($featured as $product)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix featured">
                         <div class="product__item">
-                            <img class="product__item__pic set-bg" src="{{asset("front/img/product/" . $product->image)}}">
+                            <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
                             @if($product->discount_price)
                                 <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
                             @else
@@ -167,6 +266,39 @@
                                     <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
                                 </div>
+                            </div>
+                            <div class="quick-purchase">
+                                <form action="{{route("add.cart")}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                    <div class="product__details__option">
+                                        <div class="product__details__option__size">
+                                            <span>Size:</span>
+                                            @foreach($product->sizes as $size)
+                                                <label class="size {{$loop->first ? "active" : ""}}" size="{{$size->id}}">
+                                                    {{$size->name}}
+                                                    <input class="product-size" type="radio"
+                                                           {{$loop->first ? "checked" : ""}} name="sizeId"
+                                                           id="{{$size->id}}" value="{{$size->id}}">
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                        <div class="product__details__option__color">
+                                            <span>Color:</span>
+                                            @foreach($product->sizes as $size)
+                                                @foreach($size->colors as $color)
+                                                    <label class="c-{{$color->id}} product-color color-{{$size->id}}"
+                                                           color="{{$color->id}}" qty="{{$color->pivot->qty}}"
+                                                           style="background-color: {{$color->code}}">
+                                                        <input type="radio" id="sp-{{$color->id}}" name="colorId"
+                                                               value="{{ $color->id }}">
+                                                    </label>
+                                                @endforeach
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <button type="submit">Add cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
