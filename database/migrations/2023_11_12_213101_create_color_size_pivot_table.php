@@ -13,6 +13,9 @@ class CreateColorSizePivotTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('color_size')){
+            return;
+        }
         Schema::create('color_size', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('size_id');

@@ -26,6 +26,7 @@
             <div class="checkout__form">
                 <form action="{{route('checkout.cart')}}" method="post">
                     @csrf
+                    <input type="hidden" name="code" value="{{ date("YmdHis") }}">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <h6 class="checkout__title">Billing Details</h6>

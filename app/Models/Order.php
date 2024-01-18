@@ -19,6 +19,8 @@ class Order extends Model
         'address',
         'note',
         'method',
+        'code',
+        'status'
     ];
 
     public function user ()

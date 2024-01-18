@@ -43,6 +43,7 @@ Route::patch('/updateCart', [\App\Http\Controllers\Front\CartController::class, 
 Route::delete('/removeCart', [\App\Http\Controllers\Front\CartController::class, "removeCart"])->name("remove.cart");
 
 Route::post('/checkout', [\App\Http\Controllers\Front\CheckOutController::class, "store"])->name("checkout.cart");
+Route::get('/checkout/return-vnpay', [\App\Http\Controllers\Front\CheckOutController::class, "return"])->name("checkout.return");
 
 // review product
 
