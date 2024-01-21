@@ -69,5 +69,9 @@ class Kernel extends HttpKernel
         'brand' => \App\Http\Middleware\admin\BrandMiddleware::class,
         'category' => \App\Http\Middleware\admin\CategoryMiddleware::class,
         'user' => \App\Http\Middleware\admin\UserMiddleware::class,
+        'product' => \App\Http\Middleware\admin\ProductMiddleware::class,
+        'sale' => \App\Http\Middleware\admin\SaleMiddleware::class,
+        'blog' => \App\Http\Middleware\admin\BlogMiddleware::class,
+        'order' => \App\Http\Middleware\admin\OrderMiddleware::class,
     ];
 }

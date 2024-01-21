@@ -112,3 +112,7 @@ input::-webkit-datetime-edit-second-field {
     position: absolute;
     width: 1px;
 }
+
+.table-responsive {
+    min-height: 40rem;
+}

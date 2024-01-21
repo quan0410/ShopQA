@@ -30,7 +30,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="weight">Weight</label>
-                            <input type="number" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" placeholder="Weight product" required />
+                            <input type="number" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" placeholder="Weight product" />
                             @error('weight')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="discount_price">Discount Price</label>
-                            <input type="number" class="form-control @error('discount_price') is-invalid @enderror" id="discount_price" name="discount_price" placeholder="Discount price (VNĐ)" required />
+                            <input type="number" class="form-control @error('discount_price') is-invalid @enderror" id="discount_price" name="discount_price" placeholder="Discount price (VNĐ)" />
                             @error('discount_price')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

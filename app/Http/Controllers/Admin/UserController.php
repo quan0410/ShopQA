@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\u;
 
 class UserController extends Controller
 {
@@ -31,9 +32,14 @@ class UserController extends Controller
         $data['password'] = Hash::make($request['password']);
         $data['address'] = $request['address'];
         $data['permissions'] = [
+            'super' =>  false,
             'admin' => $request['permission_admin'] ?? false,
             'brand' => $request['permission_brand'] ?? false,
             'category' => $request['permission_category'] ?? false,
+            'product' => $request['permission_product'] ?? false,
+            'sale' => $request['permission_sale'] ?? false,
+            'blog' => $request['permission_blog'] ?? false,
+            'order' => $request['permission_order'] ?? false,
         ];
         User::create($data);
         return redirect(route('admin.user.index'));
@@ -49,7 +55,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'name' => ['required','min:2'],
-            'email' => ['required','email','unique:users'],
+            'email' => ['required','email'],
             'phone' => ['numeric','min:10']
         ]);
         if ($request['password']){
@@ -57,9 +63,14 @@ class UserController extends Controller
         }
         $data['address'] = $request['address'];
         $data['permissions'] = [
+            'super' => false,
             'admin' => $request['permission_admin'] ?? false,
             'brand' => $request['permission_brand'] ?? false,
             'category' => $request['permission_category'] ?? false,
+            'product' => $request['permission_product'] ?? false,
+            'sale' => $request['permission_sale'] ?? false,
+            'blog' => $request['permission_blog'] ?? false,
+            'order' => $request['permission_order'] ?? false,
         ];
         $user->update($data);
         return redirect(route('admin.user.index'));

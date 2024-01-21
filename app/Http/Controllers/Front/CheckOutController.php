@@ -35,7 +35,7 @@ class CheckOutController extends Controller
             'method' => 'required',
         ]);
         $data['code'] = $request->post('code');
-        $data['status'] = 'Chờ xử lý';
+        $data['status'] = 'waiting';
         $order = Auth()->user()->order()->create($data);
         $orderDetails = [];
         foreach ($cart as $orderDetail) {
@@ -57,10 +57,10 @@ class CheckOutController extends Controller
         if ($data['method'] == 'payment') {
             return redirect($this->create($request)) ;
         }
-//        session()->forget('cart');
-//        session()->forget('total_cart');
-//        session()->flash('success', 'Place order successfully!');
-//        return redirect()->route("home");
+        session()->forget('cart');
+        session()->forget('total_cart');
+        session()->flash('success', 'Place order successfully!');
+        return redirect()->route("home");
     }
 
     public function create(Request $request)
@@ -98,7 +98,6 @@ class CheckOutController extends Controller
             $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
 
-        //var_dump($inputData);
         ksort($inputData);
         $query = "";
         $i = 0;
@@ -127,7 +126,7 @@ class CheckOutController extends Controller
     {
         $order = Order::where('code',$request->vnp_TxnRef)->first();
         if ($request->vnp_ResponseCode == "00") {
-            $order->update(['status'=>'Đã thanh toán']);
+            $order->update(['status'=>'processing']);
             session()->forget('cart');
             session()->forget('total_cart');
             session()->flash('success', 'Place order successfully!');
