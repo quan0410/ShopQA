@@ -14,6 +14,18 @@ class OrderController extends Controller
         return view('admin.layouts.orders.list', compact('orders'));
     }
 
+    public function edit(Order $order)
+    {
+        $orderDetails = $order->orderDetails()->get();
+        return view('admin.layouts.orders.edit', compact('order', 'orderDetails'));
+    }
+
+    public function update(Request $request, Order $order)
+    {
+        $order->update($request->all());
+        return redirect()->route('admin.order.index')->withSuccess('You have successfully updated a Order!');
+    }
+
     public function detail(Order $order)
     {
         $orderDetails = $order->orderDetails()->get();

@@ -46,6 +46,10 @@
                                             <i class="bx bxs-eyedropper me-1"></i>
                                                 Xem chi tiết
                                         </a>
+                                        <a class="dropdown-item" href="{{route("admin.order.edit", ['order' => $order->id])}}">
+                                            <i class="bx bx-edit-alt me-1"></i>
+                                            Edit
+                                        </a>
                                     </div>
                                 </div>
                             </td>

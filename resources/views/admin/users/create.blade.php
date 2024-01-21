@@ -74,6 +74,22 @@
                             <input class="form-check-input" name="permission_category" type="checkbox" value="true" id="category" {{ old('permission.category') ? 'checked' : '' }}>
                             <label class="form-check-label" for="category"> Category </label>
                         </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_product" type="checkbox" value="true" id="product" {{ old('permission.product') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="product"> Product</label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_sale" type="checkbox" value="true" id="sale" {{ old('permission.sale') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="sale">Sale</label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_blog" type="checkbox" value="true" id="blog" {{ old('permission.blog') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="blog"> Blog </label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_order" type="checkbox" value="true" id="order" {{ old('permission.order') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="order"> Order </label>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -8,7 +8,6 @@
             <div class="actions">
                 <a href="{{ route('admin.user.index') }}" class="btn btn-warning">Cancel</a>
                 <button type="submit" class="btn btn-primary" onclick="document.getElementById('form-edit').submit()">Save</button>
-
             </div>
         </div>
         <div class="card-body">
@@ -74,6 +73,22 @@
                         <div class="form-check me-5">
                             <input class="form-check-input" name="permission_category" type="checkbox" value="true" id="category" {{ ($user->permissions['category'] ?? false) ? 'checked' : '' }}>
                             <label class="form-check-label" for="category"> Category </label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_product" type="checkbox" value="true" id="product" {{ ($user->permissions['product'] ?? false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="product"> Product</label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_sale" type="checkbox" value="true" id="sale" {{ ($user->permissions['sale'] ?? false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="sale">Sale</label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_blog" type="checkbox" value="true" id="blog" {{ ($user->permissions['blog'] ?? false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="blog"> Blog </label>
+                        </div>
+                        <div class="form-check me-5">
+                            <input class="form-check-input" name="permission_order" type="checkbox" value="true" id="order" {{ ($user->permissions['order'] ?? false) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="order"> Order </label>
                         </div>
                     </div>
                 </div>

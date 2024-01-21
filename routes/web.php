@@ -51,23 +51,6 @@ Route::post('/review/{product_id}', [\App\Http\Controllers\Front\ReviewProductCo
 
 //Route::get('/search', [\App\Http\Controllers\Front\ProductController::class, "search"])->name("search.result");
 
-// Load Image
-//Route::get('/resources/images/{filename}', function($filename){
-//    $path = resource_path() . '/images/' . $filename;
-//
-//    if(!File::exists($path)) {
-//        return response()->json(['message' => 'Image not found.'], 404);
-//    }
-//
-//    $file = File::get($path);
-//    $type = File::mimeType($path);
-//
-//    $response = Response::make($file, 200);
-//    $response->header("Content-Type", $type);
-//
-//    return $response;
-//});
-
 Route::prefix('/admin')->group(function () {
     Route::middleware('auth.admin')->get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.home.index');
 
@@ -94,7 +77,7 @@ Route::prefix('/admin')->group(function () {
 
     });
 
-    Route::middleware('auth.admin')->prefix('/category')->group(function () {
+    Route::middleware(['auth.admin','category'])->prefix('/category')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.category.store');
@@ -103,7 +86,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin.category.update');
     });
 
-    Route::middleware('auth.admin')->prefix('/sale')->group(function () {
+    Route::middleware(['auth.admin', 'sale'])->prefix('/sale')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\SaleController::class, 'index'])->name('admin.sale.index');
         Route::get('create', [\App\Http\Controllers\Admin\SaleController::class, 'create'])->name('admin.sale.create');
         Route::post('/', [\App\Http\Controllers\Admin\SaleController::class, 'store'])->name('admin.sale.store');
@@ -121,7 +104,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'update'])->name('admin.slider.update');
     });
 
-    Route::middleware('auth.admin')->prefix('/product')->group(function () {
+    Route::middleware(['auth.admin', 'product'])->prefix('/product')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product.index');
         Route::get('create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.product.create');
         Route::post('/', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.product.store');
@@ -130,7 +113,7 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.product.update');
     });
 
-    Route::middleware('auth.admin')->prefix('/blog')->group(function () {
+    Route::middleware(['auth.admin', 'blog'])->prefix('/blog')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blog.index');
         Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('admin.blog.create');
         Route::post('/', [\App\Http\Controllers\Admin\BlogController::class, 'store'])->name('admin.blog.store');
@@ -139,8 +122,10 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{blog}', [\App\Http\Controllers\Admin\BlogController::class, 'update'])->name('admin.blog.update');
     });
 
-    Route::middleware('auth.admin')->prefix('/orders')->group(function () {
+    Route::middleware(['auth.admin', 'order'])->prefix('/orders')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.order.index');
+        Route::get('{order}/edit', [\App\Http\Controllers\Admin\OrderController::class, 'edit'])->name('admin.order.edit');
+        Route::put('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
         Route::get('{order}/detail', [\App\Http\Controllers\Admin\OrderController::class, 'detail'])->name('admin.order.detail');
     });
 });

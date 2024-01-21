@@ -35,6 +35,7 @@ class ShopController extends Controller
         $by = $request->by ?? 'DESC';
 
 //        $products = Product::where('products.name','like',"%$search%")->orWhere('description','like',"%$search%");
+        // lấy sizes hiển thị show khi mua trực tiếp
         $products = Product::where('products.name', 'like', "%$search%")->with('sizes');
 
         if ($size) {

@@ -1,14 +1,22 @@
 @extends('admin.layouts.app')
-@section('title', 'Order Detail')
+@section('title', 'Edit Order ')
 @section('content')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Order Detail</h4>
-
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span>Edit Order</h4>
     <!-- Basic Layout -->
     <div class="row">
         <div class="col-xl">
             <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Edit Order</h5>
+                    <div class="actions">
+                        <a href="{{ route('admin.order.index') }}" class="btn btn-warning">Cancel</a>
+                        <button type="submit" class="btn btn-primary" onclick="document.getElementById('form-edit').submit()">Save</button>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <form action="#">
+                    <form action="{{ route('admin.order.update',['order' => $order->id]) }}" id="form-edit" method="post">
+                        @method('put')
+                        @csrf
                          <div class="row">
                              <div class="mb-3 col-6">
                                  <label class="form-label" for="name">User Name</label>
@@ -32,7 +40,7 @@
                              </div>
                              <div class="mb-3">
                                  <label for="form-label" class="method">Trạng thái đơn hàng</label>
-                                 <select class="form-select" id="status" name="status" disabled>
+                                 <select class="form-select" id="status" name="status">
                                      <option {{$order->status === 'waiting' ? 'selected' : " "}} value="waiting">Chờ xử lý</option>
                                      <option {{$order->status === 'processing' ? 'selected' : " "}} value="processing">Đang xử lý</option>
                                      <option {{$order->status === 'packaged' ? 'selected' : " "}} value="packaged">Đã đóng gói</option>
