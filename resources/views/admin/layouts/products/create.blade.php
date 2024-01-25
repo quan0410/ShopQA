@@ -93,62 +93,88 @@
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>
                                 <div class="card-body demo-vertical-spacing demo-only-element">
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="image" name="image" required>
-                                        <label class="input-group-text" for="image">Upload</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-group control-group lst increment">
-                            <div class="list-input-hidden-upload">
-                                <input type="file" name="path[]" id="file_upload" class="form-control hidden" multiple required>
-                            </div>
-                        </div>
-                        <div class="mb-3 add-size-color">
-                            <label class="form-label" for="content">Add Size and color</label>
-                            <div class="size-color">
-                                <div class="d-flex row mb-4 sub-size-color">
-                                    <div class="size col-4">
-                                        <label class="form-label">Size</label>
-                                        <input type="text" class="form-control @error('size') is-invalid @enderror" name="sizes[]" placeholder="Size product" />
-                                        @error('size')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                    <div class="color col-4">
-                                        <label class="form-label">Color</label>
-                                        <select class="form-select select-color" name="colors[]" multiple>
-                                            @foreach($colors as $color)
-                                                <option value="{{$color->id}}">{{$color->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('color')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                    <div class="qty col-2">
-                                        <label class="form-label">Qty</label>
-                                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty[]" placeholder="Qty product" />
-                                        @error('qty')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-2 d-flex align-items-center">
-                                        <div>
-                                            <span class="btn btn-danger" id="removeAttribute">Remove Attribute</span>
+                                    <div class="input-group d-flex align-items-center justify-content-center">
+                                        <div class="w-50">
+                                            <input type="file" class="form-control h-25" id="image" name="image" required>
                                         </div>
+                                        <img class="image-upload d-none" alt="image" height="200" width="300">
                                     </div>
                                 </div>
                             </div>
-                            <span class="btn btn-success" id="addAttribute">Add Attribute</span>
                         </div>
+{{--                        <div class="col-12 mb-3">--}}
+{{--                            <div class="card">--}}
+{{--                                <h5 class="card-header">Upload Image</h5>--}}
+{{--                                <div class="card-body demo-vertical-spacing demo-only-element">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        <input type="file" class="form-control" id="image" name="image" required>--}}
+{{--                                        <label class="input-group-text" for="image">Upload</label>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="input-group control-group lst increment">--}}
+{{--                            <div class="list-input-hidden-upload">--}}
+{{--                                <input type="file" name="path[]" id="file_upload" class="form-control hidden" multiple>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <div class="col-12 mb-3">
+                            <div class="card">
+                                <h5 class="card-header">Upload thumbnail</h5>
+                                <div class="card-body demo-vertical-spacing demo-only-element">
+                                    <div class="input-group d-flex align-items-center justify-content-center">
+                                        <div class="w-50">
+                                            <input type="file" class="form-control h-25" name="path[]" id="gallery-photo-add" multiple required>
+                                        </div>
+                                        <div class="gallery"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{{--                        <div class="mb-3 add-size-color">--}}
+{{--                            <label class="form-label" for="content">Add Size and color</label>--}}
+{{--                            <div class="size-color">--}}
+{{--                                <div class="d-flex row mb-4 sub-size-color">--}}
+{{--                                    <div class="size col-4">--}}
+{{--                                        <label class="form-label">Size</label>--}}
+{{--                                        <input type="text" class="form-control @error('size') is-invalid @enderror" name="sizes[]" placeholder="Size product" />--}}
+{{--                                        @error('size')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                    <div class="color col-4">--}}
+{{--                                        <label class="form-label">Color</label>--}}
+{{--                                        <select class="form-select select-color" name="colors[0][]" multiple>--}}
+{{--                                            @foreach($colors as $color)--}}
+{{--                                                <option value="{{$color->id}}">{{$color->name}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('color')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                            <strong>{{ $message }}</strong>--}}
+{{--                                        </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                    <div class="qty col-2">--}}
+{{--                                        <label class="form-label">Qty</label>--}}
+{{--                                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty[]" placeholder="Qty product" />--}}
+{{--                                        @error('qty')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-2 d-flex align-items-center">--}}
+{{--                                        <div>--}}
+{{--                                            <span class="btn btn-danger" id="removeAttribute">Remove Attribute</span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <span class="btn btn-success" id="addAttribute">Add Attribute</span>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <label for="featured" class="form-label">featured</label>
                             <select class="form-select" id="featured" name="featured">

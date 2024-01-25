@@ -12,9 +12,10 @@ class BrandsController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = Brand::paginate(5);
+        $search = $request->search ?? '';
+        $brands = Brand::where('brands.name', 'like', "%$search%")->paginate(5);
         return view('admin.layouts.brands.list', compact('brands'));
     }
 
@@ -70,5 +71,15 @@ class BrandsController extends Controller
         ]);
         $brand->update($request->all());
         return redirect()->route('admin.brand.index')->withSuccess('You have successfully updated a Brand!');
+    }
+    public function Search($request)
+    {
+        $search = $request->search ?? '';
+
+//        $products = Product::where('products.name','like',"%$search%")->orWhere('description','like',"%$search%");
+        // lấy sizes hiển thị show khi mua trực tiếp
+        $products = Product::where('products.name', 'like', "%$search%")->with('sizes');
+
+        return $products->paginate(12);
     }
 }

@@ -21,6 +21,7 @@
 
 <!-- Main JS -->
 <script src="{{asset("dashboard/js/main.js")}}"></script>
+<script src="{{asset("dashboard/js/updateAtrr.js")}}"></script>
 
 <!-- Page JS -->
 <script src="{{asset("dashboard/js/dashboards-analytics.js")}}"></script>

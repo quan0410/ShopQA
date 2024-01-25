@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(["verify" => true]);
 
 Route::get('/', [\App\Http\Controllers\Front\HomeController::class, "index"])->name("home");
 
@@ -31,6 +31,11 @@ Route::get('/products/{product:sku}', [\App\Http\Controllers\Front\ProductContro
 Route::get('/shop', [\App\Http\Controllers\Front\ShopController::class, "index"])->name("shop.index");
 
 Route::get('/checkout', [\App\Http\Controllers\Front\CheckOutController::class, "index"])->name("checkout.index");
+
+Route::get('/user', [\App\Http\Controllers\Front\UserController::class, "index"])->name("user.index");
+Route::put('/{user}', [\App\Http\Controllers\Front\UserController::class, "update"])->name("user.update");
+Route::get('/orderhistory', [\App\Http\Controllers\Front\UserController::class, "orderHistory"])->name("user.order.history");
+
 
 // CART
 
@@ -128,4 +133,10 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.order.update');
         Route::get('{order}/detail', [\App\Http\Controllers\Admin\OrderController::class, 'detail'])->name('admin.order.detail');
     });
+
+    Route::middleware(['auth.admin', 'product'])->prefix('/product')->group(function () {
+        Route::patch('/qty', [\App\Http\Controllers\Admin\QtyController::class, 'update'])->name('admin.qty.update');
+        Route::post('/add', [\App\Http\Controllers\Admin\QtyController::class, 'store'])->name('admin.qty.store');
+    });
+    Route::delete('/qty', [\App\Http\Controllers\Admin\QtyController::class, 'destroy'])->name('admin.qty.destroy');
 });

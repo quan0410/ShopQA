@@ -23,7 +23,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::hotSales()->get();
         return view('admin.layouts.sales.create', compact('products'));
     }
 

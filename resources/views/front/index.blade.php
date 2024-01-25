@@ -39,33 +39,33 @@
                         <img src="front/img/banner/banner-1.jpg" alt="">
                     </div>
                     <div class="banner__item__text">
-                        <h2>Clothing Collections 2030</h2>
-                        <a href="#">Shop now</a>
+                        <h2>New products of 2024</h2>
+                        <a href="{{route("shop.index")}}">Shop now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="banner__item banner__item--middle">
-                    <div class="banner__item__pic">
-                        <img src="front/img/banner/banner-2.jpg" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Accessories</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="banner__item banner__item--last">
-                    <div class="banner__item__pic">
-                        <img src="front/img/banner/banner-3.jpg" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Shoes Spring 2030</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="col-lg-5">--}}
+{{--                <div class="banner__item banner__item--middle">--}}
+{{--                    <div class="banner__item__pic">--}}
+{{--                        <img src="front/img/banner/banner-2.jpg" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="banner__item__text">--}}
+{{--                        <h2>Accessories</h2>--}}
+{{--                        <a href="#">Shop now</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-7">--}}
+{{--                <div class="banner__item banner__item--last">--}}
+{{--                    <div class="banner__item__pic">--}}
+{{--                        <img src="front/img/banner/banner-3.jpg" alt="">--}}
+{{--                    </div>--}}
+{{--                    <div class="banner__item__text">--}}
+{{--                        <h2>Shoes Spring 2030</h2>--}}
+{{--                        <a href="#">Shop now</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 </section>
@@ -309,18 +309,18 @@
 <!-- Product Section End -->
 
 <!-- Categories Section Begin -->
-@if($sale)
+@if($sale && isset($sale->product->discount_price))
 <section class="categories spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="categories__text">
-                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                    <h2><span>SALE HOT</span></h2>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="categories__hot__deal">
-                    <img src="front/img/product-sale.png" alt="">
+                    <img src="{{ asset(Storage::url($sale->product->image))}}" alt="">
                     <div class="hot__deal__sticker">
                         <span>Sale Of</span>
                         <h5>{{ number_format($sale->product->discount_price) }} VNĐ</h5>
@@ -349,7 +349,7 @@
                             <p>Seconds</p>
                         </div>
                     </div>
-                    <a href="" class="primary-btn btn-countdown-sale">Shop now</a>
+                    <a href="{{route("product.index", [$sale->product->sku])}}" class="primary-btn btn-countdown-sale">Shop now</a>
                 </div>
             </div>
         </div>
@@ -377,7 +377,7 @@
                     <h2>Instagram</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                    <h3>#Male_Fashion</h3>
+                    <h3>#SHOP QA</h3>
                 </div>
             </div>
         </div>

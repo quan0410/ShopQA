@@ -12,9 +12,10 @@ class BlogController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::paginate(5);
+        $search = $request->search ?? '';
+        $blogs = Blog::where('blogs.title', 'like', "%$search%")->paginate(5);
         return view('admin.layouts.blogs.list', compact('blogs'));
     }
 
@@ -82,9 +83,8 @@ class BlogController extends Controller
         $request['user_id'] = $userId;
 
         $data = $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:blogs',
+            'title' => 'required|min:5|max:255|string|unique:blogs,title,'. $blog->id,
             'content' => 'required',
-            'image' => 'required',
             'category' => 'required',
             'user_id' => 'required'
         ]);

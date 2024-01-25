@@ -127,4 +127,13 @@ a {
         transform: translateY(40px);
     }
 }
+.order-history {
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+    font-weight: 600;
+    &:hover {
+        color: #3540e0;
+    }
+}
 

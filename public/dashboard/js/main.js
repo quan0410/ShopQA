@@ -99,10 +99,10 @@ let menu, animate;
     $("#addAttribute").click( function () {
         $('.size-color').append(element);
         $('.size-color').removeClass('d-none');
-        const colors = $('body .size-color').find('.select-color');
-        $(colors).each( function (i) {
-            $(this).attr('name', `colors[${i}][]`)
-        });
+        // const colors = $('body .size-color').find('.select-color');
+        // $(colors).each( function (i) {
+        //     $(this).attr('name', `colors[${i}][]`)
+        // });
     });
     $(".size-color").on('click', '#removeAttribute', function (){
         $(this).closest('.sub-size-color').remove();
@@ -116,6 +116,28 @@ let menu, animate;
           img.removeClass('d-none');
       }
     });
+      var imagesPreview = function(input, placeToInsertImagePreview) {
+
+          if (input.files) {
+              var filesAmount = input.files.length;
+                var i = 0;
+              for (i; i < filesAmount; i++) {
+                  var reader = new FileReader();
+
+                  reader.onload = function(event) {
+                      $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                  }
+
+                  reader.readAsDataURL(input.files[i]);
+              }
+          }
+
+      };
+
+      $('#gallery-photo-add').on('change', function() {
+          imagesPreview(this, 'div.gallery');
+          $(".gallery .image-upload").addClass('d-none');
+      });
   });
 
   // Auto update layout based on screen size

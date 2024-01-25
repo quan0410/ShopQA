@@ -17,7 +17,7 @@ class BlogMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->permissions['blogs']){
+        if (Auth::check() && Auth::user()->permissions['blog']){
             return $next($request);
         }
         return redirect(route('admin.login.index')) ;

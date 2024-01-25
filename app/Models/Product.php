@@ -93,21 +93,25 @@ class Product extends Model
         return $this->hasOne(Sales::class);
     }
 
+    // Các Product giảm giá từ thấp tới cao
     public function scopeBestSellers($query)
     {
         return $query->selectRaw('* ,(price - discount_price) as discount')->latest("discount")->limit(8);
     }
 
+    // Các Product giảm giá mới nhất
     public function scopeHotSales($query)
     {
         return $query->whereNotNull("discount_price")->latest("updated_at")->limit(8);
     }
 
+    // Các Product mới nhất
     public function scopeNew($query)
     {
         return $query->latest()->limit(8);
     }
 
+    // Các Product nổi bật
     public function scopeFeatured($query)
     {
         return $query->where("featured", true)->limit(8);

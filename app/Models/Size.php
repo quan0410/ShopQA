@@ -49,7 +49,7 @@ class Size extends Model
      */
     public function colors()
     {
-        return $this->belongsToMany(Color::class)->withPivot('qty');
+        return $this->belongsToMany(Color::class)->withPivot('qty', 'id');
     }
 
     /**

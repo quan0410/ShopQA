@@ -43,9 +43,9 @@
                                 <div class="card-body demo-vertical-spacing demo-only-element">
                                     <div class="input-group d-flex align-items-center justify-content-around">
                                         <div class="w-50">
-                                            <input type="file" class="form-control h-25" id="image" name="image" required>
+                                            <input type="file" class="form-control h-25" id="image" name="image">
                                         </div>
-                                        <img src="{{asset(Storage::url($blog->image))}}" class="image-upload {{$blog->image ? '' : 'd-none'}}" alt="image blog" height="200" width="300">
+                                        <img src="{{asset(Storage::url($blog->image))}}" class="image-upload {{$blog->image ? '' : 'd-none'}}" alt="image blog" height="150" width="300">
                                     </div>
                                 </div>
                             </div>

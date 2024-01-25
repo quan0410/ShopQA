@@ -12123,6 +12123,16 @@ a {
     transform: translateY(40px);
   }
 }
+.order-history {
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  font-weight: 600;
+}
+.order-history:hover {
+  color: #3540e0;
+}
+
 .product__details__text .product__details__option {
   position: relative;
 }

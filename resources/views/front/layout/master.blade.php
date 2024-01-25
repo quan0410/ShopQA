@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+{{--    <meta name="description" content="Male_Fashion Template">--}}
+{{--    <meta name="keywords" content="Male_Fashion, unica, creative, html">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name='token' token="{{csrf_token()}}">
@@ -86,10 +86,9 @@
                                     Register
                                 </a>
                             @else
-                                <a href="#">
+                                <a href="{{ route('user.index') }}">
                                     {{Auth::user()->name}}
                                 </a>
-
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

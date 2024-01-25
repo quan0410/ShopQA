@@ -65,10 +65,10 @@ class ProductController extends Controller
                 ProductImage::create(['path' => $filePath, 'product_id' => $product->id]);
             }
         }
-        foreach ($request['sizes'] as $key => $size) {
-            $sizeTemp = Size::create(['name' => $size, 'product_id'=> $product->id]);
-            $sizeTemp->colors()->attach($request['colors'][$key],['qty' => $request['qty'][$key]]);
-        }
+//        foreach ($request['sizes'] as $key => $size) {
+//            $sizeTemp = Size::create(['name' => $size, 'product_id'=> $product->id]);
+//            $sizeTemp->colors()->attach($request['colors'][$key],['qty' => $request['qty'][$key]]);
+//        }
 
         return redirect()->route('admin.product.index')->withSuccess('You have successfully created a Product!');
 
@@ -96,7 +96,6 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-
         $data = $request->validate([
             'name' => 'required|unique:products,name,' .$product->id,
             'sku' => 'required|unique:products,sku,' .$product->id,
@@ -117,19 +116,12 @@ class ProductController extends Controller
 
         $product->update($data);
         if ($request->hasFile('path')) {
+            $product->productImage()->delete();
             foreach ($request['path'] as $path) {
                 $filePath = $path->store('images', 'public');
                 ProductImage::create(['path' => $filePath, 'product_id' => $product->id]);
             }
         }
-        dd($request->all());
-        $sizes = $product->sizes();
-
-//        foreach ($request['sizes'] as $key => $size) {
-//            $sizeTemp = Size::create(['name' => $size, 'product_id'=> $product->id]);
-//            $sizeTemp->colors()->attach($request['colors'][$key],['qty' => $request['qty'][$key]]);
-//        }
-
         return redirect()->route('admin.product.index')->withSuccess('You have successfully Update a Product!');
     }
 }

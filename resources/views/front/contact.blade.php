@@ -11,7 +11,7 @@
 <section class="contact spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
                 <div class="contact__text">
                     <div class="section-title">
                         <span>Information</span>
@@ -21,34 +21,34 @@
                     </div>
                     <ul>
                         <li>
-                            <h4>America</h4>
-                            <p>195 E Parker Square Dr, Parker, CO 801 <br />+43 982-314-0958</p>
+                            <h4>Đại học Mỏ Địa Chất</h4>
+                            <p>Số 18 Phố Viên<br />+84 123-456-789</p>
                         </li>
                         <li>
-                            <h4>France</h4>
-                            <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
+                            <h4>Minh Quân</h4>
+                            <p>Thái Bình<br />+84 868-033-462</p>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="contact__form">
-                    <form action="#">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Name">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Email">
-                            </div>
-                            <div class="col-lg-12">
-                                <textarea placeholder="Message"></textarea>
-                                <button type="submit" class="site-btn">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+{{--            <div class="col-lg-6 col-md-6">--}}
+{{--                <div class="contact__form">--}}
+{{--                    <form action="#">--}}
+{{--                        <div class="row">--}}
+{{--                            <div class="col-lg-6">--}}
+{{--                                <input type="text" placeholder="Name">--}}
+{{--                            </div>--}}
+{{--                            <div class="col-lg-6">--}}
+{{--                                <input type="text" placeholder="Email">--}}
+{{--                            </div>--}}
+{{--                            <div class="col-lg-12">--}}
+{{--                                <textarea placeholder="Message"></textarea>--}}
+{{--                                <button type="submit" class="site-btn">Send Message</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 </section>
