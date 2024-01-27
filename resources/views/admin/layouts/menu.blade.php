@@ -81,6 +81,12 @@
                 </a>
             </li>
         @endif
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route("admin.size.index")}}" class="menu-link">--}}
+{{--                <i class="menu-icon tf-icons bx bxl-product-hunt"></i>--}}
+{{--                <div data-i18n="Basic">Sizes</div>--}}
+{{--            </a>--}}
+{{--        </li>--}}
         @if(Auth::user()->permissions['sale'])
             <li class="menu-item">
                 <a href="{{route("admin.sale.index")}}" class="menu-link">

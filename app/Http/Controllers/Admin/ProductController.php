@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -97,8 +98,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = $request->validate([
-            'name' => 'required|unique:products,name,' .$product->id,
-            'sku' => 'required|unique:products,sku,' .$product->id,
+            'name' => 'required|unique:products,name,' . $product->id,
+            'sku' => 'required|unique:products,sku,' . $product->id,
             'brand_id' => 'required',
             'product_category_id' => 'required',
             'description' => 'string',

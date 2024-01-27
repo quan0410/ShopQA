@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $sliders = Slider::where("is_show", true)->get();
         $sale = Sales::where("is_show", true)->with('product')->first();
-        $bestSellers = Product::bestSellers()->get();
+        $bestSellers = Product::bestSellers();
         $hotSales = Product::hotSales()->get();
         $newProduct = Product::new()->get();
         $featured = Product::featured()->get();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -96,7 +97,26 @@ class Product extends Model
     // Các Product giảm giá từ thấp tới cao
     public function scopeBestSellers($query)
     {
-        return $query->selectRaw('* ,(price - discount_price) as discount')->latest("discount")->limit(8);
+//        $results = Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+//            ->join('products', 'order_details.product_id', '=', 'products.id')
+//            ->where('orders.status', 'completed')
+//            ->groupBy('order_details.product_id')
+//            ->select('products.*', 'products.id', DB::raw('SUM(order_details.qty) as quantity'))
+//            ->orderBy('quantity')
+//            ->limit(8)
+//            ->get();
+        $results = Order::join('order_details', 'orders.id', '=', 'order_details.order_id')
+            ->where('orders.status', 'completed')
+            ->groupBy('order_details.product_id')
+            ->select('order_details.product_id', DB::raw('SUM(order_details.qty) as quantity'))
+            ->orderByDesc('quantity')->get();
+//        dd($results);
+        $items = [];
+        foreach ($results as $item) {
+            $product = Product::find($item->product_id);
+            $items[$item->product_id] = $product;
+        }
+        return $items;
     }
 
     // Các Product giảm giá mới nhất

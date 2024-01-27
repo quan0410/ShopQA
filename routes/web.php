@@ -118,6 +118,15 @@ Route::prefix('/admin')->group(function () {
         Route::put('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.product.update');
     });
 
+//    Route::middleware(['auth.admin'])->prefix('/size')->group(function () {
+//        Route::get('/', [\App\Http\Controllers\Admin\SizeController::class, 'index'])->name('admin.size.index');
+//        Route::get('create', [\App\Http\Controllers\Admin\SizeController::class, 'create'])->name('admin.size.create');
+//        Route::post('/', [\App\Http\Controllers\Admin\SizeController::class, 'store'])->name('admin.size.store');
+//        Route::delete('/{size}', [\App\Http\Controllers\Admin\SizeController::class, 'destroy'])->name('admin.size.destroy');
+//        Route::get('{size}/edit', [\App\Http\Controllers\Admin\SizeController::class, 'edit'])->name('admin.size.edit');
+//        Route::put('/{size}', [\App\Http\Controllers\Admin\SizeController::class, 'update'])->name('admin.size.update');
+//    });
+
     Route::middleware(['auth.admin', 'blog'])->prefix('/blog')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\BlogController::class, 'index'])->name('admin.blog.index');
         Route::get('create', [\App\Http\Controllers\Admin\BlogController::class, 'create'])->name('admin.blog.create');

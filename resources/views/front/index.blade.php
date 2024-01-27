@@ -86,7 +86,7 @@
         </div>
         <div class="row product__filter">
             @foreach($bestSellers as $product)
-                @if(($product->discount) > 0)
+                @if(isset($product))
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6  mix best-seller">
                         <div class="product__item">
                             <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">

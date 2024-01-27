@@ -32,7 +32,6 @@ class CartController extends Controller
         $sizeId = $request['sizeId'];
         $colorId = $request['colorId'];
         $qty = $request['quantity'] ?? 1;
-
         $size = Size::where('id',$sizeId)
             ->with(['product','colors' => function($query) use ($colorId){
                     return $query->where('color_id',$colorId)->first();

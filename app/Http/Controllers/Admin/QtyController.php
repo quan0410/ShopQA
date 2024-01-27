@@ -14,23 +14,27 @@ class QtyController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
-        $size =  Product::find($request['product_id'])->sizes()->where('name', $request['size'])->get();
+        $size = Product::find($request['product_id'])->sizes()->where('name', $request['size'])->get();
+//        dd($size);
         if (isset($size[0])) {
-            $ColorSize =  DB::table("color_size")
+            $ColorSizes = DB::table("color_size")
                 ->where('size_id', $size[0]->id)
-                ->where('color_id',$request['color'])->get();
-            if (empty($ColorSize)) {
+                ->where('color_id', $request['color'])->get();
+//                dd(count($ColorSizes));
+            if (count($ColorSizes)) {
                 DB::table("color_size")
                     ->where('size_id', $size[0]->id)
-                    ->where('color_id',$request['color'])
+                    ->where('color_id', $request['color'])
                     ->update([
-                        "qty" => $request['qty'] + $ColorSize[0]->qty,
+                        "qty" => $request['qty'] + $ColorSizes[0]->qty,
                     ]);
                 return Redirect::back()->withSuccess('Add successfully!');
             }
+            $size[0]->colors()->attach($request['color'], ['qty' => $request['qty']]);
+            return Redirect::back()->withSuccess('Add successfully!');
         }
-        $sizeTemp = Size::create(['name' => $request['size'], 'product_id'=> $request['product_id']]);
-        $sizeTemp->colors()->attach($request['color'],['qty' => $request['qty']]);
+        $sizeTemp = Size::create(['name' => $request['size'], 'product_id' => $request['product_id']]);
+        $sizeTemp->colors()->attach($request['color'], ['qty' => $request['qty']]);
 
         return Redirect::back()->withSuccess('Add successfully!');
     }
@@ -40,7 +44,7 @@ class QtyController extends Controller
 //      dd($request->all());
         DB::table("color_size")
             ->where('size_id', $request['size_id'])
-            ->where('color_id',$request['color'])
+            ->where('color_id', $request['color'])
             ->update([
                 "qty" => $request['qty'],
             ]);

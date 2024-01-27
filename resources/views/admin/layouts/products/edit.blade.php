@@ -131,9 +131,11 @@
                             <div class="card">
                                 <h5 class="card-header">Upload thumbnail</h5>
                                 <div class="card-body demo-vertical-spacing demo-only-element">
-                                    <div class="input-group d-flex flex-column align-items-center justify-content-center">
+                                    <div
+                                        class="input-group d-flex flex-column align-items-center justify-content-center">
                                         <div class="w-50">
-                                            <input type="file" class="form-control h-25" name="path[]" id="gallery-photo-add" multiple required>
+                                            <input type="file" class="form-control h-25" name="path[]"
+                                                   id="gallery-photo-add" multiple required>
                                         </div>
                                         <div class="gallery">
                                             @foreach($productImages as $image )
@@ -146,17 +148,17 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="input-group control-group lst increment">--}}
-{{--                            <div class="list-input-hidden-upload">--}}
-{{--                                <input type="file" name="path[]" id="file_upload" class="form-control hidden" multiple required>--}}
-{{--                                @foreach($productImages as $image )--}}
-{{--                                    <img src="{{asset(Storage::url($image->path))}}"--}}
-{{--                                         class="image-upload {{$image->path ? '' : 'd-none'}}" alt="image blog"--}}
-{{--                                         height="80" width="60">--}}
-{{--                                @endforeach--}}
+                        {{--                        <div class="input-group control-group lst increment">--}}
+                        {{--                            <div class="list-input-hidden-upload">--}}
+                        {{--                                <input type="file" name="path[]" id="file_upload" class="form-control hidden" multiple required>--}}
+                        {{--                                @foreach($productImages as $image )--}}
+                        {{--                                    <img src="{{asset(Storage::url($image->path))}}"--}}
+                        {{--                                         class="image-upload {{$image->path ? '' : 'd-none'}}" alt="image blog"--}}
+                        {{--                                         height="80" width="60">--}}
+                        {{--                                @endforeach--}}
 
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                         <div class="mb-3">
                             <label for="featured" class="form-label">featured</label>
                             <select class="form-select" id="featured" name="featured">
@@ -186,44 +188,49 @@
                                             </span>
                                             @enderror
                                         </div>
+                                        @php($count = 0)
                                         @foreach($size->colors as $colors_qty)
-                                            <div class="color col-2">
-                                                <label class="form-label">Color</label>
-                                                <input type="hidden" class="form-control"
-                                                       value="{{$colors_qty->id}}" name="color"
-                                                       placeholder="Size product" readonly/>
-                                                <select class="form-select select-color" name="color" disabled>
-                                                    @foreach($colors as $color)
-                                                        <option
-                                                            {{$colors_qty->id === $color->id? 'selected' : '' }} value="{{$color->id}}">
-                                                            {{$color->name}}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                                @error('color')
-                                                <span class="invalid-feedback" role="alert">
+                                            @php($count ++)
+                                            @if($count > 1)
+                                                </div>
+                                                <div class="d-flex row mb-4 sub-size-color align-items-end">
+                                                    <div class="col-2"></div>
+                                            @endif
+                                                    <div class="color col-2">
+                                                        <label class="form-label">Color</label>
+                                                        <input type="hidden" class="form-control"
+                                                               value="{{$colors_qty->id}}" name="color"
+                                                               placeholder="Size product" readonly/>
+                                                        <select class="form-select select-color" name="color" disabled>
+                                                            @foreach($colors as $color)
+                                                                <option
+                                                                    {{$colors_qty->id === $color->id? 'selected' : '' }} value="{{$color->id}}">
+                                                                    {{$color->name}}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="qty col-2">
+                                                        <label class="form-label">Qty</label>
+                                                        <input type="number"
+                                                               class="form-control @error('qty') is-invalid @enderror"
+                                                               value="{{$colors_qty->pivot->qty}}"
+                                                               name="qty" placeholder="Qty product"/>
+                                                        @error('qty')
+                                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                                @enderror
-                                            </div>
-                                            <div class="qty col-2">
-                                                <label class="form-label">Qty</label>
-                                                <input type="number"
-                                                       class="form-control @error('qty') is-invalid @enderror"
-                                                       value="{{$colors_qty->pivot->qty}}"
-                                                       name="qty" placeholder="Qty product"/>
-                                                @error('qty')
-                                                <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-2 d-flex align-items-center">
-                                                <button class="btn btn-primary">Update Attribute</button>
-                                            </div>
-                                            <div class="col-2 d-flex align-items-center">
-                                                <div class="btn btn-danger removeAttribute" color-id="{{$colors_qty->id}}" size-id="{{$size->id}}" route-destroy="{{route('admin.qty.destroy')}}">Remove Attribute</div>
-                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-2 d-flex align-items-center">
+                                                        <button class="btn btn-primary">Update Attribute</button>
+                                                    </div>
+                                                    <div class="col-2 d-flex align-items-center">
+                                                        <div class="btn btn-danger removeAttribute"
+                                                             color-id="{{$colors_qty->id}}" size-id="{{$size->id}}"
+                                                             route-destroy="{{route('admin.qty.destroy')}}">Remove Attribute
+                                                        </div>
+                                                    </div>
                                         @endforeach
                                     </div>
                                 </form>
@@ -236,13 +243,14 @@
                                 <div class="d-flex row mb-4 sub-size-color align-items-end">
                                     <div class="size col-2">
                                         <label class="form-label">Size</label>
-                                        <input type="text" class="form-control @error('size') is-invalid @enderror"
-                                               name="size" placeholder="Size product"/>
-                                        @error('size')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                        <select class="form-select select-size" name="size">
+                                            <option value="s">s</option>
+                                            <option value="m">m</option>
+                                            <option value="l">l</option>
+                                            <option value="xl">xl</option>
+                                            <option value="xxl">xxl</option>
+
+                                        </select>
                                     </div>
                                     <div class="color col-2">
                                         <label class="form-label">Color</label>

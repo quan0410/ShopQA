@@ -72,14 +72,14 @@ class BrandsController extends Controller
         $brand->update($request->all());
         return redirect()->route('admin.brand.index')->withSuccess('You have successfully updated a Brand!');
     }
-    public function Search($request)
-    {
-        $search = $request->search ?? '';
-
-//        $products = Product::where('products.name','like',"%$search%")->orWhere('description','like',"%$search%");
-        // lấy sizes hiển thị show khi mua trực tiếp
-        $products = Product::where('products.name', 'like', "%$search%")->with('sizes');
-
-        return $products->paginate(12);
-    }
+//    public function Search($request)
+//    {
+//        $search = $request->search ?? '';
+//
+////        $products = Product::where('products.name','like',"%$search%")->orWhere('description','like',"%$search%");
+//        // lấy sizes hiển thị show khi mua trực tiếp
+//        $products = Product::where('products.name', 'like', "%$search%")->with('sizes');
+//
+//        return $products->paginate(12);
+//    }
 }
