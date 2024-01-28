@@ -129,12 +129,12 @@
                                     </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}/>
-                                <label class="form-check-label" for="remember"> Remember Me </label>
-                            </div>
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}/>--}}
+{{--                                <label class="form-check-label" for="remember"> Remember Me </label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                         </div>

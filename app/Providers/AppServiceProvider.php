@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\OrderDetail;
+use App\Observers\OrderObserver;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryinterface;
 use App\Service\Product\ProductServices;
@@ -17,16 +19,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //product
-        $this->app->singleton(
-            ProductRepositoryinterface::class,
-            ProductRepository::class
-        );
-
-        $this->app->singleton(
-            ProductServicesInterface::class,
-            ProductServices::class
-        );
+//        //product
+//        $this->app->singleton(
+//            ProductRepositoryinterface::class,
+//            ProductRepository::class
+//        );
+//
+//        $this->app->singleton(
+//            ProductServicesInterface::class,
+//            ProductServices::class
+//        );
     }
 
     /**
