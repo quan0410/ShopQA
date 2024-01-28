@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->string('image');
-            $table->string('category');
+//            $table->string('category');
             $table->text('content');
 
             $table->timestamps();

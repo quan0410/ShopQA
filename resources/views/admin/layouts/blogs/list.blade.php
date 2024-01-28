@@ -23,7 +23,6 @@
                 <tr>
                     <th class="text-center">Id</th>
                     <th>Image</th>
-                    <th>Category</th>
                     <th>Title</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -38,7 +37,6 @@
                             <td>
                                 <img src="{{ asset(Storage::url($blog->image)) }}" height="120" width="200" alt="image-slider">
                             </td>
-                            <td>{{$blog->category}}</td>
                             <td>{{$blog->title}}</td>
                             <td class="text-center">
                                 <div class="dropdown">

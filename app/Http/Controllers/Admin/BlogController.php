@@ -34,8 +34,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.layouts.blogs.create', compact('categories'));
+//        $categories = Category::all();
+        return view('admin.layouts.blogs.create');
     }
 
     /**
@@ -51,7 +51,6 @@ class BlogController extends Controller
             'title' => 'required|min:5|max:255|string|unique:blogs',
             'content' => 'required',
             'image' => 'required',
-            'category' => 'required',
             'user_id' => 'required'
         ]);
         if ($request->hasFile('image')) {
@@ -68,8 +67,8 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $categories = Category::all();
-        return view('admin.layouts.blogs.edit', compact('categories', 'blog'));
+//        $categories = Category::all();
+        return view('admin.layouts.blogs.edit', compact( 'blog'));
     }
 
     /**
@@ -85,7 +84,6 @@ class BlogController extends Controller
         $data = $request->validate([
             'title' => 'required|min:5|max:255|string|unique:blogs,title,'. $blog->id,
             'content' => 'required',
-            'category' => 'required',
             'user_id' => 'required'
         ]);
         if ($request->hasFile('image')) {

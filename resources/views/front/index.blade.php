@@ -11,15 +11,15 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">
                         <div class="hero__text">
-                            <h2>{{$slider->title}}</h2>
-                            <p>{{$slider->content}}</p>
+                            <h2 class="text-gradient">{{$slider->title}}</h2>
+                            <h3 class="text-gradient">{{$slider->content}}</h3>
                             <a href="{{url($slider->url)}}" class="primary-btn">Shop now<span class="arrow_right"></span></a>
-                            <div class="hero__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
+{{--                            <div class="hero__social">--}}
+{{--                                <a href="#"><i class="fa fa-facebook"></i></a>--}}
+{{--                                <a href="#"><i class="fa fa-twitter"></i></a>--}}
+{{--                                <a href="#"><i class="fa fa-pinterest"></i></a>--}}
+{{--                                <a href="#"><i class="fa fa-instagram"></i></a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -36,11 +36,11 @@
             <div class="col-lg-7 offset-lg-4">
                 <div class="banner__item">
                     <div class="banner__item__pic">
-                        <img src="front/img/banner/banner-1.jpg" alt="">
+                        <img class="w-100" src="{{ asset(Storage::url($newProduct[0]->image))}}" alt="">
                     </div>
                     <div class="banner__item__text">
                         <h2>New products of 2024</h2>
-                        <a href="{{route("shop.index")}}">Shop now</a>
+                        <a href="{{route("product.index",[$newProduct[0]->sku])}}">Shop now</a>
                     </div>
                 </div>
             </div>

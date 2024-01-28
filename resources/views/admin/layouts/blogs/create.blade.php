@@ -28,14 +28,14 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Categories</label>
-                            <select class="form-select" name="category">
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Categories</label>--}}
+{{--                            <select class="form-select" name="category">--}}
+{{--                                @foreach($categories as $category)--}}
+{{--                                    <option value="{{ $category->name }}">{{ $category->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <div class="col-12 mb-3">
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>

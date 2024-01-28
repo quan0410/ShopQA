@@ -135,7 +135,7 @@
                                         class="input-group d-flex flex-column align-items-center justify-content-center">
                                         <div class="w-50">
                                             <input type="file" class="form-control h-25" name="path[]"
-                                                   id="gallery-photo-add" multiple required>
+                                                   id="gallery-photo-add" multiple>
                                         </div>
                                         <div class="gallery">
                                             @foreach($productImages as $image )

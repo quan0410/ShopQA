@@ -62,7 +62,7 @@ class SaleController extends Controller
      */
     public function edit(Sales $sale)
     {
-        $products = Product::all();
+        $products = Product::hotSales()->get();
         return view('admin.layouts.sales.edit', compact('sale', 'products'));
     }
 
