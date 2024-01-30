@@ -3,6 +3,7 @@
 @section('content')
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Edit Product</h4>
 
+{{--    @dd($product)--}}
     <!-- Basic Layout -->
     <div class="row">
         <div class="col-xl">
@@ -62,6 +63,11 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="price">Discount %</label>
+                            <input type="number" class="form-control" id="percent_discount"
+                                   value="{{$product->percent_discount}}" name="percent_discount" max="100"/>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="discount_price">Discount Price</label>

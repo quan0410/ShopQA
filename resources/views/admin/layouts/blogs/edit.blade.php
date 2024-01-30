@@ -22,7 +22,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="content">Content</label>
-                            <input type="text" class="form-control @error('content') is-invalid @enderror" id="content" value="{{$blog->content}}" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required />
+                            <textarea cols="30" rows="10" class="form-control @error('content') is-invalid @enderror" id="content" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required>{{$blog->content}}</textarea>
                             @error('content')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

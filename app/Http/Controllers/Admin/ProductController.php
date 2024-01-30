@@ -50,10 +50,12 @@ class ProductController extends Controller
             'content' => 'string|nullable',
             'image' => 'required',
             'price' => 'required',
+            'percent_discount' => 'string|nullable',
             'discount_price' => 'string|nullable',
             'weight' => 'numeric|nullable',
             'featured' => 'numeric',
         ]);
+
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('images', 'public');
             $data['image'] = $filePath;
@@ -97,6 +99,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+//        dd(empty($request['percent_discount']));
         $data = $request->validate([
             'name' => 'required|unique:products,name,' . $product->id,
             'sku' => 'required|unique:products,sku,' . $product->id,
@@ -106,10 +109,15 @@ class ProductController extends Controller
             'content' => 'string|nullable',
             'image' => 'nullable',
             'price' => 'required',
+            'percent_discount' => 'string|nullable',
             'discount_price' => 'string|nullable',
             'weight' => 'numeric|nullable',
             'featured' => 'numeric',
         ]);
+        if (isset($request['percent_discount'])) {
+            $data['discount_price'] = ($request['price'] * $request['percent_discount'])/100;
+//            dd($data['discount_price']);
+        }
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('images', 'public');
             $data['image'] = $filePath;

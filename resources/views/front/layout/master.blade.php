@@ -9,6 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name='token' token="{{csrf_token()}}">
     <title>@yield('title') | shop QA</title>
+    <meta name="description" content="@yield('description')">
+    <meta name="title" content="@yield('title-meta')">
+    <meta name="keywords" content="@yield('keywords')">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"

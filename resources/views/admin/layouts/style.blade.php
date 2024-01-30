@@ -19,3 +19,5 @@
 <link rel="stylesheet" href="{{asset("dashboard/vendor/libs/perfect-scrollbar/perfect-scrollbar.css")}}"/>
 
 <link rel="stylesheet" href="{{asset("dashboard/vendor/libs/apex-charts/apex-charts.css")}}"/>
+<link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+
