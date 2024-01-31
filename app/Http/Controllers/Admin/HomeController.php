@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -84,11 +85,14 @@ class HomeController extends Controller
             )->get();
         if (isset($orderDetails)) {
             foreach ($orderDetails as $orderDetail) {
-                if ($orderDetail->discount_price > 0) {
-                    $cost += ($orderDetail->original_price - $orderDetail->discount_price) * $orderDetail->qty;
+                $product = Product::find($orderDetail->product_id);
+                if (isSaleProduct($product)) {
+                    $revenue += $orderDetail->total;
+                    $cost += (getPriceSale($product) - $orderDetail->original_price) * $orderDetail->qty;
+                } else {
+                    $revenue += $orderDetail->total;
+                    $cost += ($orderDetail->price - $orderDetail->original_price) * $orderDetail->qty;
                 }
-                $revenue += $orderDetail->total;
-                $cost += ($orderDetail->original_price - $orderDetail->price) * $orderDetail->qty;
             }
         }
         return ["revenue" => $revenue, "cost" => $cost];

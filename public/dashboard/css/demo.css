@@ -116,3 +116,18 @@ input::-webkit-datetime-edit-second-field {
 .table-responsive {
     min-height: 40rem;
 }
+.gallery {
+    display: flex;
+}
+.gallery img{
+    width: 100px;
+    height: 150px;
+}
+
+.bg-revenue {
+    font-size: 20px;
+    border-radius: 16px;
+    color: #696cff;
+    background: rgba(105, 108, 255, 0.16);
+    padding: 1rem;
+}

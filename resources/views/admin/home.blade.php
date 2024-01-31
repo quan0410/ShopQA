@@ -54,8 +54,12 @@
                         <td>{{$orderDetail->product_name}}</td>
                         <td>{{$orderDetail->qty}}</td>
                         <td>{{number_format($orderDetail->total)}}đ</td>
-                        <td>{{number_format(($orderDetail->original_price - ($orderDetail->discount_price > 0 ? $orderDetail->discount_price : $orderDetail->price)) * $orderDetail->qty)}}
-                            đ
+                        <td>
+                            {{
+                                isSaleProduct(\App\Models\Product::find($orderDetail->product_id)) ?
+                                number_format((getPriceSale(\App\Models\Product::find($orderDetail->product_id))  - $orderDetail->original_price) * $orderDetail->qty) :
+                                number_format((($orderDetail->price - $orderDetail->original_price) * $orderDetail->qty))
+                                }}đ
                         </td>
                     </tr>
                 @endforeach

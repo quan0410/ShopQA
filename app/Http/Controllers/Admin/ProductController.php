@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = $request->search ?? '';
-        $products = Product::where('products.name', 'like', "%$search%")->paginate(5);
+        $products = Product::where('products.name', 'like', "%$search%")->orderBy('created_at' , 'desc')->paginate(5);
         return view('admin.layouts.products.list', compact('products'));
     }
 
@@ -58,6 +58,9 @@ class ProductController extends Controller
             'featured' => 'numeric',
         ]);
 
+        if (isset($request['percent_discount'])) {
+            $data['discount_price'] = ($request['price'] * (100 - $request['percent_discount']))/ 100;
+        }
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('images', 'public');
             $data['image'] = $filePath;
@@ -118,8 +121,7 @@ class ProductController extends Controller
             'featured' => 'numeric',
         ]);
         if (isset($request['percent_discount'])) {
-            $data['discount_price'] = ($request['price'] * $request['percent_discount'])/100;
-//            dd($data['discount_price']);
+            $data['discount_price'] = ($request['price'] * (100 - $request['percent_discount']))/ 100;
         }
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('images', 'public');
