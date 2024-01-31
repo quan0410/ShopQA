@@ -115,7 +115,7 @@ class Product extends Model
             ->where('orders.status', 'completed')
             ->groupBy('order_details.product_id')
             ->select('order_details.product_id', DB::raw('SUM(order_details.qty) as quantity'))
-            ->orderByDesc('quantity')->get();
+            ->orderByDesc('quantity')->limit(8)->get();
 //        dd($results);
         $items = [];
         foreach ($results as $item) {
@@ -129,7 +129,17 @@ class Product extends Model
     // Các Product giảm giá mới nhất
     public function scopeHotSales($query)
     {
-        return $query->whereNotNull("discount_price")->latest("updated_at")->limit(8);
+        $results = Product::join('product_sales', 'products.id', '=', 'product_sales.product_id')
+            ->select('product_sales.product_id')
+            ->limit(8)
+            ->get();
+        $items = [];
+        foreach ($results as $item) {
+            $product = Product::find($item->product_id);
+            $items[$item->product_id] = $product;
+        }
+//        dd($items);
+        return $items;
     }
 
     // Các Product mới nhất

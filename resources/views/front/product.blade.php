@@ -221,7 +221,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="related-title">Related Product</h3>
+                    <h3 class="related-title">Featured Product</h3>
                 </div>
             </div>
             <div class="row silder-product-related owl-carousel">

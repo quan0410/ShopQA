@@ -116,6 +116,9 @@
                                     </thead>
                                     <tbody class="table-border-bottom-0" id="tb-products">
                                         @foreach($products as $product)
+                                            @if(isSaleProduct($product))
+                                                @continue
+                                            @endif
                                             <tr>
                                                 <td class="text-center">
                                                     <input type="checkbox" name="user_ids[]" value="{{$product->id}}"
