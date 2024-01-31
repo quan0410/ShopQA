@@ -18,8 +18,15 @@ class ProductController extends Controller
             $query->with('colors');
         }, "reviews"])->loadCount('reviews');
         $rates = Review::where('product_id', $product->id)->pluck('rate')->toArray();
-        $averageRate = (int)round(array_sum($rates) / 5);
+        $averageRate = 0;
+        if (count($rates)) {
+            $averageRate = (int)round(array_sum($rates) / count($rates));
+        }
         return view("front.product" ,compact("product", "featured", "averageRate"));
     }
 
+    public function loadMore()
+    {
+        return Product::with('brand','category')->paginate(10);
+    }
 }

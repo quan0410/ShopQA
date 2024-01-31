@@ -3,12 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+{{--    <meta name="description" content="Male_Fashion Template">--}}
+{{--    <meta name="keywords" content="Male_Fashion, unica, creative, html">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name='token' token="{{csrf_token()}}">
     <title>@yield('title') | shop QA</title>
+    <meta name="description" content="@yield('description')">
+    <meta name="title" content="@yield('title-meta')">
+    <meta name="keywords" content="@yield('keywords')">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -86,10 +89,9 @@
                                     Register
                                 </a>
                             @else
-                                <a href="#">
+                                <a href="{{ route('user.index') }}">
                                     {{Auth::user()->name}}
                                 </a>
-
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -130,7 +132,11 @@
                     <a href="{{route("cart.index")}}"><img src="{{asset("front/img/icon/cart.png") }}" alt=""> <span>
                             {{count(session('cart') ?? [])}}
                         </span></a>
-                    <div class="price">{{number_format(session('total_cart'))}} VNĐ</div>
+                    @if(session('cart'))
+                        <div class="price">{{number_format(getTotalCart())}} VNĐ</div>
+                    @else
+                        <div class="price">0 VNĐ</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -222,7 +228,8 @@
 <!-- Js Plugins -->
 <script src="{{ asset('front/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('front/js/jquery.nice-select.min.js') }}"></script>
+
+<script src="@yield('nice-select-js')"></script>
 <script src="{{ asset('front/js/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('front/js/jquery.countdown.min.js') }}"></script>
@@ -231,6 +238,7 @@
 <script src="{{ asset('front/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </body>
 </html>
 

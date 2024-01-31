@@ -7,8 +7,10 @@
             <h5 class="card-header">Table Orders</h5>
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+                    <form action="{{route("admin.order.index")}}">
+                        <input type="text" placeholder="Search..." name="search" value="{{request("search")}}">
+                        {{--                        <button type="submit" class="border-0"><i class="bx bx-search fs-4 lh-0"></i></button>--}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -46,10 +48,12 @@
                                             <i class="bx bxs-eyedropper me-1"></i>
                                                 Xem chi tiết
                                         </a>
-                                        <a class="dropdown-item" href="{{route("admin.order.edit", ['order' => $order->id])}}">
-                                            <i class="bx bx-edit-alt me-1"></i>
-                                            Edit
-                                        </a>
+                                        @if($order->status != "cancel")
+                                            <a class="dropdown-item" href="{{route("admin.order.edit", ['order' => $order->id])}}">
+                                                <i class="bx bx-edit-alt me-1"></i>
+                                                Edit
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </td>

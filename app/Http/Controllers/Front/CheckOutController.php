@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CheckOutController extends Controller
 {
@@ -15,7 +16,7 @@ class CheckOutController extends Controller
         if (!empty(session('cart')) && Auth::check()) {
             $user = Auth::user();
             $cart = session('cart');
-            $total = session('total_cart');
+            $total = getTotalCart();
 
             return view("front.checkout", compact("user", "cart", "total"));
         }
@@ -24,24 +25,29 @@ class CheckOutController extends Controller
 
     public function store(Request $request)
     {
+        $orderDetails = [];
 
         $cart = session('cart');
         $data = $request->validate([
             'name' => 'required',
             'email' => 'nullable',
             'phone' => 'required',
+            'city' => 'required',
+            'district' => 'required',
+            'ward' => 'required',
             'address' => 'required',
             'note' => 'nullable',
             'method' => 'required',
         ]);
         $data['code'] = $request->post('code');
         $data['status'] = 'waiting';
+        if (!$this->canCheckOut()) {
+            session()->flash('error', 'There are products in the cart that are out of stock');
+            return redirect(route("cart.index"));
+        }
         $order = Auth()->user()->order()->create($data);
-        $orderDetails = [];
         foreach ($cart as $orderDetail) {
-            $total = $orderDetail->product->discount_price > 0 ?
-                $orderDetail->product->discount_price * $orderDetail->qty :
-                $orderDetail->product->price * $orderDetail->qty;
+            $total = getTotalCart();
             $orderDetails[] = [
                 'order_id' => $order->id,
                 'product_id' => $orderDetail->product_id,
@@ -49,11 +55,12 @@ class CheckOutController extends Controller
                 'color_id' => $orderDetail->color->id,
                 'size_id' => $orderDetail->id,
                 'price' => $orderDetail->product->price,
-                'discount_price' => $orderDetail->product->discount_price,
+                'discount_price' => getPriceSale($orderDetail->product),
                 'total' => $total,
             ];
         }
-        OrderDetail::insert($orderDetails);
+        $order->orderDetails()->createMany($orderDetails);
+//        OrderDetail::createMany($orderDetails);
         if ($data['method'] == 'payment') {
             return redirect($this->create($request)) ;
         }
@@ -133,9 +140,38 @@ class CheckOutController extends Controller
             session()->flash('success', 'Payment success!');
             return redirect()->route('home')->with('success', 'Payment success!');
         }
-        $order->orderDetails()->delete();
+        $order->orderDetails()->get()->each->delete();
         $order->delete();
         session()->flash('error', 'Error during payment, please try again later!');
         return redirect()->route('checkout.index');
+    }
+
+    private function canCheckOut() {
+        $colorIds = [];
+        $sizeIds = [];
+        $carts = session('cart');
+
+        foreach ($carts as $item) {
+            $colorIds[] = $item->color->id;
+            $sizeIds[] = $item->id;
+        }
+        $colorSize = DB::table("color_size")
+            ->whereIn("size_id", $sizeIds)
+            ->whereIn("color_id", $colorIds)->get();
+        foreach ($carts as $cart) {
+            $found = false;
+            foreach ($colorSize as $item) {
+                if ($item->qty >= $cart->qty
+                    && $item->color_id == $cart->color->id
+                    && $item->size_id == $cart->id
+                ) {
+                    $found = true;
+                }
+            }
+            if (!$found) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -12,9 +12,11 @@ class CategoryController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::paginate(5);
+        $search = $request->search ?? '';
+        $categories = Category::where('categories.name', 'like', "%$search%")->paginate(5);
+//        $categories = Category::paginate(5);
         return view('admin.layouts.categories.list', compact('categories'));
     }
 

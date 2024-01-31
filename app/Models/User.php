@@ -4,9 +4,11 @@ namespace App\Models;
 
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends \Illuminate\Foundation\Auth\User
+class User extends \Illuminate\Foundation\Auth\User implements MustVerifyEmail
 {
+    use \Illuminate\Notifications\Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +18,9 @@ class User extends \Illuminate\Foundation\Auth\User
         'name',
         'email',
         'phone',
+        'city',
+        'district',
+        'ward',
         'address',
         'password',
         'permissions',

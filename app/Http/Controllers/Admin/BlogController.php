@@ -12,9 +12,10 @@ class BlogController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::paginate(5);
+        $search = $request->search ?? '';
+        $blogs = Blog::where('blogs.title', 'like', "%$search%")->paginate(5);
         return view('admin.layouts.blogs.list', compact('blogs'));
     }
 
@@ -33,8 +34,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.layouts.blogs.create', compact('categories'));
+//        $categories = Category::all();
+        return view('admin.layouts.blogs.create');
     }
 
     /**
@@ -50,7 +51,6 @@ class BlogController extends Controller
             'title' => 'required|min:5|max:255|string|unique:blogs',
             'content' => 'required',
             'image' => 'required',
-            'category' => 'required',
             'user_id' => 'required'
         ]);
         if ($request->hasFile('image')) {
@@ -67,8 +67,8 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $categories = Category::all();
-        return view('admin.layouts.blogs.edit', compact('categories', 'blog'));
+//        $categories = Category::all();
+        return view('admin.layouts.blogs.edit', compact( 'blog'));
     }
 
     /**
@@ -82,10 +82,8 @@ class BlogController extends Controller
         $request['user_id'] = $userId;
 
         $data = $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:blogs',
+            'title' => 'required|min:5|max:255|string|unique:blogs,title,'. $blog->id,
             'content' => 'required',
-            'image' => 'required',
-            'category' => 'required',
             'user_id' => 'required'
         ]);
         if ($request->hasFile('image')) {

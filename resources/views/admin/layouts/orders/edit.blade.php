@@ -42,6 +42,7 @@
                                  <label for="form-label" class="method">Trạng thái đơn hàng</label>
                                  <select class="form-select" id="status" name="status">
                                      <option {{$order->status === 'waiting' ? 'selected' : " "}} value="waiting">Chờ xử lý</option>
+                                     <option {{$order->status === 'cancel' ? 'selected' : " "}} value="cancel">Huỷ đơn hàng</option>
                                      <option {{$order->status === 'processing' ? 'selected' : " "}} value="processing">Đang xử lý</option>
                                      <option {{$order->status === 'packaged' ? 'selected' : " "}} value="packaged">Đã đóng gói</option>
                                      <option {{$order->status === 'sending' ? 'selected' : " "}} value="sending">Đang gửi</option>

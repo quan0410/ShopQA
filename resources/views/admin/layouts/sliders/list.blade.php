@@ -7,8 +7,10 @@
             <h5 class="card-header">Table Slider</h5>
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+                    <form action="{{route("admin.slider.index")}}">
+                        <input type="text" placeholder="Search..." name="search" value="{{request("search")}}">
+                        {{--                        <button type="submit" class="border-0"><i class="bx bx-search fs-4 lh-0"></i></button>--}}
+                    </form>
                 </div>
             </div>
             <div class="d-flex">

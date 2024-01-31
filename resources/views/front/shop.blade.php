@@ -1,5 +1,6 @@
 @extends('front.layout.master')
 @section('title', 'Shop QA')
+@section('nice-select-js', asset('front/js/jquery.nice-select.min.js'))
 @section('body')
 
     <!-- Breadcrumb Section Begin -->
@@ -105,22 +106,22 @@
                                             </div>
                                         </div>
                                     </div>
-{{--                                    <div class="card">--}}
-{{--                                        <div class="card-heading">--}}
-{{--                                            <a data-toggle="collapse" data-target="#collapseFive">Colors</a>--}}
-{{--                                        </div>--}}
-{{--                                        <div id="collapseFive" class="collapse show" data-parent="#fillter-product">--}}
-{{--                                            <div class="card-body">--}}
-{{--                                                <div class="shop__sidebar__color">--}}
-{{--                                                    @foreach($colors as $color)--}}
-{{--                                                        <label class="c-{{$color->id}}" for="color-{{$color->id}}" style="background-color: {{$color->code}}">--}}
-{{--                                                            <input type="radio" id="color-{{$color->id}}" name="colorId" value="{{$color->id}}">--}}
-{{--                                                        </label>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                    <div class="card">
+                                        <div class="card-heading">
+                                            <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
+                                        </div>
+                                        <div id="collapseFive" class="collapse show" data-parent="#fillter-product">
+                                            <div class="card-body">
+                                                <div class="shop__sidebar__color">
+                                                    @foreach($colors as $color)
+                                                        <a href="{{ route("shop.index",getParamsArray(["color" => $color->id]) ) }}" class="color-filter-{{$color->id}}"></a>
+                                                        <label class="{{request()->get('color') == $color->id ? "active" : ""}} color-filter" for="{{$color->id}}" style="background-color: {{$color->code}}"><span style="opacity: 0">{{$color->id}}</span><input type="radio" id="{{$color->id}}">
+                                                        </label>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -153,17 +154,17 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <img class="product__item__pic set-bg" src="{{asset(Storage::url($product->image))}}">
-                                @if($product->discount_price)
-                                    <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                                @if(isSaleProduct($product))
+                                    <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
                                 @elseif($product->featured)
                                     <span class="label">Hot</span>
                                 @endif
                                 <div class="product__item__text">
                                     <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
                                     <div class="Product-price">
-                                        @if($product->discount_price)
+                                        @if(isSaleProduct($product))
                                             <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                            <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                            <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                         @else
                                             <span class="price">{{number_format($product->price)}} VNĐ</span>
                                         @endif

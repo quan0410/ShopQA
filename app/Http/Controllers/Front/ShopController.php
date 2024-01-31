@@ -26,7 +26,7 @@ class ShopController extends Controller
     {
         $search = $request->search ?? '';
         $size = $request->size ?? '';
-        $color = $request->search ?? '';
+        $color = $request->color ?? '';
         $max = $request->max ?? '';
         $min = $request->min ?? '';
         $category = $request->ct ?? '';
@@ -45,6 +45,15 @@ class ShopController extends Controller
                     ->whereRaw('products.id = sizes.product_id')
                     ->where('sizes.name', $size);
             });
+        }
+
+        if ($color) {
+            $products->select('products.*', 'sizes.name as sizeNameproducts', 'colors.id as colorID')
+                ->leftJoin('sizes', 'products.id', '=', 'sizes.product_id')
+                ->leftJoin('color_size', 'color_size.size_id', '=', 'sizes.id')
+                ->leftJoin('colors', 'colors.id', '=', 'color_size.color_id')
+                ->where('color_size.color_id', '=', $color)
+                ->get();
         }
 
         if ($category) {

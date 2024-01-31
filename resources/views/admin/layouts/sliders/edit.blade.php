@@ -41,11 +41,13 @@
                         <div class="col-12 mb-3">
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>
-                                <div class="card-body demo-vertical-spacing demo-only-element">
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="image" value="{{substr($slider->image,7)}}" name="image" required>
-                                        <label class="input-group-text" for="image">Upload</label>
+                                <div class="input-group d-flex align-items-center justify-content-around">
+                                    <div class="w-50">
+                                        <input type="file" class="form-control h-25" id="image" name="image">
                                     </div>
+                                    <img src="{{asset(Storage::url($slider->image))}}"
+                                         class="image-upload {{$slider->image ? '' : 'd-none'}}" alt="image"
+                                         height="150" width="300">
                                 </div>
                             </div>
                         </div>

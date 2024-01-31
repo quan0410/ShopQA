@@ -112,8 +112,8 @@
     /*-------------------
 		Radio Btn
 	--------------------- */
-    $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label").on('click', function () {
-        $(".product__color__select label, .shop__sidebar__size label, .product__details__option__size label, .product__details__option__color label").removeClass('active');
+    $(".product__color__select label, .shop__sidebar__size label, .shop__sidebar__color label, .product__details__option__size label").on('click', function () {
+        $(".product__color__select label, .shop__sidebar__size label, .shop__sidebar__color label, .product__details__option__size label, .product__details__option__color label").removeClass('active');
         $(this).addClass('active');
     });
 
@@ -125,13 +125,13 @@
     /*-------------
     check fillter color
      --------------*/
-    $(".shop__sidebar__color label").on('click', function () {
-        if (this.classList.contains("active")) {
-            $(this).removeClass('active');
-        } else {
-            $(this).addClass('active');
-        }
-    });
+    // $(".shop__sidebar__color label").on('click', function () {
+    //     if (this.classList.contains("active")) {
+    //         $(this).removeClass('active');
+    //     } else {
+    //         $(this).addClass('active');
+    //     }
+    // });
 
     /*-------------------
 		Scroll

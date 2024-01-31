@@ -21,21 +21,21 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="content">Content</label>
-                            <input type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required />
+                            <textarea cols="30" rows="10" class="form-control @error('content') is-invalid @enderror" id="content" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required></textarea>
                             @error('content')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Categories</label>
-                            <select class="form-select" name="category">
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Categories</label>--}}
+{{--                            <select class="form-select" name="category">--}}
+{{--                                @foreach($categories as $category)--}}
+{{--                                    <option value="{{ $category->name }}">{{ $category->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <div class="col-12 mb-3">
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>

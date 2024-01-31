@@ -99,10 +99,10 @@ let menu, animate;
     $("#addAttribute").click( function () {
         $('.size-color').append(element);
         $('.size-color').removeClass('d-none');
-        const colors = $('body .size-color').find('.select-color');
-        $(colors).each( function (i) {
-            $(this).attr('name', `colors[${i}][]`)
-        });
+        // const colors = $('body .size-color').find('.select-color');
+        // $(colors).each( function (i) {
+        //     $(this).attr('name', `colors[${i}][]`)
+        // });
     });
     $(".size-color").on('click', '#removeAttribute', function (){
         $(this).closest('.sub-size-color').remove();
@@ -116,8 +116,97 @@ let menu, animate;
           img.removeClass('d-none');
       }
     });
+
+    let isChecked = false;
+    $('.cb-product-all').click(function (){
+        isChecked = !isChecked;
+        $('.cb-product').prop('checked',isChecked);
+    })
+      let page = 2;
+      $('#btn-load-more').click(function (){
+        let url = $(this).attr("data-get") + '?page=' +  page
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: function (response) {
+                page = response.current_page + 1
+                loadProduct(response.data);
+                if (response.current_page >= response.last_page){
+                    $('#btn-load-more').hide();
+                }
+            }
+        });
+        // $('#tb-products')
+    })
+      var imagesPreview = function(input, placeToInsertImagePreview) {
+
+          if (input.files) {
+              var filesAmount = input.files.length;
+                var i = 0;
+              for (i; i < filesAmount; i++) {
+                  var reader = new FileReader();
+
+                  reader.onload = function(event) {
+                      $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                  }
+
+                  reader.readAsDataURL(input.files[i]);
+              }
+          }
+
+      };
+
+      $('#gallery-photo-add').on('change', function() {
+          imagesPreview(this, 'div.gallery');
+          $(".gallery .image-upload").addClass('d-none');
+      });
   });
 
+  function loadProduct(data){
+      let html = '';
+      let urlAsset = $('#btn-load-more').attr("asset")
+      let products = JSON.parse($('#tb-products').attr('data'));
+      for (let i = 0;i < data.length ; i++){
+          html += `<tr>
+                                                <td class="text-center">
+                                                    <input type="checkbox" name="user_ids[]" ${ findProduct(products,data[i]) ? 'checked' : '' } value="${data[i].id}"
+                                                           class="form-check cb-product">
+                                                </td>
+                                                <td class="text-center">
+                                                    <strong>${data[i].id}</strong>
+                                                </td>
+                                                <td><img src="${urlAsset + data[i].image}" height="100"
+                                                         width="100" alt="image Product"></td>
+                                                <td>${data[i].name}</td>
+                                                <td>${data[i].sku}</td>
+                                                <td>
+                                                    ${data[i].brand.name}
+                                                </td>
+                                                <td>
+                                                    ${data[i].category.name}
+                                                </td>
+                                                <td class="text-center">${formatNumber(data[i].price)}đ</td>
+                                                <td class="text-center">${formatNumber(data[i].discount_price)}đ
+                                                </td>
+                                                <td class="text-center">${data[i].featured}</td>
+                                            </tr>`
+      }
+      $('#tb-products').append(html);
+  }
+
+  function formatNumber(string){
+      string = string.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+      return string.replace('VND','');
+  }
+
+  function findProduct(products,product){
+      for (let i = 0 ;i < products.length ; i++ ){
+          if (products[i].id === product.id){
+              return true;
+          }
+      }
+      return false;
+  }
   // Auto update layout based on screen size
   window.Helpers.setAutoUpdate(true);
 

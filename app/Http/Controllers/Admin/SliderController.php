@@ -10,9 +10,10 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 
 class SliderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sliders = Slider::paginate(5);
+        $search = $request->search ?? '';
+        $sliders = Slider::where('sliders.title', 'like', "%$search%")->paginate(5);
         return view('admin.layouts.sliders.list', compact('sliders'));
     }
 
@@ -32,14 +33,6 @@ class SliderController extends Controller
         ]);
         if ($request->hasFile('image')) {
             $filePath = $request->file('image')->store('images', 'public');
-//            $fileName = time() . '' . $request->file('image')->getClientOriginalName();
-//            $img = Image::make($image->getRealPath());
-//            $img->resize(120, 120, function ($constraint) {
-//                $constraint->aspectRatio();
-//            });
-
-//            $img->stream(); // <-- Key point
-//            Storage::disk('local')->put('images'.'/'.$fileName, 'public');
             $slider['image'] = $filePath;
         }
         Slider::create($slider);
@@ -73,10 +66,9 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         $data = $request->validate([
-            'title' => 'required|min:5|max:255|string|unique:sales,title,' .$slider->id,
+            'title' => 'required|min:5|max:255|string|unique:sliders,title,' . $slider->id,
             'content' => 'required',
             'url' => 'required',
-            'image' => 'required',
             'is_show' => 'int',
         ]);
         if ($request->hasFile('image')) {

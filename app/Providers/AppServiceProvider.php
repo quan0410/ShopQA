@@ -17,16 +17,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //product
-        $this->app->singleton(
-            ProductRepositoryinterface::class,
-            ProductRepository::class
-        );
-
-        $this->app->singleton(
-            ProductServicesInterface::class,
-            ProductServices::class
-        );
+//        //product
+//        $this->app->singleton(
+//            ProductRepositoryinterface::class,
+//            ProductRepository::class
+//        );
+//
+//        $this->app->singleton(
+//            ProductServicesInterface::class,
+//            ProductServices::class
+//        );
     }
 
     /**

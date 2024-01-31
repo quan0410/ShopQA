@@ -11,12 +11,12 @@ class Sales extends Model
 
     protected $table = 'sales';
     protected $fillable = [
-        'product_id',
         'title',
         'content',
         'time_start',
         'time_end',
-        'is_show'
+        'is_show',
+        'percent'
     ];
 
     /**
@@ -26,7 +26,6 @@ class Sales extends Model
      */
     protected $allowedFilters = [
         'id',
-        'product_id',
         'title',
         'content',
         'time_start',
@@ -41,7 +40,6 @@ class Sales extends Model
      */
     protected $allowedSorts = [
         'id',
-        'product_id',
         'title',
         'content',
         'time_start',
@@ -51,8 +49,18 @@ class Sales extends Model
         'updated_at',
     ];
 
-    public function product()
+    protected $with = ['products'];
+    protected static function boot()
     {
-        return $this->belongsTo(Product::class);
+        parent::boot();
+
+        self::deleted(function ($model){
+            $model->products()->detach();
+        });
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }

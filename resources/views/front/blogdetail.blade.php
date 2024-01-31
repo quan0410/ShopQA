@@ -1,5 +1,8 @@
 @extends('front.layout.master')
-@section('title', 'Blogs')
+@section('title', $blog->title)
+@section('title-meta', $blog->title)
+@section('description', 'Share text and photos with your friends and have fun')
+@section('keywords', 'sharing, sharing text, text, sharing photo, photo,')
 @section('body')
     <!-- Blog Details Hero Begin -->
     <section class="blog-hero spad">
@@ -30,10 +33,8 @@
                         <div class="blog__details__share">
                             <span>share</span>
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="youtube"><i class="fa fa-youtube-play"></i></a></li>
-                                <li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://www.facebook.com/share.php?u={{route('blog.detail.index', ['blog' => $blog->id])}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/intent/tweet?url={{urlencode(route('blog.detail.index', ['blog' => $blog->id]))}}" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
                             </ul>
                         </div>
                         <div class="blog__details__text">

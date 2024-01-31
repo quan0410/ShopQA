@@ -96,6 +96,12 @@ $(document).ready(function (){
         location.href = $(`.size-filter-${size}`).attr('href')
     })
 
+    $(document).off('click','.color-filter');
+    $(document).on('click','.color-filter',function (){
+        let color = $('.color-filter.active span').text();
+        location.href = $(`.color-filter-${color}`).attr('href')
+    })
+
     $(document).on('click','.select-sort-by ul li',function (){
         location.href = $('.select-sort-by ul li.selected').attr('data-value');
     })

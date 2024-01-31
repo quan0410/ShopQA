@@ -1,5 +1,6 @@
 @extends('front.layout.master')
 @section('title', 'Product Detail')
+@section('nice-select-js', asset('front/js/jquery.nice-select.min.js'))
 @section('body')
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
@@ -58,8 +59,8 @@
                                 <span>({{$product->reviews_count}})</span>
                             </div>
                             <h3>
-                                @if($product->discount_price)
-                                    <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                @if(isSaleProduct($product))
+                                    <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                     <span class="original-price">{{number_format($product->price)}} VNĐ</span>
                                 @else
                                     <span class="price">
@@ -229,8 +230,8 @@
                         <div class="product__item">
                             <img class="product__item__pic set-bg"
                                  src="{{ asset(Storage::url($productfeatured->image))}}">
-                            @if($productfeatured->discount_price)
-                                <span class="label text-danger">{{ percentDiscountPrice($productfeatured->price, $productfeatured->discount_price)}}%</span>
+                            @if(isSaleProduct($product))
+                                <span class="label text-danger">{{ percentDiscountPrice($productfeatured->price, getPriceSale($product))}}%</span>
                             @else
                                 <span class="label">Hot</span>
                             @endif
@@ -239,8 +240,8 @@
                                    class="name-product">{{$productfeatured->name}}</a>
                                 {{--                            <a href="#" class="add-cart">+ Add To Cart</a>--}}
                                 <div class="Product-price">
-                                    @if($productfeatured->discount_price)
-                                        <span class="discount-price">{{number_format($productfeatured->discount_price)}} VNĐ</span>
+                                    @if(isSaleProduct($product))
+                                        <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                         <span
                                             class="original-price">{{number_format($productfeatured->price)}} VNĐ</span>
                                     @else

@@ -41,9 +41,11 @@
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>
                                 <div class="card-body demo-vertical-spacing demo-only-element">
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="image" name="image" required>
-                                        <label class="input-group-text" for="image">Upload</label>
+                                    <div class="input-group d-flex align-items-center justify-content-center">
+                                        <div class="w-50">
+                                            <input type="file" class="form-control h-25" id="image" name="image" required>
+                                        </div>
+                                        <img class="image-upload d-none" alt="image" height="200" width="300">
                                     </div>
                                 </div>
                             </div>

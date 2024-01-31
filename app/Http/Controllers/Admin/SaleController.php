@@ -23,7 +23,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
         return view('admin.layouts.sales.create', compact('products'));
     }
 
@@ -33,15 +33,17 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+
         $sale = $request->validate([
             'title' => 'required|min:5|max:255|string|unique:sales',
             'content' => 'required',
-            'product_id' => 'required',
             'time_start' => 'required',
             'time_end' => 'required',
+            'percent' => 'required|numeric',
             'is_show' => 'int',
         ]);
-        Sales::create($sale);
+        $sale = Sales::create($sale);
+        $sale->products()->attach($request['user_ids']);
         return redirect()->route('admin.sale.index')->withSuccess('You have successfully created a Sale!');
 
     }
@@ -62,7 +64,7 @@ class SaleController extends Controller
      */
     public function edit(Sales $sale)
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
         return view('admin.layouts.sales.edit', compact('sale', 'products'));
     }
 
@@ -71,12 +73,14 @@ class SaleController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:255|string|unique:sales,title,' .$sale->id,
             'content' => 'required',
-            'product_id' => 'required',
             'time_start' => 'required',
             'time_end' => 'required',
+            'percent' => 'required|numeric',
             'is_show' => 'int',
         ]);
         $sale->update($request->all());
+        $sale->products()->detach();
+        $sale->products()->attach($request['user_ids']);
         return redirect()->route('admin.sale.index')->withSuccess('You have successfully update a Sale!');
     }
 }

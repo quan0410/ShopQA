@@ -7,8 +7,10 @@
             <h5 class="card-header">Table Blogs</h5>
             <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
+                    <form action="{{route("admin.blog.index")}}">
+                        <input type="text" placeholder="Search..." name="search" value="{{request("search")}}">
+                        {{--                        <button type="submit" class="border-0"><i class="bx bx-search fs-4 lh-0"></i></button>--}}
+                    </form>
                 </div>
             </div>
             <div class="d-flex">
@@ -21,7 +23,6 @@
                 <tr>
                     <th class="text-center">Id</th>
                     <th>Image</th>
-                    <th>Category</th>
                     <th>Title</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -36,7 +37,6 @@
                             <td>
                                 <img src="{{ asset(Storage::url($blog->image)) }}" height="120" width="200" alt="image-slider">
                             </td>
-                            <td>{{$blog->category}}</td>
                             <td>{{$blog->title}}</td>
                             <td class="text-center">
                                 <div class="dropdown">

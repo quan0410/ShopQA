@@ -22,30 +22,30 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="content">Content</label>
-                            <input type="text" class="form-control @error('content') is-invalid @enderror" id="content" value="{{$blog->content}}" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required />
+                            <textarea cols="30" rows="10" class="form-control @error('content') is-invalid @enderror" id="content" name="content" placeholder="Hot mùa hè mới có sản phẩm mới" required>{{$blog->content}}</textarea>
                             @error('content')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Categories</label>
-                            <select class="form-select" name="category">
-                                @foreach($categories as $category)
-                                    <option {{$blog->category === $category->name ? 'selected' : '' }} value="{{ $category->name }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Categories</label>--}}
+{{--                            <select class="form-select" name="category">--}}
+{{--                                @foreach($categories as $category)--}}
+{{--                                    <option {{$blog->category === $category->name ? 'selected' : '' }} value="{{ $category->name }}">{{ $category->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <div class="col-12 mb-3">
                             <div class="card">
                                 <h5 class="card-header">Upload Image</h5>
                                 <div class="card-body demo-vertical-spacing demo-only-element">
                                     <div class="input-group d-flex align-items-center justify-content-around">
                                         <div class="w-50">
-                                            <input type="file" class="form-control h-25" id="image" name="image" required>
+                                            <input type="file" class="form-control h-25" id="image" name="image">
                                         </div>
-                                        <img src="{{asset(Storage::url($blog->image))}}" class="image-upload {{$blog->image ? '' : 'd-none'}}" alt="image blog" height="200" width="300">
+                                        <img src="{{asset(Storage::url($blog->image))}}" class="image-upload {{$blog->image ? '' : 'd-none'}}" alt="image blog" height="150" width="300">
                                     </div>
                                 </div>
                             </div>
