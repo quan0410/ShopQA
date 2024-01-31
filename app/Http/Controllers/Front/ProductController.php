@@ -22,4 +22,8 @@ class ProductController extends Controller
         return view("front.product" ,compact("product", "featured", "averageRate"));
     }
 
+    public function loadMore()
+    {
+        return Product::with('brand','category')->paginate(10);
+    }
 }

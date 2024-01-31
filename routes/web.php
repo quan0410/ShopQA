@@ -129,3 +129,4 @@ Route::prefix('/admin')->group(function () {
         Route::get('{order}/detail', [\App\Http\Controllers\Admin\OrderController::class, 'detail'])->name('admin.order.detail');
     });
 });
+Route::get('/sale/products/load',[\App\Http\Controllers\Front\ProductController::class,'loadMore'])->name('sale.product.load');

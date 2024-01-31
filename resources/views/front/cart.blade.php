@@ -52,7 +52,11 @@
                                                 <a href="{{route("product.index",[$details['product']->sku])}}" class="name-product">{{$details->product->name}}</a>
                                                 <div class="size">Size: {{$details->name}}</div>
                                                 <div class="color">Color: {{$details->color->name}}</div>
-                                                <h5>{{number_format($details->product->discount_price ?? $details->product->price)}} VNĐ</h5>
+                                                @if(isSaleProduct($details->product))
+                                                <h5>{{number_format(getPriceSale($details->product))}} VNĐ</h5>
+                                                @else
+                                                    <h5>{{number_format($details->product->price)}} VNĐ</h5>
+                                                @endif
                                             </div>
                                         </td>
                                         <td class="quantity__item">
@@ -62,7 +66,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="cart__price">{{number_format(($details['product']->discount_price ?? $details['product']->price) * $details['qty'])}} VNĐ</td>
+                                        <td class="cart__price">{{number_format( (isSaleProduct($details['product']) ? getPriceSale($details['product']) : $details['product']->price)  * $details['qty'])}} VNĐ</td>
                                         <td class="actions" data-th="">
                                             <button class="cart__close" onclick="document.getElementById('remove-cart-{{$id}}').submit()"><i class="fa fa-close"></i></button>
                                             <form action="{{ route('remove.cart') }}" id="remove-cart-{{$id}}" method="post">
@@ -94,8 +98,8 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>{{number_format(session("total_cart"))}} VNĐ</span></li>
-                            <li>Total <span>{{number_format(session("total_cart"))}} VNĐ</span></li>
+                            <li>Subtotal <span>{{number_format(getTotalCart())}} VNĐ</span></li>
+                            <li>Total <span>{{number_format(getTotalCart())}} VNĐ</span></li>
                         </ul>
                         <a href="{{route("checkout.index")}}" class="primary-btn">Proceed to checkout</a>
                     </div>

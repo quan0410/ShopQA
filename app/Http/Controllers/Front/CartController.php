@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -66,9 +67,12 @@ class CartController extends Controller
     protected function totalCart()
     {
         $total = 0;
+        $ids = [];
         foreach (session('cart') as $id => $detail){
             $total += $detail['qty'] * ($detail['product']['discount_price'] ?? $detail['product']['price']);
         }
+        $products = Product::whereIn('id',$ids)->with('sales')->get();
+        foreach ($products as $product);
         return $total;
     }
 

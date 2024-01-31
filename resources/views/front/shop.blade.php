@@ -153,17 +153,17 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <img class="product__item__pic set-bg" src="{{asset(Storage::url($product->image))}}">
-                                @if($product->discount_price)
-                                    <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                                @if(isSaleProduct($product))
+                                    <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
                                 @elseif($product->featured)
                                     <span class="label">Hot</span>
                                 @endif
                                 <div class="product__item__text">
                                     <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
                                     <div class="Product-price">
-                                        @if($product->discount_price)
+                                        @if(isSaleProduct($product))
                                             <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                            <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                            <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                         @else
                                             <span class="price">{{number_format($product->price)}} VNĐ</span>
                                         @endif

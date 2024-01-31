@@ -67,13 +67,13 @@
                                 <div class="checkout__order__products">Product <span>Total</span></div>
                                 <ul class="checkout__total__products">
                                     @foreach($cart as $id=>$details)
-                                        <li>{{$details['product']->name}}<span>{{number_format(($details['product']->discount_price ?? $details['product']->price) * $details['qty'])}} VNĐ</span></li>
+                                        <li>{{$details['product']->name}}<span>{{number_format((isSaleProduct($details['product']) ? getPriceSale($details['product']) : $details['product']->price)  * $details['qty'])}} VNĐ</span></li>
                                     @endforeach
 
                                 </ul>
                                 <ul class="checkout__total__all">
-                                    <li>Subtotal <span>{{number_format($total)}} VNĐ</span></li>
-                                    <li>Total <span>{{number_format($total)}} VNĐ</span></li>
+                                    <li>Subtotal <span>{{number_format(getTotalCart())}} VNĐ</span></li>
+                                    <li>Total <span>{{number_format(getTotalCart())}} VNĐ</span></li>
                                 </ul>
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">

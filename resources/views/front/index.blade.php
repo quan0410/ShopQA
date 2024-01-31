@@ -90,13 +90,15 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6  mix best-seller">
                         <div class="product__item">
                             <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
-                            <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @if(isSaleProduct($product))
+                            <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
+                            @endif
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
                                 <div class="Product-price">
-                                    @if($product->discount_price)
+                                    @if(isSaleProduct($product))
                                         <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                     @else
                                         <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
@@ -143,13 +145,15 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                         <div class="product__item">
                             <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
-                            <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @if(isSaleProduct($product))
+                            <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
+                            @endif
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
                                 <div class="Product-price">
-                                    @if($product->discount_price)
+                                    @if(isSaleProduct($product))
                                         <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                     @else
                                         <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
@@ -195,17 +199,17 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         <div class="product__item">
                             <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
-                            @if($product->discount_price)
-                                <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @if(isSaleProduct($product))
+                                <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
                             @else
                                 <span class="label">New</span>
                             @endif
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
-                                <div class="Product-price">
-                                    @if($product->discount_price)
+                                <div class="Product-pric">
+                                    @if(isSaleProduct($product))
                                         <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                     @else
                                         <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
@@ -251,17 +255,17 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix featured">
                         <div class="product__item">
                             <img class="product__item__pic set-bg" src="{{ asset(Storage::url($product->image))}}">
-                            @if($product->discount_price)
-                                <span class="label text-danger">{{ percentDiscountPrice($product->price, $product->discount_price)}}%</span>
+                            @if(isSaleProduct($product))
+                                <span class="label text-danger">{{ percentDiscountPrice($product->price, getPriceSale($product))}}%</span>
                             @else
                                 <span class="label">Hot</span>
                             @endif
                             <div class="product__item__text">
                                 <a href="{{route("product.index",[$product->sku])}}" class="name-product">{{$product->name}}</a>
-                                <div class="Product-price">
-                                    @if($product->discount_price)
+                                <div class="Product-price ">
+                                    @if(isSaleProduct($product))
                                         <span class="original-price">{{number_format($product->price)}} VNĐ</span>
-                                        <span class="discount-price">{{number_format($product->discount_price)}} VNĐ</span>
+                                        <span class="discount-price">{{number_format(getPriceSale($product))}} VNĐ</span>
                                     @else
                                     <span class="price">{{number_format($product->price)}} VNĐ</span>
                                     @endif
@@ -309,53 +313,53 @@
 <!-- Product Section End -->
 
 <!-- Categories Section Begin -->
-@if($sale)
-<section class="categories spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="categories__text">
-                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="categories__hot__deal">
-                    <img src="front/img/product-sale.png" alt="">
-                    <div class="hot__deal__sticker">
-                        <span>Sale Of</span>
-                        <h5>{{ number_format($sale->product->discount_price) }} VNĐ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 offset-lg-1">
-                <div class="categories__deal__countdown">
-                    <span>{{ $sale->title }}</span>
-                    <h2>{{ $sale->content }}</h2>
-                    <div class="categories__deal__countdown__timer" id="countdown" time-end="{{$sale->time_end}}">
-                        <div class="cd-item">
-                            <span>00</span>
-                            <p>Days</p>
-                        </div>
-                        <div class="cd-item">
-                            <span>00</span>
-                            <p>Hours</p>
-                        </div>
-                        <div class="cd-item">
-                            <span>00</span>
-                            <p>Minutes</p>
-                        </div>
-                        <div class="cd-item">
-                            <span>00</span>
-                            <p>Seconds</p>
-                        </div>
-                    </div>
-                    <a href="" class="primary-btn btn-countdown-sale">Shop now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
+{{--@if($sale)--}}
+{{--<section class="categories spad">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-3">--}}
+{{--                <div class="categories__text">--}}
+{{--                    <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4">--}}
+{{--                <div class="categories__hot__deal">--}}
+{{--                    <img src="front/img/product-sale.png" alt="">--}}
+{{--                    <div class="hot__deal__sticker">--}}
+{{--                        <span>Sale Of</span>--}}
+{{--                        <h5>{{ number_format($sale->product->discount_price) }} VNĐ</h5>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-4 offset-lg-1">--}}
+{{--                <div class="categories__deal__countdown">--}}
+{{--                    <span>{{ $sale->title }}</span>--}}
+{{--                    <h2>{{ $sale->content }}</h2>--}}
+{{--                    <div class="categories__deal__countdown__timer" id="countdown" time-end="{{$sale->time_end}}">--}}
+{{--                        <div class="cd-item">--}}
+{{--                            <span>00</span>--}}
+{{--                            <p>Days</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="cd-item">--}}
+{{--                            <span>00</span>--}}
+{{--                            <p>Hours</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="cd-item">--}}
+{{--                            <span>00</span>--}}
+{{--                            <p>Minutes</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="cd-item">--}}
+{{--                            <span>00</span>--}}
+{{--                            <p>Seconds</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <a href="" class="primary-btn btn-countdown-sale">Shop now</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+{{--@endif--}}
 <!-- Categories Section End -->
 
 <!-- Instagram Section Begin -->

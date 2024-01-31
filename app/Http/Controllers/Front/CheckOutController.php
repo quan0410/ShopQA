@@ -15,7 +15,7 @@ class CheckOutController extends Controller
         if (!empty(session('cart')) && Auth::check()) {
             $user = Auth::user();
             $cart = session('cart');
-            $total = session('total_cart');
+            $total = getTotalCart();
 
             return view("front.checkout", compact("user", "cart", "total"));
         }
@@ -39,9 +39,7 @@ class CheckOutController extends Controller
         $order = Auth()->user()->order()->create($data);
         $orderDetails = [];
         foreach ($cart as $orderDetail) {
-            $total = $orderDetail->product->discount_price > 0 ?
-                $orderDetail->product->discount_price * $orderDetail->qty :
-                $orderDetail->product->price * $orderDetail->qty;
+            $total = getTotalCart();
             $orderDetails[] = [
                 'order_id' => $order->id,
                 'product_id' => $orderDetail->product_id,
@@ -49,7 +47,7 @@ class CheckOutController extends Controller
                 'color_id' => $orderDetail->color->id,
                 'size_id' => $orderDetail->id,
                 'price' => $orderDetail->product->price,
-                'discount_price' => $orderDetail->product->discount_price,
+                'discount_price' => getPriceSale($orderDetail->product),
                 'total' => $total,
             ];
         }

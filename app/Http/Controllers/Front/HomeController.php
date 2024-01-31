@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::where("is_show", true)->get();
-        $sale = Sales::where("is_show", true)->with('product')->first();
+        $sale = Sales::where("is_show", true)->with('products')->first();
         $bestSellers = Product::bestSellers()->get();
         $hotSales = Product::hotSales()->get();
         $newProduct = Product::new()->get();

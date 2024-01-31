@@ -88,9 +88,9 @@ class Product extends Model
         return $this->hasMany(Review::class)->latest()->limit(5);
     }
 
-    public function sale()
+    public function sales()
     {
-        return $this->hasOne(Sales::class);
+        return $this->belongsToMany(Sales::class);
     }
 
     public function scopeBestSellers($query)
